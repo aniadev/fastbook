@@ -1,0 +1,16 @@
+.menu {
+    width: 200px;
+    position: fixed;
+    background: #D299FF;
+}
+.menu>ul>li {
+    padding: 10px 5px;
+    border: 1px solid rgb(255, 255, 255);
+}
+.active{
+    background-color: rgb(255, 208, 247);
+}
+.menu>ul>li>p {
+    padding: 0px 10px;
+    margin: 0px;
+}

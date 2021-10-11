@@ -1,0 +1,68 @@
+@media only screen and (max-width: 768px){
+    .left, .right{
+        float: none;
+        width: 100%;
+    }
+}
+
+.navbar {
+    height: 56px;
+    background: #000000b0;
+}
+.form-search input {
+    font-family: sans-serif;
+    border-radius: 38px;
+    width: 120px;
+    height: 40px;
+    border: 1px solid rgb(172, 208, 250);
+    transition: all .5s ease;
+    padding-left: 20px;
+}
+.form-search input:focus {
+    width: 350px;
+    border: 1px solid rgb(255, 67, 208);
+}
+
+/* username and avatar */
+.navbar-user{
+    position: absolute;
+    display : flex;
+    left: 60%;
+    margin: 3px;
+    padding: 5px;
+    border-radius:42px;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+.navbar-user:hover{
+    background: rgba(199, 199, 199, 0.692);
+    cursor: pointer;
+}
+.navbar-user img {
+    border-radius: 50%;
+}
+/* username */
+.navbar-user p { 
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    margin: auto auto auto 15px;
+    padding-bottom: 0px;
+}
+
+.dropdown {
+    position: absolute;
+    right: 10px;
+    border-radius:4px;
+    transform: translateX(-50%);
+}
+.dropdown button {
+    background: rgba(0, 0, 0, 0);
+    border: 0px solid transparent;
+}
+.dropdown-menu-right {
+    margin-top: 15px;
+    right: 0;
+    left: auto;
+}

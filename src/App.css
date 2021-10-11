@@ -1,0 +1,18 @@
+* {
+  margin : 0;
+  padding : 0;
+}
+
+.user-profile-item {
+  display: flex;
+  align-items: center;
+}
+.user-profile-item p {
+  margin: 0px 0px 0px 5px;
+  padding: 5px;
+}
+.user-profile-item img {
+  border-radius :50%;
+  border: 1px solid rgb(48, 155, 255);
+}
+

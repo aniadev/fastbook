@@ -3,7 +3,7 @@ import "./Navbar.css";
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-sm fixed">
+    <nav className="navbar navbar-expand-sm">
       <div className="navbar-brand mr-1 pointer">
         <img
           src={process.env.PUBLIC_URL + "/img/logo.png"}

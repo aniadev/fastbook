@@ -1,8 +1,10 @@
 .menu {
     min-width: 200px;
+    top: 56px;
     position: fixed;
     background: #242526;
     align-items: center;
+    z-index: 9;
 }
 .menu>ul>li {
     display: block;

@@ -7,19 +7,27 @@ function Sidebar() {
     <div className="menu">
       <ul>
         <li>
-          <UserProfileItem
-            userName="Phạm Công Hải"
-            avatar="https://www.pngarea.com/pngm/468/3428536_default-avatar-png-profile-demo-hd-png-download.png"
-          />
-        </li>
-        <li className="active">
-          <p>Trang chủ</p>
-        </li>
-        <li>
-          <p>Messenger</p>
+          <div className="menu-item">
+            <UserProfileItem
+              userName="Phạm Công Hải"
+              avatar="https://www.pngarea.com/pngm/468/3428536_default-avatar-png-profile-demo-hd-png-download.png"
+            />
+          </div>
         </li>
         <li>
-          <p>Friends</p>
+          <div className="menu-item active">
+            <p>Home</p>
+          </div>
+        </li>
+        <li>
+          <div className="menu-item">
+            <p>Messenger</p>
+          </div>
+        </li>
+        <li>
+          <div className="menu-item">
+            <p>Friends</p>
+          </div>
         </li>
       </ul>
     </div>

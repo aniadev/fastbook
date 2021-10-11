@@ -6,19 +6,25 @@
     align-items: center;
     z-index: 9;
 }
-.menu>ul>li {
+
+.menu-item {
     display: block;
-    border: 1px solid #707070;
-    margin: 0 auto;
-    padding: 5px 5px;
+    margin: 5px 0 5px 5px;
+    padding: 2px;
+    height: 45px;
+    transition: all .3s ease;
+    border-radius: 45px 0px 0px 45px;
 }
-.menu>ul>li :hover {
+.menu-item:hover {
     cursor: pointer;
+    background: #707070;
+    color: #000;
+}
+.menu-item p {
+    padding: 5px 10px;
+    margin: auto;
 }
 .active{
     background-color:#707070; 
-}
-.menu>ul>li>p {
-    padding: 10px 10px;
-    margin: auto;
+    border-radius: 45px 0px 0px 45px;
 }

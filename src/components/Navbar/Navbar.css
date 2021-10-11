@@ -29,7 +29,7 @@
     margin: 3px;
     padding: 5px;
     border-radius:42px;
-
+    transition: all .3s ease;
 }
 .navbar-user:hover{
     background: rgba(199, 199, 199, 0.692);
@@ -43,7 +43,7 @@
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
-    margin: auto auto auto 15px;
+    margin: auto 10px auto 15px;
     padding-bottom: 0px;
 }
 
@@ -61,4 +61,10 @@
     margin-top: 15px;
     right: 0;
     left: auto;
+}
+.dropdown-menu {
+    background: #37383a;
+}
+.dropdown-item {
+    color: white;
 }

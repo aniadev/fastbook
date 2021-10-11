@@ -16,3 +16,11 @@
   border: 1px solid rgb(48, 155, 255);
 }
 
+.no-select {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+.pointer {
+  cursor: pointer;
+}

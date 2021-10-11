@@ -1,12 +1,13 @@
-import React from 'react'
+import React from "react";
 
-function UserProfileItem() {
-    return (
-        <div className="user-profile-item">
-            <img src="https://www.pngarea.com/pngm/468/3428536_default-avatar-png-profile-demo-hd-png-download.png" width="36" height="36" alt="avatar" />
-            <p>Phạm Công Hải</p>
-        </div>
-    )
+function UserProfileItem(props) {
+  const { userName, avatar } = props;
+  return (
+    <div className="user-profile-item">
+      <img src={avatar} width="36" height="36" alt="avatar" />
+      <p>{userName}</p>
+    </div>
+  );
 }
 
-export default UserProfileItem
+export default UserProfileItem;

@@ -7,7 +7,7 @@
 
 .navbar {
     height: 56px;
-    background: #000000b0;
+    background: #37383a;
 }
 .form-search input {
     font-family: sans-serif;
@@ -31,9 +31,7 @@
     margin: 3px;
     padding: 5px;
     border-radius:42px;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
+
 }
 .navbar-user:hover{
     background: rgba(199, 199, 199, 0.692);

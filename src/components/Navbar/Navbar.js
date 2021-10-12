@@ -1,7 +1,10 @@
 import React from "react";
 import "./Navbar.css";
+// redux store
+import { useSelector } from "react-redux";
 
 function Navbar() {
+  const user = useSelector((state) => state.user);
   return (
     <nav className="navbar navbar-expand-sm">
       <div className="navbar-brand mr-1 pointer">
@@ -22,13 +25,8 @@ function Navbar() {
       </form>
 
       <div className="navbar-user no-select">
-        <img
-          src="https://www.pngarea.com/pngm/468/3428536_default-avatar-png-profile-demo-hd-png-download.png"
-          width="36"
-          height="36"
-          alt="avatar"
-        />
-        <p>Phạm Công Hải</p>
+        <img src={user.avatar} width="36" height="36" alt="avatar" />
+        <p>{user.username}</p>
       </div>
 
       <div className="dropdown">

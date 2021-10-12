@@ -5,7 +5,7 @@ function UserProfileItem(props) {
   return (
     <div className="user-profile-item">
       <img src={avatar} width="36" height="36" alt="avatar" />
-      <p>{userName}</p>
+      <p className="username">{userName}</p>
     </div>
   );
 }

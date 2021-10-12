@@ -1,17 +1,17 @@
 import React from "react";
 import "./Sidebar.css";
 import UserProfileItem from "../UserProfileItem";
+// redux store
+import { useSelector } from "react-redux";
 
 function Sidebar() {
+  const user = useSelector((state) => state.user);
   return (
     <div className="menu">
       <ul>
         <li>
           <div className="menu-item">
-            <UserProfileItem
-              userName="Phạm Công Hải"
-              avatar="https://www.pngarea.com/pngm/468/3428536_default-avatar-png-profile-demo-hd-png-download.png"
-            />
+            <UserProfileItem userName={user.username} avatar={user.avatar} />
           </div>
         </li>
         <li>

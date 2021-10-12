@@ -1,11 +1,23 @@
-.NewfeedPanel{
-    position: absolute;
-    left: 205px;
-    top: 58px;
-    width: 60%;
-    min-width: 650px;
-    background: rgba(255, 255, 255, 0.884);
-    color: black;
+@media screen and (max-width: 634px) {
+    .NewfeedPanel{
+        position: absolute;
+        top: 58px;
+        width: 45%;
+        min-width: 550px;
+        color: black;
+        margin-left: 0px;
+        left: 195px;
+    }
+}
+@media screen and (min-width: 635px) {
+    .NewfeedPanel{
+        position: absolute;
+        left: calc(30% + 5px);
+        top: 58px;
+        width: 45%;
+        min-width: 550px;
+        color: black;
+    }
 }
 
 /* Panel for create new post */
@@ -17,10 +29,10 @@
     left: 1%;
     top: 5px;
     width: 98%;
-    height: 150px;
+    height: 90px;
     border: 1px;
     border-radius: 12px;
-    background: rgb(255, 255, 255);
+    background: #7f8c8d;
 }
 .avatar img{
     border: 1px solid rgb(145, 126, 255);
@@ -31,8 +43,82 @@
     margin: 0 0 0 10px;
     width: 80%;
 }
-.form-control {
+.form-group input[type="text"] {
     border-radius: 22px;
     height: 44px;
+    background-color: #ecf0f1;
 }
 /* Panel for posts of users */
+.newfeed-post {
+    position: relative;
+    /* display: flex; */
+    /* flex-direction: column; */
+    margin: 6px 0px;
+    left: 1%;
+    top: 5px;
+    width: 98%;
+    min-height: 150px;
+    border: 1px;
+    border-radius: 12px;
+    background: rgb(255, 255, 255);
+}
+.newfeed-post .nf-header { /*header*/
+    position: relative;
+    display: flex;
+    padding-top: 12px;
+}
+.newfeed-post .nf-header .nf-username span {
+    font-weight: 500;
+    padding: 0px 8px;
+    margin: 0;
+}
+.newfeed-post .nf-header .nf-time span {
+    padding: 0px 8px;
+    font-size: 11px;
+}
+.newfeed-post .nf-body {/*body*/
+    position: relative;
+}
+.newfeed-post .nf-body span {
+    padding: 0px 8px;
+    margin: 0;
+    display: inline-block;
+}
+/* .newfeed-post .nf-body .nf-img {
+    
+} */
+.newfeed-post .nf-body .nf-img img {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 2px rgb(4, 53, 0));
+    margin-top: 14px;
+    margin-bottom: 4px;
+}
+
+.newfeed-post .nf-footer {  /*footer*/
+    width: 100%;
+    height: 80px;
+    padding-top: 5px;
+}
+.newfeed-post .nf-footer .react .react-row {
+    height: 40px;
+}
+.newfeed-post .nf-footer .react .react-item { 
+    height:40px;
+    /* background: rgb(240, 233, 233); */
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+    border-radius: 4px;
+}
+.newfeed-post .nf-footer .react .react-item:hover { 
+    background: #ecf0f1;
+    color: #e74c3c;
+}
+.newfeed-post .nf-footer .react-count { 
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-left: 10px;
+}
+.reacted {
+    font-weight: bold;
+    color: red;
+}

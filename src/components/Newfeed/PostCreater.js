@@ -50,16 +50,22 @@ function PostCreater() {
   const imageChange = async (imageList) => {
     setImages(imageList);
     if (imageList.length > 0) {
-      console.log(imageList[0]);
+      // console.log(imageList[0]);
       try {
         var img_base64 = imageList[0].data_url.replace(
-          /^data:image\/(png|jpg);base64,/,
+          /^data:image\/(png|jpg|jpeg);base64,/,
           ""
         );
-        const response = await imageUploadApi.getImageLink({
-          image: img_base64,
-        });
-        console.log(response);
+        const response = await imageUploadApi.getImageLink(img_base64);
+        // console.log(response);
+        if (response.status === 200) {
+          // console.log(response);
+          alert("Image ready to upload!");
+          setNewPost({
+            ...newPost,
+            imageLinks: response.data.data.url,
+          });
+        }
       } catch (error) {
         console.log("Fail to upload: " + error);
       }

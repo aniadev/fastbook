@@ -16,16 +16,20 @@
     padding: 2px;
     height: 45px;
     transition: all .3s ease;
+    text-decoration: none;
+    color: #fff;
     border-radius: 45px 0px 0px 45px;
 }
 .menu-item:hover {
     cursor: pointer;
-    background: #707070;
-    color: #000;
+    background: #b2bec3;
+    color: #0984e3;
+    text-decoration: none;
 }
 .menu-item p {
     padding: 5px 10px;
     margin: auto;
+    text-decoration: none;
 }
 .active{
     background-color:#707070; 

@@ -38,15 +38,93 @@
     border: 1px solid rgb(145, 126, 255);
     border-radius: 50%;
     display: flex;
+    cursor: pointer;
 }
-.form-group {
+.nf-post-editor{
+    position: fixed;
+    z-index: 99;
+    left: 50%;
+    width: 420px;
+    background-color: #dfe6e9;
+    transform: translateX(-20%);
+    transition: all 0.5s ease;
+    
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    pointer-events: auto;
+    background-clip: padding-box;
+    border: 2px solid #81ecec;
+    border-radius: 0.3rem;
+    outline: 0;
+}
+/* pe : post-editor */
+.pe-hide { 
+    top: -650px;
+    opacity: 0;
+}
+.pe-show {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    top: 80px;
+    opacity: 1;
+}
+.nf-post-editor-close-button {
+    position: relative;
+    padding: 0px 0px;
+    margin: 2px 0px 0px auto;
+    left: calc(100% - 20px);
+    cursor: pointer;
+}
+.upload__image-wrapper {
+    display: block;
+    margin-left: 10px;
+}
+.image-panel-loaded {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: center;
+    margin-bottom: 8px;
+}
+.image-item-loaded {
+    display: flex;
+}
+.image-item-loaded img {
+    border: 2px solid #2d3436;
+    width: 80px;
+    height: 80px;
+    border-radius: 3px;
+    margin-top: 6px;
+}
+.image-item-loaded .image-item-remove{
+    top: 2px;
+    cursor: pointer;
+    padding: 0px 0px;
+    margin: 0px 0px;
+}
+/* Create new post */
+.create-post{
     margin: 0 0 0 10px;
     width: 80%;
+    display: flex;
 }
-.form-group input[type="text"] {
-    border-radius: 22px;
+.create-post input[type="text"] {
+    border-radius: 22px 0 0 22px;
     height: 44px;
     background-color: #ecf0f1;
+    cursor: pointer;
+}
+.create-post button{
+    border-radius: 0 1.5rem 1.5rem 0;
+    background-color: #ecf0f1;
+    border: 0px solid transparent;
+}
+.create-post form {
+    display: flex;
+    width: 100%;
 }
 /* Panel for posts of users */
 .newfeed-post {
@@ -93,6 +171,7 @@
     filter: drop-shadow(0 0 2px rgb(4, 53, 0));
     margin-top: 14px;
     margin-bottom: 4px;
+    cursor: pointer;
 }
 
 .newfeed-post .nf-footer {  /*footer*/
@@ -112,13 +191,13 @@
 }
 .newfeed-post .nf-footer .react .react-item:hover { 
     background: #ecf0f1;
-    color: #e74c3c;
 }
 .newfeed-post .nf-footer .react-count { 
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin-left: 10px;
 }
 .reacted {
+    font-size: 17px;
     font-weight: bold;
-    color: red;
+    color: #3498db;
 }

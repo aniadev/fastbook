@@ -8,36 +8,38 @@ import { useSelector, useDispatch } from "react-redux";
 import { reactPost, unReactPost } from "../../store/reducers/userSlice";
 
 function NewfeedPost(props) {
+  //use props to render the post
+  const postData = props.postData;
   // use state
   const [isReacted, setReact] = useState(false);
-  //use props
-  const { id, user, content, reactions } = props.postData;
-  //useSelector
+  //useSelector for user's reaction
   const postReacted = useSelector((state) => state.user.postReacted);
   //useDispatch
   const dispatch = useDispatch();
   // check reactions
   const reactPostHandle = () => {
-    isReacted ? dispatch(unReactPost(id)) : dispatch(reactPost(id));
+    isReacted
+      ? dispatch(unReactPost(postData.postId))
+      : dispatch(reactPost(postData.postId));
   };
   // useEffect
   useEffect(() => {
-    setReact(postReacted.includes(id));
-    // console.log(id);
-  }, [id, postReacted]);
+    setReact(postReacted.includes(postData.userId));
+    // console.log(userId);
+  }, [postData.userId, postReacted]);
 
   return (
     <div className="newfeed-post container-fluid">
       <div className="nf-header">
         <div className="ml-3">
-          <Avatar avatarLink={user.avatar} width="45" height="45" />
+          <Avatar avatarLink={postData.avatar} width="45" height="45" />
         </div>
         <div>
           <div className="nf-username">
-            <span dir="auto">{user.name}</span>
+            <span dir="auto">{postData.name}</span>
           </div>
           <div className="nf-time">
-            <span>{content.time}</span>
+            <span>{postData.time}</span>
           </div>
         </div>
       </div>
@@ -46,11 +48,18 @@ function NewfeedPost(props) {
       />
       <div className="nf-body">
         <div className="nf-content">
-          <span>{content.value}</span>
+          {/* <span>{postData.content}</span> */}
+          <div
+            dangerouslySetInnerHTML={{
+              __html: `${postData.content.replace(/(?:\r\n|\r|\n)/g, "<br>")}`,
+            }}
+          />
         </div>
-        {content.image || "" ? (
+        {postData.image !== "null" &&
+        postData.image !== "" &&
+        postData.image !== null ? (
           <div className="nf-img">
-            <img src={content.image} alt="nfimage" />
+            <img src={postData.image} alt="nfimage" />
           </div>
         ) : (
           false
@@ -58,9 +67,19 @@ function NewfeedPost(props) {
       </div>
       <div className="nf-footer">
         <div className="react-count">
-          <span>{reactions.likes} likes</span>
+          <span>
+            {postData.likes > 0 ? postData.likes : " "}{" "}
+            {postData.likes === 0
+              ? " "
+              : `${postData.likes > 1 ? "likes" : "like"}`}
+          </span>
           <span> </span>
-          <span>{reactions.comments} comments</span>
+          <span>
+            {postData.comments > 0 ? postData.comments : " "}{" "}
+            {postData.comments === 0
+              ? " "
+              : `${postData.comments > 1 ? "comments" : "comment"}`}
+          </span>
           <hr style={{ borderTop: "1px dotted black", margin: "2px" }} />
         </div>
         <div className="react container-fluid">
@@ -69,10 +88,14 @@ function NewfeedPost(props) {
               className="react-item col text-center no-select"
               onClick={() => reactPostHandle()}
             >
-              <span className={isReacted ? "reacted" : ""}>Like</span>
+              <span className={isReacted ? "reacted" : ""}>
+                Like <i className="far fa-thumbs-up"></i>
+              </span>
             </div>
             <div className="react-item col text-center no-select">
-              <span>Comment</span>
+              <span>
+                Comment <i className="far fa-comment"></i>
+              </span>
             </div>
           </div>
         </div>

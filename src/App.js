@@ -1,21 +1,16 @@
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
 // Components
-import Navbar from "./components/Navbar/Navbar";
-import Sidebar from "./components/Sidebar/Sidebar";
-import NewfeedPanel from "./components/Newfeed/NewfeedPanel";
-// Redux
-import store from "./store/store";
-import { Provider } from "react-redux";
+import HomePage from "./components/HomePage";
+
 function App() {
   return (
-    <Provider store={store}>
+    <Router>
       <div className="App">
-        <Navbar />
-        <Sidebar />
-        <NewfeedPanel />
+        <HomePage />
       </div>
-    </Provider>
+    </Router>
   );
 }
 

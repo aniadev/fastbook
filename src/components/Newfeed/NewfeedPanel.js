@@ -10,12 +10,13 @@ import { initPosts } from "../../store/reducers/newfeedSlice";
 import postsApi from "../../api/postsApi";
 
 function NewfeedPanel() {
-  const allPostData = useSelector((state) => state.newfeedPost);
+  const newfeedPost = useSelector((state) => state.newfeedPost);
+  const allPostData = [...newfeedPost.posts];
   const dispatch = useDispatch();
   useEffect(() => {
     const getApi = async () => {
       try {
-        const response = await postsApi.getPosts();
+        const response = await postsApi.getPosts({ _limit: 10, _offset: 0 });
         if (response.success) {
           // console.log(response.posts);
           dispatch(initPosts(response.posts));

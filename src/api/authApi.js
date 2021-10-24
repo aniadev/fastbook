@@ -1,6 +1,10 @@
 import axiosClient from "./axiosClient";
 
 const authApi = {
+  auth: () => {
+    const url = "/auth";
+    return axiosClient.post(url); // check auth, send Authorization request
+  },
   login: (params) => {
     const url = "/auth/login";
     return axiosClient.post(url, params);

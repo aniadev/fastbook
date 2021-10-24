@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
-import ImageUploading from "react-images-uploading";
 import "./NewfeedPanel.css";
 //components
 import Avatar from "./Avatar";
+import ImageUploading from "react-images-uploading";
 
 // redux store
 import { useSelector } from "react-redux";
@@ -12,72 +12,63 @@ import imageUploadApi from "../../api/imageUploadApi";
 function PostCreater() {
   const user = useSelector((state) => state.user);
   const initialNewPostState = {
-    userId: null,
     content: "",
-    imageLinks: [],
   };
   const textInput = useRef(null);
+
   const [editorState, setEditorState] = useState("pe-hide");
-  const [images, setImages] = useState();
+  const [images, setImages] = useState([]);
   const [newPost, setNewPost] = useState(initialNewPostState);
 
-  const createPostHandler = async (e) => {
-    e.preventDefault();
-    if (newPost.content !== "") {
-      try {
-        const response = await postsApi.createNewPost(newPost);
-        if (response.success) {
-          alert(response.message);
-          setNewPost(initialNewPostState);
-          setEditorState("pe-hide");
-        } else {
-          alert(response.message);
-        }
-      } catch (error) {
-        console.log("Fail to create post: " + error);
-      }
-    }
-  };
-
-  const inputHandleChange = (e) => {
-    setNewPost({
-      ...newPost,
-      userId: user.userId,
-      content: e.target.value,
-    });
-  };
-
-  const imageChange = async (imageList) => {
-    setImages(imageList);
-    if (imageList.length > 0) {
-      // console.log(imageList[0]);
-      try {
-        var img_base64 = imageList[0].data_url.replace(
-          /^data:image\/(png|jpg|jpeg);base64,/,
-          ""
-        );
-        const response = await imageUploadApi.getImageLink(img_base64);
-        // console.log(response);
-        if (response.status === 200) {
-          // console.log(response);
-          alert("Image ready to upload!");
-          setNewPost({
-            ...newPost,
-            imageLinks: response.data.data.url,
-          });
-        }
-      } catch (error) {
-        console.log("Fail to upload: " + error);
-      }
-    }
-  };
-
+  // toggle editor
   const togglePostCreateEditor = () => {
-    console.log("click");
+    // console.log("click");
     editorState === "pe-show"
       ? setEditorState("pe-hide")
       : setEditorState("pe-show");
     textInput.current.focus();
+  };
+  // 2ways binding newPost content
+  const handleContentInputChange = (e) => {
+    setNewPost({
+      ...newPost,
+      content: e.target.value,
+    });
+  };
+  // img selector
+  const handleImgInputChange = (imageList) => {
+    setImages(imageList);
+  };
+
+  const createPostHandler = async (e) => {
+    e.preventDefault();
+    // call api get img link
+    // console.log(images);
+
+    if (images.length > 0) {
+      var img_base64 = images[0].data_url.replace(
+        /^data:image\/(png|jpg|jpeg|gif);base64,/,
+        ""
+      );
+      const imgResponse = await imageUploadApi.getImageLink(img_base64);
+      var post = {
+        userId: user.userId,
+        content: newPost.content,
+        imageLinks: imgResponse.data.data.url,
+      };
+      const postResponse = await postsApi.createNewPost(post);
+      if (postResponse.success) {
+        alert(postResponse.message);
+        setImages([]);
+        setNewPost({ content: "" });
+        setEditorState("pe-hide");
+      }
+    }
+
+    if (newPost.content !== "" && images.length === 0) {
+      console.log("no images, only content");
+      // callPostsApi();
+    }
   };
   //==========================================================
   return (
@@ -113,7 +104,7 @@ function PostCreater() {
                 className="form-control"
                 placeholder="Bạn đang nghĩ gì thế ?"
                 autoComplete="off"
-                onChange={(e) => inputHandleChange(e)}
+                onChange={(e) => handleContentInputChange(e)}
                 value={newPost.content}
                 ref={textInput}
               />
@@ -122,47 +113,47 @@ function PostCreater() {
               Đăng
             </button>
           </form>
-        </div>
-        <ImageUploading
-          multiple
-          value={images}
-          maxNumber={1}
-          onChange={(imageList) => imageChange(imageList)}
-          dataURLKey="data_url"
-        >
-          {({
-            imageList,
-            onImageUpload,
-            onImageRemove,
-            isDragging,
-            dragProps,
-          }) => (
-            // write your building UI
-            <div className="upload__image-wrapper">
-              <button
-                style={isDragging ? { borderColor: "red" } : null}
-                className="btn btn-primary btn-sm"
-                onClick={onImageUpload}
-                {...dragProps}
-              >
-                Ảnh <i className="fas fa-image"></i>
-              </button>
-              <div className="image-panel-loaded">
-                {imageList.map((image, index) => (
-                  <div key={index} className="image-item-loaded">
-                    <img src={image.data_url} alt="" />
-                    <span
-                      onClick={() => onImageRemove(index)}
-                      className="image-item-remove"
-                    >
-                      <i className="fas fa-times"></i>
-                    </span>
-                  </div>
-                ))}
+          <ImageUploading
+            multiple
+            value={images}
+            maxNumber={1}
+            onChange={(imageList) => handleImgInputChange(imageList)}
+            dataURLKey="data_url"
+          >
+            {({
+              imageList,
+              onImageUpload,
+              onImageRemove,
+              isDragging,
+              dragProps,
+            }) => (
+              // write your building UI
+              <div className="upload__image-wrapper">
+                <button
+                  style={isDragging ? { borderColor: "red" } : null}
+                  className="btn btn-primary btn-sm"
+                  onClick={onImageUpload}
+                  {...dragProps}
+                >
+                  Ảnh <i className="fas fa-image"></i>
+                </button>
+                <div className="images-loaded_container">
+                  {imageList.map((image, index) => (
+                    <div key={index} className="image-loaded_item">
+                      <img src={image.data_url} alt="" />
+                      <span className="image-item-remove">
+                        <i
+                          className="fas fa-times"
+                          onClick={() => onImageRemove(index)}
+                        ></i>
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
-        </ImageUploading>
+            )}
+          </ImageUploading>
+        </div>
       </div>
     </div>
   );

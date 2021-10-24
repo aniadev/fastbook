@@ -7,15 +7,18 @@ import Profile from "./Profile/Profile";
 import Messenger from "./Messenger/Messenger";
 import RegisterPage from "./Auth/RegisterPage";
 import OnlinePanel from "./Popups/OnlinePanel";
+import PendingPage from "./PendingPage";
 // redux store
 import { useSelector } from "react-redux";
 import { Route } from "react-router-dom";
+
 function HomePage() {
   const auth = useSelector((state) => state.auth);
+
   return (
     <React.Fragment>
       <Navbar />
-      {(auth.isAuthenticated && (
+      {(auth.isAuthenticated && !auth.pendingStatus && (
         <>
           <Sidebar />
           <Route path="/" exact component={NewfeedPanel} />
@@ -23,11 +26,14 @@ function HomePage() {
           <Route path="/messenger" exact component={Messenger} />
           <OnlinePanel />
         </>
-      )) || (
-        <>
-          <RegisterPage />
-        </>
-      )}
+      )) ||
+        (!auth.isAuthenticated && auth.pendingStatus && (
+          <>
+            {/* <RegisterPage /> */}
+            <PendingPage />
+          </>
+        )) ||
+        (!auth.isAuthenticated && !auth.pendingStatus && <RegisterPage />)}
     </React.Fragment>
   );
   //   if (!auth.isAuthenticated) {

@@ -79,31 +79,32 @@
     cursor: pointer;
 }
 .upload__image-wrapper {
-    display: block;
-    margin-left: 10px;
+    position: relative;
+    margin: 4px;
 }
-.image-panel-loaded {
+.images-loaded_container {
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    justify-items: center;
-    margin-bottom: 8px;
+    justify-content: flex-start;
+    margin: 8px;
+    /* border: 1px solid #2d3436; */
 }
-.image-item-loaded {
-    display: flex;
+.image-loaded_item {
+    display: inline-block;
+    width: calc(68px + 16px);
+    /* border: 1px solid #3498db; */
+    margin: 4px;
 }
-.image-item-loaded img {
-    border: 2px solid #2d3436;
-    width: 80px;
-    height: 80px;
+.image-loaded_item img {
+    border: 1px solid #2d3436;
     border-radius: 3px;
-    margin-top: 6px;
+    width: 68px;
 }
-.image-item-loaded .image-item-remove{
-    top: 2px;
+.image-loaded_item .image-item-remove{
+    position: absolute;
     cursor: pointer;
-    padding: 0px 0px;
-    margin: 0px 0px;
+    padding: 0px 2px;
 }
 /* Create new post */
 .create-post{
@@ -112,15 +113,10 @@
     display: flex;
 }
 .create-post input[type="text"] {
-    border-radius: 22px 0 0 22px;
+    border-radius: 22px;
     height: 44px;
     background-color: #ecf0f1;
     cursor: pointer;
-}
-.create-post button{
-    border-radius: 0 1.5rem 1.5rem 0;
-    background-color: #ecf0f1;
-    border: 0px solid transparent;
 }
 .create-post form {
     display: flex;

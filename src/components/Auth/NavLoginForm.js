@@ -39,6 +39,7 @@ function NavLoginForm() {
             type="password"
             placeholder="Password"
             name="password"
+            autoComplete="off"
             required
           />
           <button className="nav-login-btn">Sign in</button>

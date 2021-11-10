@@ -27,6 +27,31 @@ export const onlineUsersSlice = createSlice({
       avatar:
         "https://sre.vn/wp-content/uploads/2020/12/lady-gaga-lan-san-dien-anh-trong-bo-phim-hanh-dong-moi-lady.jpg",
     },
+    {
+      userId: "uid04",
+      name: "Angel",
+      avatar: "https://i.ibb.co/LNx1TGy/3da46d055729.jpg",
+    },
+    {
+      userId: "uid05",
+      name: "Angel",
+      avatar: "https://i.ibb.co/LNx1TGy/3da46d055729.jpg",
+    },
+    {
+      userId: "uid06",
+      name: "Angel",
+      avatar: "https://i.ibb.co/LNx1TGy/3da46d055729.jpg",
+    },
+    {
+      userId: "uid07",
+      name: "Angel",
+      avatar: "https://i.ibb.co/LNx1TGy/3da46d055729.jpg",
+    },
+    {
+      userId: "uid08",
+      name: "Angel",
+      avatar: "https://i.ibb.co/LNx1TGy/3da46d055729.jpg",
+    },
   ],
   reducers: {},
 });

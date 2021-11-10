@@ -6,6 +6,8 @@ export const authSlice = createSlice({
   initialState: {
     isAuthenticated: false,
     pendingStatus: true,
+    errorStatus: false,
+    errorMessage: "",
     accessToken: "",
   },
   reducers: {
@@ -27,11 +29,25 @@ export const authSlice = createSlice({
     resetPendingStatus: (state) => {
       state.pendingStatus = false;
     },
+    setErrorStatus: (state, action) => {
+      state.errorStatus = true;
+      state.errorMessage = action.payload;
+    },
+    resetErrorStatus: (state) => {
+      state.errorStatus = false;
+      state.errorMessage = "";
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { signin, signout, setPendingStatus, resetPendingStatus } =
-  authSlice.actions;
+export const {
+  signin,
+  signout,
+  setPendingStatus,
+  resetPendingStatus,
+  setErrorStatus,
+  resetErrorStatus,
+} = authSlice.actions;
 
 export default authSlice.reducer;

@@ -21,14 +21,16 @@ export const newfeedSlice = createSlice({
       },
     ],
     onRefresh: false,
-    postLimits: 10,
+    page: 1,
+    currentPostDelete: null,
+    currentContentEdit: null,
   },
   reducers: {
     initPosts: (state, action) => {
       let posts = action.payload;
-      state.posts.length = 0; // renew newfeed
+      state.posts.length = 0; // clear newfeed after initializing
       posts.map((post) => {
-        state.posts.unshift(post);
+        state.posts.push(post);
       });
     },
     createPost: (state, action) => {
@@ -37,10 +39,22 @@ export const newfeedSlice = createSlice({
     addMorePosts: (state, action) => {
       state.posts.unshift(action.payload);
     },
+    deletePost: (state, action) => {
+      console.log("deletePost: " + action.payload);
+      let deleteIndex = null;
+      state.posts.forEach((post, index) => {
+        post.postId === action.payload && (deleteIndex = index);
+      });
+      state.posts.splice(deleteIndex, 1);
+    },
+    setDeletePost: (state, action) => {
+      state.currentPostDelete = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { createPost, initPosts } = newfeedSlice.actions;
+export const { createPost, initPosts, deletePost, setDeletePost } =
+  newfeedSlice.actions;
 
 export default newfeedSlice.reducer;

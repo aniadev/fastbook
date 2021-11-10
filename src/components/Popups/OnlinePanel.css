@@ -9,8 +9,9 @@
     background: #212529;
     width: 240px;
     max-height: 400px;
-    right: 5px;
+    right: 10px;
     bottom: 2px;
+    z-index: 10;
     border-radius: 4px 4px 0px 0px;
 }
 .o-p-header {
@@ -40,7 +41,7 @@
 .o-p-body--show {
     position: relative;
     top: 0px;
-    overflow: scroll;
+    overflow: auto;
     display: block;
     height: 360px;
     cursor: pointer;
@@ -70,4 +71,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+.o-p-users i {
+    font-size: 10px;
 }

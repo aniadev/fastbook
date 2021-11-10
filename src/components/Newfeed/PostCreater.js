@@ -5,7 +5,8 @@ import Avatar from "./Avatar";
 import ImageUploading from "react-images-uploading";
 
 // redux store
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { createPost } from "../../store/reducers/newfeedSlice";
 import postsApi from "../../api/postsApi";
 import imageUploadApi from "../../api/imageUploadApi";
 
@@ -19,7 +20,7 @@ function PostCreater() {
   const [editorState, setEditorState] = useState("pe-hide");
   const [images, setImages] = useState([]);
   const [newPost, setNewPost] = useState(initialNewPostState);
-
+  const dispatch = useDispatch();
   // toggle editor
   const togglePostCreateEditor = () => {
     // console.log("click");
@@ -51,8 +52,7 @@ function PostCreater() {
         ""
       );
       const imgResponse = await imageUploadApi.getImageLink(img_base64);
-      var post = {
-        userId: user.userId,
+      let post = {
         content: newPost.content,
         imageLinks: imgResponse.data.data.url,
       };
@@ -66,8 +66,19 @@ function PostCreater() {
     }
 
     if (newPost.content !== "" && images.length === 0) {
-      console.log("no images, only content");
+      // console.log("no images, only content");
       // callPostsApi();
+      let post = {
+        content: newPost.content,
+        imageLinks: "",
+      };
+      const postResponse = await postsApi.createNewPost(post);
+      if (postResponse.success) {
+        alert(postResponse.message);
+        setImages([]);
+        setNewPost({ content: "" });
+        setEditorState("pe-hide");
+      }
     }
   };
   //==========================================================

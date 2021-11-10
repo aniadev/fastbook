@@ -26,7 +26,7 @@ function OnlinePanel() {
           return (
             <div className="o-p-users" key={user.userId}>
               <UserProfileItem name={user.name} avatar={user.avatar} />
-              <i className="far fa-check-circle mr-3"></i>
+              <i className="fas fa-circle mr-3 text-success"></i>
             </div>
           );
         })}

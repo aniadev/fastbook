@@ -5,7 +5,7 @@
     width: 100%;
     min-width: 860px;
     background: #37383a;
-    z-index: 10;
+    z-index: 20;
 }
 .form-search input {
     font-family: sans-serif;
@@ -31,16 +31,21 @@
     padding: 5px;
     border-radius:42px;
     transition: all .3s ease;
+    text-decoration: none;
+    color: white;
+    align-items: center;
 }
 .navbar-user:hover{
+    text-decoration: none;
     background: rgba(199, 199, 199, 0.692);
     cursor: pointer;
+    color: white;
 }
 .navbar-user img {
     border-radius: 50%;
 }
 /* username */
-.navbar-user p { 
+.navbar-user .navbar-user__name { 
     font-style: normal;
     font-weight: normal;
     font-size: 18px;

@@ -6,10 +6,10 @@ function HomePage() {
   return (
     <React.Fragment>
       <div id="circle">
-        <div class="loader">
-          <div class="loader">
-            <div class="loader">
-              <div class="loader"></div>
+        <div className="loader">
+          <div className="loader">
+            <div className="loader">
+              <div className="loader"></div>
             </div>
           </div>
         </div>

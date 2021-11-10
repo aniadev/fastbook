@@ -8,6 +8,10 @@ import { useSelector } from "react-redux";
 
 function Navbar() {
   const auth = useSelector((state) => state.auth);
+  const handleSearch = (e) => {
+    e.preventDefault();
+    alert("SEARCH \r\n FEATURE UPDATING");
+  };
   return (
     <nav className="navbar navbar-expand-sm">
       <div className="navbar-brand mr-1 pointer">
@@ -23,7 +27,7 @@ function Navbar() {
       {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-dropdown" aria-controls="navbar-dropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button> */}
-      <form className="form-search">
+      <form className="form-search" onSubmit={(e) => handleSearch(e)}>
         <input type="search" placeholder="Search" aria-label="Search" />
       </form>
       {auth.isAuthenticated ? <NavUser /> : <NavLoginForm />}

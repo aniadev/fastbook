@@ -30,8 +30,12 @@ axiosClient.interceptors.response.use(
     return response;
   },
   (error) => {
-    // Handle errors
-    throw error;
+    // // Handle errors
+    // console.log(error);
+    return {
+      status: (error.message === "Network Error" && 408) || "unknown",
+      message: error.message,
+    };
   }
 );
 

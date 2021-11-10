@@ -4,7 +4,7 @@ import "./NewfeedPanel.css";
 function Avatar(props) {
   const { avatarLink, width, height } = props;
   return (
-    <div className="avatar">
+    <div className="nf-avatar">
       <img src={avatarLink} alt="avatar" width={width} height={height} />
     </div>
   );

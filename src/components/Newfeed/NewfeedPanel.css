@@ -1,22 +1,36 @@
-@media screen and (max-width: 634px) {
+@media screen and (max-width: 939px) {
     .NewfeedPanel{
         position: absolute;
-        top: 58px;
-        width: 45%;
-        min-width: 550px;
         color: black;
-        margin-left: 0px;
-        left: 195px;
+        right: 0px;
+        bottom: 0px;
+        overflow: auto;
+        top: 60px;
+        width: 80%;
+        height: 100%;
     }
 }
-@media screen and (min-width: 635px) {
+@media screen and (min-width: 940px) {
     .NewfeedPanel{
         position: absolute;
-        left: calc(30% + 5px);
-        top: 58px;
-        width: 45%;
-        min-width: 550px;
         color: black;
+        right: 0px;
+        bottom: 0px;
+        overflow: auto;
+        top: 60px;
+        width: 80%;
+        height: 100%;
+    }
+    .nf-all-posts {
+        position: relative;
+        float: left;
+        width: 60%;
+    }
+    .nf-features {
+        position: relative;
+        float: right;
+        width: 40%;
+        height: 100%;
     }
 }
 
@@ -34,7 +48,7 @@
     border-radius: 12px;
     background: #7f8c8d;
 }
-.avatar img{
+.nf-avatar img{
     border: 1px solid rgb(145, 126, 255);
     border-radius: 50%;
     display: flex;
@@ -42,13 +56,12 @@
 }
 .nf-post-editor{
     position: fixed;
-    z-index: 99;
     left: 50%;
     width: 420px;
     background-color: #dfe6e9;
-    transform: translateX(-20%);
-    transition: all 0.5s ease;
-    
+    transform: translateX(-60%);
+    transition: linear 0.1s;
+
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
@@ -58,18 +71,20 @@
     border: 2px solid #81ecec;
     border-radius: 0.3rem;
     outline: 0;
+    top: 80px;
 }
 /* pe : post-editor */
 .pe-hide { 
-    top: -650px;
+    /* top: -650px; */
     opacity: 0;
+    z-index: -1;
 }
 .pe-show {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    top: 80px;
     opacity: 1;
+    z-index: 99;
 }
 .nf-post-editor-close-button {
     position: relative;
@@ -136,21 +151,42 @@
     border-radius: 12px;
     background: rgb(255, 255, 255);
 }
+/* NEWFEED POST HEADER */
 .newfeed-post .nf-header { /*header*/
     position: relative;
     display: flex;
     padding-top: 12px;
 }
-.newfeed-post .nf-header .nf-username span {
+.nf-username .nf-username__name { 
+    /* for username - span */
     font-weight: 500;
-    padding: 0px 8px;
+    padding: 0px 4px 0px 8px;
     margin: 0;
 }
-.newfeed-post .nf-header .nf-time span {
+.nf-time span {
     padding: 0px 8px;
     font-size: 11px;
 }
-.newfeed-post .nf-body {/*body*/
+.nf-post--option {
+    position: absolute;
+    right: 0;
+    margin-right: 5px;
+    cursor: pointer;
+    padding: 2px 5px;
+    border-radius: 50%;
+    user-select: none;
+    transition: none;
+}
+.nf-post--option:hover {
+    background: #dcdde1;
+}
+.nf-post--option .dropdown-menu {
+    transition: none;
+    min-width: 5rem;
+}
+
+/* NEWFEED POST BODY */
+.newfeed-post .nf-body {
     position: relative;
 }
 .newfeed-post .nf-body span {
@@ -158,9 +194,7 @@
     margin: 0;
     display: inline-block;
 }
-/* .newfeed-post .nf-body .nf-img {
-    
-} */
+
 .newfeed-post .nf-body .nf-img img {
     width: 100%;
     height: 100%;

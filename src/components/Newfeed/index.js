@@ -16,7 +16,7 @@ function NewfeedPanel() {
   useEffect(() => {
     const getApi = async () => {
       try {
-        const response = await postsApi.getPosts({ _limit: 10, _offset: 0 });
+        const response = await postsApi.getPosts({ _page: newfeedPost.page });
         if (response.success) {
           // console.log(response.posts);
           dispatch(initPosts(response.posts));
@@ -31,10 +31,13 @@ function NewfeedPanel() {
   }, [dispatch]);
   return (
     <div className="NewfeedPanel">
-      <PostCreater />
-      {allPostData.map((post) => {
-        return <NewfeedPost key={post.postId} postData={post} />;
-      })}
+      <div className="nf-all-posts">
+        <PostCreater />
+        {allPostData.map((post) => {
+          return <NewfeedPost key={post.postId} postData={post} />;
+        })}
+      </div>
+      <div className="nf-features"></div>
     </div>
   );
 }

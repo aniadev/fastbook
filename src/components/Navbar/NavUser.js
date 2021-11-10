@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { signout } from "../../store/reducers/authSlice";
 
@@ -12,10 +13,17 @@ function NavUser() {
   };
   return (
     <React.Fragment>
-      <div className="navbar-user no-select">
+      <Link className="navbar-user no-select" to={`/${user.userId}`}>
         <img src={user.avatar} width="36" height="36" alt="avatar" />
-        <p>{user.name}</p>
-      </div>
+        <span className="navbar-user__name">{user.name}</span>
+        {user.blueTick ? (
+          <span className="app__blue-tick">
+            <i className="fas fa-check-circle"></i>
+          </span>
+        ) : (
+          false
+        )}
+      </Link>
 
       <div className="dropdown">
         <button
@@ -31,19 +39,19 @@ function NavUser() {
           className="dropdown-menu dropdown-menu-right"
           aria-labelledby="bd-versions"
         >
-          <a className="dropdown-item" href="http://anicorp.tk">
+          <Link className="dropdown-item" to="./me">
             My profile
-          </a>
-          <a className="dropdown-item" href="http://anicorp.tk">
+          </Link>
+          <Link className="dropdown-item" to="./messenger">
             Messenger
-          </a>
-          <a className="dropdown-item" href="http://anicorp.tk">
+          </Link>
+          <Link className="dropdown-item" to="./friends">
             Friends
-          </a>
+          </Link>
           <div className="dropdown-divider"></div>
-          <span className="dropdown-item" onClick={() => logout()}>
+          <Link className="dropdown-item" to="/" onClick={() => logout()}>
             Logout
-          </span>
+          </Link>
         </div>
       </div>
     </React.Fragment>

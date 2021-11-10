@@ -9,7 +9,7 @@ body {
   color: white;
   min-width: 850px;
   background: #343a40;
-  
+  overflow: hidden;
 }
 
 code {

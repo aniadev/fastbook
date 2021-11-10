@@ -1,16 +1,19 @@
 import React from "react";
 // Components
-import Navbar from "./Navbar/Navbar";
-import Sidebar from "./Sidebar/Sidebar";
-import NewfeedPanel from "./Newfeed/NewfeedPanel";
-import Profile from "./Profile/Profile";
-import Messenger from "./Messenger/Messenger";
+import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
+import NewfeedPanel from "./Newfeed";
+import Profile from "./Profile";
+import Friends from "./Friends";
+import Messenger from "./Messenger";
+
 import RegisterPage from "./Auth/RegisterPage";
 import OnlinePanel from "./Popups/OnlinePanel";
 import PendingPage from "./PendingPage";
+import ErrorPage from "./ErrorPage";
 // redux store
 import { useSelector } from "react-redux";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 function HomePage() {
   const auth = useSelector((state) => state.auth);
@@ -21,19 +24,30 @@ function HomePage() {
       {(auth.isAuthenticated && !auth.pendingStatus && (
         <>
           <Sidebar />
-          <Route path="/" exact component={NewfeedPanel} />
-          <Route path="/me" exact component={Profile} />
-          <Route path="/messenger" exact component={Messenger} />
+          <Switch>
+            <Route path="/" exact component={NewfeedPanel} />
+            <Route path="/messenger" component={Messenger} />
+            <Route path="/friends" component={Friends} />
+            <Route path="/:id/photos" exact component={Profile} />
+            <Route path="/:id/posts" exact component={Profile} />
+            <Route path="/:id" exact component={Profile} />
+            <Route path="*">
+              <ErrorPage message={`404 NOT FOUND`} />
+            </Route>
+          </Switch>
           <OnlinePanel />
         </>
       )) ||
-        (!auth.isAuthenticated && auth.pendingStatus && (
+        (!auth.isAuthenticated && auth.pendingStatus && !auth.errorStatus && (
           <>
             {/* <RegisterPage /> */}
             <PendingPage />
           </>
         )) ||
-        (!auth.isAuthenticated && !auth.pendingStatus && <RegisterPage />)}
+        (auth.errorStatus && <ErrorPage message={auth.errorMessage} />) ||
+        (!auth.isAuthenticated && !auth.pendingStatus && !auth.errorStatus && (
+          <RegisterPage />
+        ))}
     </React.Fragment>
   );
   //   if (!auth.isAuthenticated) {

@@ -34,18 +34,18 @@ export const newfeedSlice = createSlice({
       });
     },
     createPost: (state, action) => {
+      // from user
       state.posts.unshift(action.payload);
     },
     addMorePosts: (state, action) => {
       state.posts.unshift(action.payload);
     },
     deletePost: (state, action) => {
-      console.log("deletePost: " + action.payload);
-      let deleteIndex = null;
-      state.posts.forEach((post, index) => {
-        post.postId === action.payload && (deleteIndex = index);
-      });
-      state.posts.splice(deleteIndex, 1);
+      // console.log("deletePost: " + action.payload);
+      let deleteIndex = state.posts.findIndex(
+        (el) => el.postId === action.payload
+      );
+      if (deleteIndex >= 0) state.posts.splice(deleteIndex, 1);
     },
     setDeletePost: (state, action) => {
       state.currentPostDelete = action.payload;

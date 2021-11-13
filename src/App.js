@@ -16,6 +16,7 @@ import {
 import { setUserData } from "./store/reducers/userSlice";
 import { useDispatch } from "react-redux";
 import Cookies from "js-cookie";
+import AvatarUploader from "./components/Tools/AvatarUploader";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ function App() {
       <div className="App">
         <HomePage />
         <PostDeleteModal />
+        <AvatarUploader />
       </div>
     </Router>
   );

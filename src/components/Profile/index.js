@@ -43,11 +43,7 @@ function Profile() {
   }, [id]);
 
   const handleChangeCoverPhoto = () => {
-    alert("change cover photo");
-    console.log(profile);
-  };
-  const handleChangeAvatar = () => {
-    alert("change avatar");
+    alert("Change cover photo \n FEATURE UPDATING");
   };
   return (
     <div className="profile">
@@ -77,9 +73,14 @@ function Profile() {
             alt="ProfileAvatar"
           />
           {isSelf ? (
-            <div className="avatar--btn" onClick={() => handleChangeAvatar()}>
+            <button
+              className="avatar--btn"
+              // onClick={() => handleChangeAvatar()}
+              data-toggle="modal"
+              data-target={`#avatarUploaderModal`}
+            >
               <i className="fas fa-camera-retro"></i>
-            </div>
+            </button>
           ) : (
             false
           )}

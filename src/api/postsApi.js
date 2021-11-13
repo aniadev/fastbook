@@ -12,6 +12,10 @@ const postsApi = {
     const url = "/posts/create";
     return axiosClient.post(url, params);
   },
+  deletePost: (params) => {
+    const url = "/posts/delete";
+    return axiosClient.post(url, params);
+  },
 };
 
 export default postsApi;

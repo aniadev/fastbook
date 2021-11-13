@@ -25,7 +25,20 @@ function Messenger() {
 
   return (
     <div className="messenger">
-      <div className="messenger-bar">
+      <div
+        style={{
+          top: "50%",
+          left: "50%",
+          position: "absolute",
+          textAlign: "center",
+          color: "white",
+          transform: "translate(-80%, -50%)",
+        }}
+      >
+        <h5>MESSENGER</h5>
+        <h5>FEATURE UPDATING</h5>
+      </div>
+      {/* <div className="messenger-bar">
         <div className="messenger-bar__header">
           <span style={{ fontSize: "24px", paddingLeft: "8px" }}>Chat</span>
           <div className="btn__new-conversation">
@@ -49,7 +62,7 @@ function Messenger() {
       </div>
       <div className="messenger-main">
         {allConversations.length ? <Chatbox /> : false}
-      </div>
+      </div> */}
 
       {/* Modal new conversation */}
     </div>

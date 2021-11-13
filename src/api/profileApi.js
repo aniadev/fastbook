@@ -6,8 +6,12 @@ const profileApi = {
     return axiosClient.get(url, { params });
   },
   getPosts: (params) => {
-    const url = "user/posts";
+    const url = "/user/posts";
     return axiosClient.get(url, { params });
+  },
+  uploadAvatar: (params) => {
+    const url = "/user/avatar";
+    return axiosClient.post(url, params);
   },
 };
 

@@ -43,6 +43,7 @@ function PostCreater() {
 
   const createPostHandler = async (e) => {
     e.preventDefault();
+    console.log(e.target);
     // call api get img link
     // console.log(images);
 
@@ -58,10 +59,23 @@ function PostCreater() {
       };
       const postResponse = await postsApi.createNewPost(post);
       if (postResponse.success) {
-        alert(postResponse.message);
+        let createdPost = {
+          postId: postResponse.postCreated.postId,
+          userId: user.userId,
+          name: user.name,
+          avatar: user.avatar,
+          content: newPost.content,
+          image: post.imageLinks,
+          time: new Date().toUTCString(),
+          likes: 0,
+          comments: 0,
+        };
+        dispatch(createPost(createdPost));
         setImages([]);
         setNewPost({ content: "" });
         setEditorState("pe-hide");
+      } else {
+        alert(postResponse.message);
       }
     }
 
@@ -74,10 +88,23 @@ function PostCreater() {
       };
       const postResponse = await postsApi.createNewPost(post);
       if (postResponse.success) {
-        alert(postResponse.message);
+        let createdPost = {
+          postId: postResponse.postCreated.postId,
+          userId: user.userId,
+          name: user.name,
+          avatar: user.avatar,
+          content: newPost.content,
+          image: "",
+          time: new Date().toUTCString(),
+          likes: 0,
+          comments: 0,
+        };
+        dispatch(createPost(createdPost));
         setImages([]);
         setNewPost({ content: "" });
         setEditorState("pe-hide");
+      } else {
+        alert(postResponse.message);
       }
     }
   };

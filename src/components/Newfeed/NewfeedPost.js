@@ -59,7 +59,7 @@ function NewfeedPost(props) {
   return (
     <div className="newfeed-post container-fluid">
       <div className="nf-header">
-        <Link className="ml-3" to={`/${postData.userId}`}>
+        <Link className="ml-3 no-select" to={`/${postData.userId}`}>
           <Avatar avatarLink={postData.avatar} width="45" height="45" />
         </Link>
         <div className="nf-info">

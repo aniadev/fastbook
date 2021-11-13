@@ -5,7 +5,7 @@
         right: 0px;
         bottom: 0px;
         overflow: auto;
-        top: 60px;
+        padding-top: 56px;
         width: 80%;
         height: 100%;
     }
@@ -17,7 +17,8 @@
         right: 0px;
         bottom: 0px;
         overflow: auto;
-        top: 60px;
+        padding-top: 56px;
+        padding-bottom: 40px;
         width: 80%;
         height: 100%;
     }
@@ -26,12 +27,23 @@
         float: left;
         width: 60%;
     }
+    .nf-post-add{
+        color: white;
+        cursor: pointer;
+        user-select: none;
+        padding-top: 10px;
+        text-align: center;
+    }
+    .nf-post-add:hover {
+        color: #7ed6df;
+    }
     .nf-features {
         position: relative;
         float: right;
         width: 40%;
         height: 100%;
     }
+    
 }
 
 /* Panel for create new post */
@@ -189,40 +201,46 @@
 .newfeed-post .nf-body {
     position: relative;
 }
-.newfeed-post .nf-body span {
+.nf-body span {
     padding: 0px 8px;
     margin: 0;
     display: inline-block;
 }
-
-.newfeed-post .nf-body .nf-img img {
-    width: 100%;
-    height: 100%;
-    filter: drop-shadow(0 0 2px rgb(4, 53, 0));
+.nf-body .nf-img {
+    background: #353b48;
     margin-top: 14px;
     margin-bottom: 4px;
+    display: flex;
+    justify-content: center;
+    filter: drop-shadow(0 0 4px #44bd32);
+}
+.nf-body .nf-img img {
+    width: 100%;
+    height: 100%;
+    max-height: 600px;
     cursor: pointer;
+    object-fit: contain;
 }
 
-.newfeed-post .nf-footer {  /*footer*/
+.nf-footer {  /*footer*/
     width: 100%;
     height: 80px;
     padding-top: 5px;
 }
-.newfeed-post .nf-footer .react .react-row {
+.nf-footer .react .react-row {
     height: 40px;
 }
-.newfeed-post .nf-footer .react .react-item { 
+.nf-footer .react .react-item { 
     height:40px;
     /* background: rgb(240, 233, 233); */
     cursor: pointer;
     transition: all 0.2s ease-in;
     border-radius: 4px;
 }
-.newfeed-post .nf-footer .react .react-item:hover { 
+.nf-footer .react .react-item:hover { 
     background: #ecf0f1;
 }
-.newfeed-post .nf-footer .react-count { 
+.nf-footer .react-count { 
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin-left: 10px;
 }

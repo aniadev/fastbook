@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./NewfeedPanel.css";
 // components
 import PostCreater from "./PostCreater";
@@ -28,7 +28,12 @@ function NewfeedPanel() {
       }
     };
     getApi();
-  }, [dispatch]);
+  }, [dispatch, newfeedPost.page]);
+
+  const handleGetMorePost = () => {
+    alert("GET MORE POST \n FEATURE UPDATING");
+  };
+
   return (
     <div className="NewfeedPanel">
       <div className="nf-all-posts">
@@ -36,6 +41,9 @@ function NewfeedPanel() {
         {allPostData.map((post) => {
           return <NewfeedPost key={post.postId} postData={post} />;
         })}
+        <div className="nf-post-add" onClick={() => handleGetMorePost()}>
+          <span>Get more . . .</span>
+        </div>
       </div>
       <div className="nf-features"></div>
     </div>

@@ -79,9 +79,13 @@
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.2s ease;
+    border: none;
 }
 .avatar--btn:hover {
     color: #686de0;
+}
+.avatar--btn:focus {
+    outline: none;
 }
 /* Body */
 .profile__body {

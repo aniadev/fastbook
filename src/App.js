@@ -30,9 +30,19 @@ function App() {
         dispatch(setUserData(response.userData));
         dispatch(resetPendingStatus());
       } else {
-        console.log(response.status);
-        response.status === 408 && dispatch(setErrorStatus(response.message));
-        response.status === 401 && dispatch(resetPendingStatus());
+        console.log(response.message);
+        switch (response.status) {
+          case 408:
+            dispatch(setErrorStatus(response.message));
+            break;
+          case 401:
+            dispatch(resetPendingStatus());
+            break;
+          default:
+            dispatch(resetPendingStatus());
+        }
+        // response.status === 408 && dispatch(setErrorStatus(response.message));
+        // response.status === 401 && dispatch(resetPendingStatus());
       }
     };
     checkAuth();

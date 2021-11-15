@@ -7,7 +7,7 @@
         bottom: 0px;
         overflow: auto;
         padding-top: 56px;
-        width: 80%;
+        width: calc(100% - 50px);
         height: 100%;
         /* background: #000; */
     }
@@ -26,9 +26,9 @@
         left: 1%;
         top: 5px;
         width: 98%;
-        height: 90px;
+        height: 60px;
         border: 1px;
-        border-radius: 12px;
+        border-radius: 1.2rem;
         background: #7f8c8d;
     }
     .nf-avatar img{
@@ -36,6 +36,8 @@
         border-radius: 50%;
         display: flex;
         cursor: pointer;
+        width: 40px;
+        height: 40px;
     }
     .nf-post-editor{
         position: fixed;
@@ -112,9 +114,10 @@
     }
     .create-post input[type="text"] {
         border-radius: 22px;
-        height: 44px;
+        height: 34px;
         background-color: #ecf0f1;
         cursor: pointer;
+        width: 90%;
     }
     .create-post form {
         display: flex;

@@ -72,7 +72,7 @@ function RegisterPage() {
               <input
                 name="name"
                 className="form-control"
-                placeholder="Name (*)"
+                placeholder="Tên hiển thị (*)"
                 type="text"
                 autoComplete="off"
                 required
@@ -90,7 +90,7 @@ function RegisterPage() {
               <input
                 name="username"
                 className="form-control"
-                placeholder="Username (*)"
+                placeholder="Tên đăng nhập (*)"
                 type="text"
                 autoComplete="off"
                 required
@@ -108,7 +108,7 @@ function RegisterPage() {
               <input
                 name="email"
                 className="form-control"
-                placeholder="Email address (option)"
+                placeholder="Email (tùy chọn)"
                 autoComplete="off"
                 type="email"
                 value={regData.email}
@@ -124,7 +124,7 @@ function RegisterPage() {
               </div>
               <input
                 className="form-control"
-                placeholder="Create password (*)"
+                placeholder="Mật khẩu (*)"
                 autoComplete="off"
                 name="password"
                 type="password"
@@ -143,7 +143,7 @@ function RegisterPage() {
               <input
                 className="form-control"
                 name="repassword"
-                placeholder="Repeat password (*)"
+                placeholder="Nhập lại mật khẩu (*)"
                 autoComplete="off"
                 type="password"
                 required
@@ -154,7 +154,7 @@ function RegisterPage() {
             <div className="form-group">
               <button type="submit" className="btn btn-primary btn-block">
                 {" "}
-                Create Account{" "}
+                Đăng ký{" "}
               </button>
             </div>
           </form>

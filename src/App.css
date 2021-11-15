@@ -6,6 +6,7 @@
 .user-profile-item {
   display: flex;
   padding: 2px;
+  margin-right: 5px;
   align-items: center;
 }
 .user-profile-item .username {

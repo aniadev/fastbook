@@ -4,7 +4,7 @@
         bottom: 0;
         right: 0;
         height: calc(100% - 60px);
-        width: calc(100% - 20%);
+        width: calc(100% - 50px);
         padding: 0 2px;
         overflow: auto;
         z-index: 19;

@@ -70,15 +70,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 ### Update feature
-Router : Link, Page
-Common: 
-    + Tools: Modal(done), PostEditor(to do)
-    + refactor components, fix store
-Homepage:
-    + Create post (with image), delete post (on store, not already call api)
-    + Avatar link to profile
-    + Blue-tick display on the right of name
-Profile:
-    + Add router, tab-profiles (info, posts)
-Messenger: 
-    + Scroll, UI/UX (not release) no api
+Fix UI/Ux for mobile: (include before commit)
+    +   Sidebar-width, Icons, newfeed-width, profile-width
+    +   Post-creater
+    +   Dropdown button in navbar

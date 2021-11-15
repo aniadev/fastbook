@@ -58,7 +58,8 @@ function Profile() {
           {isSelf ? (
             <div className="cover-photo--btn">
               <button onClick={() => handleChangeCoverPhoto()}>
-                <i className="fas fa-camera"></i> Change Cover Photo
+                <i className="fas fa-camera"></i>{" "}
+                <span>Change Cover Photo</span>
               </button>
             </div>
           ) : (

@@ -41,7 +41,7 @@ function PostCreater() {
     setImages(imageList);
   };
 
-  const createPostHandler = async (e) => {
+  const submitFormHandle = async (e) => {
     e.preventDefault();
     console.log(e.target);
     // call api get img link
@@ -108,6 +108,9 @@ function PostCreater() {
       }
     }
   };
+  const createPostHandler = (e) => {
+    console.log(e.target);
+  };
   //==========================================================
   return (
     <div className="post-creater">
@@ -133,9 +136,9 @@ function PostCreater() {
           >
             <i className="fas fa-times"></i>
           </div>
-          <form onSubmit={(e) => createPostHandler(e)}>
+          <form onSubmit={(e) => submitFormHandle(e)}>
             <div className="form-group">
-              <label htmlFor="exampleInputEmail1">Viết gì đó đi ...</label>
+              <label htmlFor="newPostContent">Viết gì đó đi ...</label>
               <textarea
                 type="text"
                 rows="2"
@@ -147,7 +150,10 @@ function PostCreater() {
                 ref={textInput}
               />
             </div>
-            <button type="submit" className="btn btn-default btn-success">
+            <button
+              className="btn btn-default btn-success"
+              onClick={(e) => createPostHandler(e)}
+            >
               Đăng
             </button>
           </form>

@@ -16,11 +16,7 @@ function Sidebar() {
             className="menu-item"
             activeClassName="sidebar-active"
           >
-            <UserProfileItem
-              name={user.name}
-              avatar={user.avatar}
-              blueTick={user.blueTick}
-            />
+            <UserProfileItem name={user.name} avatar={user.avatar} />
           </NavLink>
         </li>
         <li>
@@ -30,7 +26,8 @@ function Sidebar() {
             className="menu-item"
             activeClassName="sidebar-active"
           >
-            <p>Home</p>
+            <i className="fa fas fa-home"></i>
+            <span>Home</span>
           </NavLink>
         </li>
         <li>
@@ -39,7 +36,8 @@ function Sidebar() {
             className="menu-item"
             activeClassName="sidebar-active"
           >
-            <p>Messenger</p>
+            <i className="fab fa-facebook-messenger"></i>
+            <span>Messenger</span>
           </NavLink>
         </li>
         <li>
@@ -48,7 +46,8 @@ function Sidebar() {
             className="menu-item"
             activeClassName="sidebar-active"
           >
-            <p>Friends</p>
+            <i className="fas fa-users"></i>
+            <span>Friends</span>
           </NavLink>
         </li>
       </ul>

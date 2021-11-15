@@ -126,22 +126,26 @@ function NewfeedPost(props) {
         )}
       </div>
       <div className="nf-footer">
-        <div className="react-count">
-          <span>
-            {postData.likes > 0 ? postData.likes : " "}{" "}
-            {postData.likes === 0
-              ? " "
-              : `${postData.likes > 1 ? "likes" : "like"}`}
-          </span>
-          <span> </span>
-          <span>
-            {postData.comments > 0 ? postData.comments : " "}{" "}
-            {postData.comments === 0
-              ? " "
-              : `${postData.comments > 1 ? "comments" : "comment"}`}
-          </span>
-          <hr style={{ borderTop: "1px dotted black", margin: "2px" }} />
-        </div>
+        {postData.likes || postData.comments ? (
+          <div className="react-count">
+            <span>
+              {postData.likes > 0 ? postData.likes : " "}{" "}
+              {postData.likes === 0
+                ? " "
+                : `${postData.likes > 1 ? "likes" : "like"}`}
+            </span>
+            <span> </span>
+            <span>
+              {postData.comments > 0 ? postData.comments : " "}{" "}
+              {postData.comments === 0
+                ? " "
+                : `${postData.comments > 1 ? "comments" : "comment"}`}
+            </span>
+          </div>
+        ) : (
+          false
+        )}
+        <hr style={{ borderTop: "1px dotted black", margin: "2px" }} />
         <div className="react container-fluid">
           <div className="react-row row align-items-center">
             <div

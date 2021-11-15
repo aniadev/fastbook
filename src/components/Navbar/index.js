@@ -13,23 +13,18 @@ function Navbar() {
     alert("SEARCH \r\n FEATURE UPDATING");
   };
   return (
-    <nav className="navbar navbar-expand-sm">
-      <div className="navbar-brand mr-1 pointer">
-        <img
-          src={process.env.PUBLIC_URL + "/img/logo.png"}
-          width="40"
-          height="40"
-          alt="logo"
-        />
+    <nav className="navbar navbar-expand">
+      <div className="nav-left">
+        <div className="navbar-brand pointer">
+          <img src={process.env.PUBLIC_URL + "/img/logo.png"} alt="logo" />
+          <span className="navbar-brand no-select pointer ml-2">Fakebook</span>
+        </div>
+        <div className="nav-search">
+          <form onSubmit={(e) => handleSearch(e)}>
+            <input type="search" placeholder="Search" aria-label="Search" />
+          </form>
+        </div>
       </div>
-      <span className="navbar-brand mb-0 no-select pointer">Fakebook</span>
-
-      {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-dropdown" aria-controls="navbar-dropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button> */}
-      <form className="form-search" onSubmit={(e) => handleSearch(e)}>
-        <input type="search" placeholder="Search" aria-label="Search" />
-      </form>
       {auth.isAuthenticated ? <NavUser /> : <NavLoginForm />}
     </nav>
   );

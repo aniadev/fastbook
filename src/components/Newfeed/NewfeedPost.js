@@ -119,9 +119,9 @@ function NewfeedPost(props) {
         {postData.image !== "null" &&
         postData.image !== "" &&
         postData.image !== null ? (
-          <div className="nf-img">
+          <Link className="nf-img" to={`/post/${postData.postId}`}>
             <img src={postData.image} alt="nfimage" />
-          </div>
+          </Link>
         ) : (
           false
         )}

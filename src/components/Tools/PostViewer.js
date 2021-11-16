@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import TextareaAutosize from "react-textarea-autosize";
 import postsApi from "../../api/postsApi";
 import "./Style/PostViewer.css";
@@ -59,7 +59,7 @@ export default function PostViewer() {
   useEffect(() => {
     const getPostData = async () => {
       const response = await postsApi.getPostData(postId);
-      console.log(response);
+      // console.log(response);
       if (response.success) {
         setPostData(response.postData);
         setAllComments(response.allComments || []);
@@ -95,9 +95,9 @@ export default function PostViewer() {
       <div className="post-viewer__post">
         <div className="post-viewer__post--header">
           <div className="pw__h--user">
-            <div className="pw__h--avatar">
+            <Link className="pw__h--avatar" to={`/${user.userId}`}>
               <img src={postData.avatar} alt="nf-avatar" />
-            </div>
+            </Link>
             <div className="pw__h--info">
               <span className="pw__h--info-name">
                 {postData.name}
@@ -188,13 +188,16 @@ export default function PostViewer() {
               <ul className="pw__f--comment-items">
                 {allComments.map((comment) => (
                   <li key={comment.cmtId} className="pw__f--comment-item">
-                    <div className="cmt--avatar">
+                    <Link className="cmt--avatar" to={`/${comment.userCmtId}`}>
                       <img src={comment.avatar} alt="cmt_avt" />
-                    </div>
+                    </Link>
                     <div className="cmt--body">
-                      <div className="cmt--body-name">
+                      <Link
+                        className="cmt--body-name"
+                        to={`/${comment.userCmtId}`}
+                      >
                         <span>{comment.name}</span>
-                      </div>
+                      </Link>
                       <div className="cmt--body-content">
                         <div
                           dangerouslySetInnerHTML={{

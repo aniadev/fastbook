@@ -38,7 +38,10 @@ export const newfeedSlice = createSlice({
       state.posts.unshift(action.payload);
     },
     addMorePosts: (state, action) => {
-      state.posts.unshift(action.payload);
+      let posts = action.payload;
+      posts.map((post) => {
+        state.posts.push(post);
+      });
     },
     deletePost: (state, action) => {
       // console.log("deletePost: " + action.payload);
@@ -50,11 +53,20 @@ export const newfeedSlice = createSlice({
     setDeletePost: (state, action) => {
       state.currentPostDelete = action.payload;
     },
+    setPage: (state, action) => {
+      state.page = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { createPost, initPosts, deletePost, setDeletePost } =
-  newfeedSlice.actions;
+export const {
+  createPost,
+  initPosts,
+  deletePost,
+  setDeletePost,
+  setPage,
+  addMorePosts,
+} = newfeedSlice.actions;
 
 export default newfeedSlice.reducer;

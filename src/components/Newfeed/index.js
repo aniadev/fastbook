@@ -5,7 +5,11 @@ import PostCreater from "./PostCreater";
 import NewfeedPost from "./NewfeedPost";
 // redux store
 import { useSelector, useDispatch } from "react-redux";
-import { initPosts } from "../../store/reducers/newfeedSlice";
+import {
+  initPosts,
+  setPage,
+  addMorePosts,
+} from "../../store/reducers/newfeedSlice";
 // api axiosClient
 import postsApi from "../../api/postsApi";
 
@@ -16,9 +20,9 @@ function NewfeedPanel() {
   useEffect(() => {
     const getApi = async () => {
       try {
-        const response = await postsApi.getPosts({ _page: newfeedPost.page });
+        const response = await postsApi.getPosts({ _page: 1 });
         if (response.success) {
-          // console.log(response.posts);
+          console.log(response.posts);
           dispatch(initPosts(response.posts));
         } else {
           console.log(response.message);
@@ -27,11 +31,23 @@ function NewfeedPanel() {
         console.log("Fail to call: " + error);
       }
     };
+    dispatch(setPage(1));
     getApi();
-  }, [dispatch, newfeedPost.page]);
+  }, [dispatch]);
 
-  const handleGetMorePost = () => {
-    alert("GET MORE POST \n FEATURE UPDATING");
+  const handleGetMorePost = async () => {
+    dispatch(setPage(newfeedPost.page + 1));
+    try {
+      const response = await postsApi.getPosts({ _page: newfeedPost.page + 1 });
+      if (response.success) {
+        console.log(response.posts);
+        dispatch(addMorePosts(response.posts));
+      } else {
+        console.log(response.message);
+      }
+    } catch (error) {
+      console.log("Fail to call: " + error);
+    }
   };
 
   return (

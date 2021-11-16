@@ -1,5 +1,5 @@
 /* small screen */
-@media screen and (max-width: 939px) {
+@media screen and (max-width: 940px) {
     .navbar {
         position: fixed;
         display: flex;

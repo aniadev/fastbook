@@ -1,5 +1,5 @@
 /* Small screen */
-@media screen and (max-width: 939px) {
+@media screen and (max-width: 940px) {
     .NewfeedPanel{
         position: absolute;
         color: black;
@@ -16,6 +16,16 @@
         float: left;
         width: 100%;
         min-width: 240px;
+    }
+    .nf-post-add{
+        color: white;
+        cursor: pointer;
+        user-select: none;
+        padding-top: 10px;
+        text-align: center;
+    }
+    .nf-features {
+        display: none;
     }
     /* Panel for create new post */
     .post-creater {
@@ -42,9 +52,9 @@
     .nf-post-editor{
         position: fixed;
         left: 50%;
-        width: 420px;
+        width: 80%;
         background-color: #dfe6e9;
-        transform: translateX(-60%);
+        transform: translateX(-50%);
         transition: linear 0.1s;
 
         -webkit-box-orient: vertical;
@@ -229,7 +239,7 @@
     }
 }
 
-/* Big screen */
+/* Big screen ================================================================= */
 @media screen and (min-width: 940px) {
     .NewfeedPanel{
         position: absolute;

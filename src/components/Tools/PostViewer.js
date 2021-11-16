@@ -72,7 +72,8 @@ export default function PostViewer() {
   const convertTime = (_time) => {
     let _timeStr;
     let _Time = new Date(_time);
-    let time = new Date() - _Time + _Time.getTimezoneOffset() * 60000;
+    let time = new Date() - _Time;
+    // return time;
     let mins = Math.round(((time / 1000) % 3600) / 60);
     let hrs = Math.round(time / 1000 / 3600);
     let days = Math.round(hrs / 24);

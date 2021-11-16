@@ -1,3 +1,4 @@
+/* small screen */
 @media screen and (max-width: 939px) {
     .navbar {
         position: fixed;
@@ -9,9 +10,13 @@
         min-width: 320px;
         background: #37383a;
         z-index: 20;
+        padding: 0px 10px; 
     }
     .navbar-brand img {
         width: 40px;
+    }
+    .navbar-brand span {
+        display: none;
     }
     .nav-left {
         display: flex;
@@ -19,6 +24,7 @@
         align-items: center;
     }
     .nav-search input {
+        position: relative;
         font-family: sans-serif;
         border-radius: 38px;
         width: 120px;
@@ -29,6 +35,7 @@
         outline: none; 
     }
     .nav-search input:focus {
+        margin-left: 30px;
         width: 160px;
         transform: translateX(-20px);
         border: 1px solid rgb(95, 67, 255);
@@ -69,35 +76,42 @@
     /* Navbar login form */
     .nav-login-form {
         display: flex;
-        margin-left: auto;
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
     }
-    .nav-login-form input{
-        margin: 0 4px;
-        width: 120px;
-        border-radius: 4px;
-        box-sizing: border-box;
-        outline: none;
-        -webkit-transition: 0.5s;
-        transition: 0.5s;
-        border: 3px solid #555;
-    }
-    .nav-login-form input:focus {
-        border: 3px solid #0984e3;
-        width: 140px;
-        border-radius: 4px;
-    }
-    .nav-login-btn{
-        cursor: pointer;
-        background: #74b9ff;
-        padding: 1px 3px;
-        outline: none;
-        color: #fff;
-        border-radius: 4px;
-        transition: 0.5s;
-    }
-    .nav-login-btn:hover {
-        background: #55efc4;
-    }
+        .input-login {
+            display: flex;
+            /* flex-direction: column; */
+        }
+        .btn-login {
+
+        }
+        
+        .nav-login-form input{
+            margin: 0 4px;
+            width: 80px;
+            border-radius: 4px;
+            box-sizing: border-box;
+            outline: none;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+            border: 3px solid #555;
+        }
+        .nav-login-form input:focus {
+            border: 3px solid #0984e3;
+            width: 120px;
+        }
+        .nav-login-btn{
+            cursor: pointer;
+            background: #0984e3;
+            padding: 1px 3px;
+            outline: none;
+            color: #fff;
+            border-radius: 4px;
+            transition: 0.5s;
+        }
 
 }
 

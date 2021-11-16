@@ -6,6 +6,7 @@ import NewfeedPanel from "./Newfeed";
 import Profile from "./Profile";
 import Friends from "./Friends";
 import Messenger from "./Messenger";
+import PostViewer from "./Tools/PostViewer";
 
 import RegisterPage from "./Auth/RegisterPage";
 import OnlinePanel from "./Popups/OnlinePanel";
@@ -28,6 +29,8 @@ function HomePage() {
             <Route path="/" exact component={NewfeedPanel} />
             <Route path="/messenger" component={Messenger} />
             <Route path="/friends" component={Friends} />
+            <Route path="/post/:postId" component={PostViewer} />
+            <Route path="/post" component={NewfeedPanel} />
             <Route path="/:id/photos" exact component={Profile} />
             <Route path="/:id/posts" exact component={Profile} />
             <Route path="/:id" exact component={Profile} />

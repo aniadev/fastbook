@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { setUserData } from "../../store/reducers/userSlice";
 
 import ImageUploading from "react-images-uploading";
-import "./AvatarUploader.css";
+import "./Style/AvatarUploader.css";
 import imageUploadApi from "../../api/imageUploadApi";
 import profileApi from "../../api/profileApi";
 

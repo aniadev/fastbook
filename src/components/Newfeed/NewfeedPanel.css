@@ -210,7 +210,10 @@
         cursor: pointer;
         transition: all 0.2s ease-in;
         border-radius: 4px;
+        text-decoration: none;
+        color: #2d3436;
     }
+    
     .nf-footer .react .react-item:hover { 
         background: #ecf0f1;
     }
@@ -451,6 +454,8 @@
         cursor: pointer;
         transition: all 0.2s ease-in;
         border-radius: 4px;
+        text-decoration: none;
+        color: #2d3436;
     }
     .nf-footer .react .react-item:hover { 
         background: #ecf0f1;

@@ -19,11 +19,15 @@ function Navbar() {
           <img src={process.env.PUBLIC_URL + "/img/logo.png"} alt="logo" />
           <span className="navbar-brand no-select pointer ml-2">Fakebook</span>
         </div>
-        <div className="nav-search">
-          <form onSubmit={(e) => handleSearch(e)}>
-            <input type="search" placeholder="Search" aria-label="Search" />
-          </form>
-        </div>
+        {auth.isAuthenticated ? (
+          <div className="nav-search">
+            <form onSubmit={(e) => handleSearch(e)}>
+              <input type="search" placeholder="Search" aria-label="Search" />
+            </form>
+          </div>
+        ) : (
+          false
+        )}
       </div>
       {auth.isAuthenticated ? <NavUser /> : <NavLoginForm />}
     </nav>

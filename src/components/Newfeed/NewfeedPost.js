@@ -25,7 +25,7 @@ function NewfeedPost(props) {
       : dispatch(reactPost(postData.postId));
   };
   const commentPostHandle = () => {
-    alert("COMMENT \n FEATURE UPDATING");
+    console.log("COMMENT \n FEATURE UPDATING");
   };
   // useEffect to set reaction
   useEffect(() => {
@@ -39,12 +39,13 @@ function NewfeedPost(props) {
   // convert time
   const convertTime = (_time) => {
     let _timeStr;
-    let time = new Date() - new Date(_time);
+    let _Time = new Date(_time);
+    let time = new Date() - _Time + _Time.getTimezoneOffset() * 60000;
     let mins = Math.round(((time / 1000) % 3600) / 60);
     let hrs = Math.round(time / 1000 / 3600);
     let days = Math.round(hrs / 24);
-    if (days > 7) {
-      return new Date(_time).toLocaleDateString("vi-VN");
+    if (days > 3) {
+      return _Time.toLocaleDateString("vi-VN");
     }
     days < 2
       ? hrs < 1
@@ -156,14 +157,15 @@ function NewfeedPost(props) {
                 Like <i className="far fa-thumbs-up"></i>
               </span>
             </div>
-            <div
+            <Link
+              to={`/post/${postData.postId}`}
               className="react-item col text-center no-select"
               onClick={() => commentPostHandle()}
             >
               <span>
                 Comment <i className="far fa-comment"></i>
               </span>
-            </div>
+            </Link>
           </div>
         </div>
       </div>

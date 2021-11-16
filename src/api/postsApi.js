@@ -16,6 +16,14 @@ const postsApi = {
     const url = "/posts/delete";
     return axiosClient.post(url, params);
   },
+  getPostData: (postId) => {
+    const url = `/post/${postId}`;
+    return axiosClient.get(url);
+  },
+  sendComment: (postId, params) => {
+    const url = `/post/${postId}/cmt`;
+    return axiosClient.post(url, params);
+  },
 };
 
 export default postsApi;

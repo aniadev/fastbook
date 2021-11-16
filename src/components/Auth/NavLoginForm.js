@@ -26,23 +26,27 @@ function NavLoginForm() {
 
   return (
     <React.Fragment>
-      <div className="nav-login-form">
-        <form action="" onSubmit={(e) => loginHandler(e)}>
-          <input
-            type="text"
-            placeholder="Username"
-            name="username"
-            autoComplete="off"
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            autoComplete="off"
-            required
-          />
-          <button className="nav-login-btn">Sign in</button>
+      <div>
+        <form className="nav-login-form" onSubmit={(e) => loginHandler(e)}>
+          <div className="input-login">
+            <input
+              type="text"
+              placeholder="Username"
+              name="username"
+              autoComplete="off"
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              autoComplete="off"
+              required
+            />
+          </div>
+          <div className="btn-login">
+            <button className="nav-login-btn">Sign in</button>
+          </div>
         </form>
       </div>
     </React.Fragment>

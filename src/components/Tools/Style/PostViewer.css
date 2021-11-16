@@ -233,7 +233,6 @@
         overflow: auto;
         z-index: 19;
         background: #f5f6fa; 
-        overflow: hidden;
     }
     .post-viewer__post {
         position: relative;

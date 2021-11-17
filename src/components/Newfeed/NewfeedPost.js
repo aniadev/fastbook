@@ -60,7 +60,7 @@ function NewfeedPost(props) {
   return (
     <div className="newfeed-post container-fluid">
       <div className="nf-header">
-        <Link className="ml-3 no-select" to={`/${postData.userId}`}>
+        <Link className="no-select" to={`/${postData.userId}`}>
           <Avatar avatarLink={postData.avatar} width="45" height="45" />
         </Link>
         <div className="nf-info">
@@ -104,9 +104,9 @@ function NewfeedPost(props) {
           </div>
         )}
       </div>
-      <hr
+      {/* <hr
         style={{ borderTop: "1px dotted black", margin: "4px 2px 2px 14px" }}
-      />
+      /> */}
       <div className="nf-body">
         <div className="nf-content">
           {/* <span>{postData.content}</span> */}

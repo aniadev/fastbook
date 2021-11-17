@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deletePost } from "../../store/reducers/newfeedSlice";
-import postsApi from "../../api/postsApi";
+import postsApi from "../../store/api/postsApi";
 
 function PostDeleteModal() {
   const currentPostDelete = useSelector(

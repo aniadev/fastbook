@@ -7,8 +7,8 @@ import ImageUploading from "react-images-uploading";
 // redux store
 import { useSelector, useDispatch } from "react-redux";
 import { createPost } from "../../store/reducers/newfeedSlice";
-import postsApi from "../../api/postsApi";
-import imageUploadApi from "../../api/imageUploadApi";
+import postsApi from "../../store/api/postsApi";
+import imageUploadApi from "../../store/api/imageUploadApi";
 
 function PostCreater() {
   const user = useSelector((state) => state.user);

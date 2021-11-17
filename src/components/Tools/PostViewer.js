@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import TextareaAutosize from "react-textarea-autosize";
-import postsApi from "../../api/postsApi";
+import postsApi from "../../store/api/postsApi";
 import "./Style/PostViewer.css";
 
 export default function PostViewer() {

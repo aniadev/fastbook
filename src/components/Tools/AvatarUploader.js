@@ -4,8 +4,8 @@ import { setUserData } from "../../store/reducers/userSlice";
 
 import ImageUploading from "react-images-uploading";
 import "./Style/AvatarUploader.css";
-import imageUploadApi from "../../api/imageUploadApi";
-import profileApi from "../../api/profileApi";
+import imageUploadApi from "../../store/api/imageUploadApi";
+import profileApi from "../../store/api/profileApi";
 
 function AvatarUploader() {
   const [rawAvatar, setRawAvatar] = useState(null);

@@ -6,8 +6,8 @@ import Avatar from "./Avatar";
 
 // redux store
 import { useSelector } from "react-redux";
-import postsApi from "../../api/postsApi";
-import imageUploadApi from "../../api/imageUploadApi";
+import postsApi from "../../store/api/postsApi";
+import imageUploadApi from "../../store/api/imageUploadApi";
 
 function PostCreater() {
   const user = useSelector((state) => state.user);

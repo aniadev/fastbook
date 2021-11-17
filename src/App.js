@@ -5,7 +5,7 @@ import "./App.css";
 import HomePage from "./components/HomePage";
 import PostDeleteModal from "./components/Tools/PostDeleteModal"; // TOOLS
 // api store
-import authApi from "./api/authApi";
+import authApi from "./store/api/authApi";
 // reducers
 import {
   signin,

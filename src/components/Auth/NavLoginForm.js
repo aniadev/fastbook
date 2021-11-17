@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { signin } from "../../store/reducers/authSlice";
 import { setUserData } from "../../store/reducers/userSlice";
-import authApi from "../../api/authApi";
+import authApi from "../../store/api/authApi";
 
 function NavLoginForm() {
   const dispatch = useDispatch();

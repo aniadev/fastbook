@@ -6,7 +6,7 @@ import Posts from "./Posts";
 import Photos from "./Photos";
 import "./Profile.css";
 //api
-import profileApi from "../../api/profileApi";
+import profileApi from "../../store/api/profileApi";
 
 function Profile() {
   const { id } = useParams();

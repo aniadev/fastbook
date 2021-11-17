@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./LoginPage.css";
-import authApi from "../../api/authApi";
+import authApi from "../../store/api/authApi";
 
 function RegisterPage() {
   const initialState = {

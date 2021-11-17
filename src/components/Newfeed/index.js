@@ -11,7 +11,7 @@ import {
   addMorePosts,
 } from "../../store/reducers/newfeedSlice";
 // api axiosClient
-import postsApi from "../../api/postsApi";
+import postsApi from "../../store/api/postsApi";
 
 function NewfeedPanel() {
   const newfeedPost = useSelector((state) => state.newfeedPost);
@@ -22,7 +22,7 @@ function NewfeedPanel() {
       try {
         const response = await postsApi.getPosts({ _page: 1 });
         if (response.success) {
-          console.log(response.posts);
+          // console.log(response.posts);
           dispatch(initPosts(response.posts));
         } else {
           console.log(response.message);

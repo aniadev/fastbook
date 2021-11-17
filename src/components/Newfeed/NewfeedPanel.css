@@ -196,7 +196,7 @@
         margin-bottom: 4px;
         display: flex;
         justify-content: center;
-        filter: drop-shadow(0 0 4px #44bd32);
+        filter: drop-shadow(0 0 2px #44bd32);
     }
     .nf-body .nf-img img {
         width: 100%;
@@ -440,7 +440,7 @@
         margin-bottom: 4px;
         display: flex;
         justify-content: center;
-        filter: drop-shadow(0 0 4px #44bd32);
+        filter: drop-shadow(0 0 2px #44bd32);
     }
     .nf-body .nf-img img {
         width: 100%;

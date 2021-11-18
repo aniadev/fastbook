@@ -16,6 +16,7 @@ export default function PostViewer() {
   });
   const [allComments, setAllComments] = useState([]);
   const [comment, setComment] = useState("");
+  const [reactors, setReactors] = useState([]);
 
   const submitComment = async () => {
     if (comment) {
@@ -25,7 +26,7 @@ export default function PostViewer() {
       });
       if (response.success) {
         // setAllComments()
-        console.log(user);
+        // console.log(user);
         let newComment = {
           avatar: user.avatar,
           blueTick: user.blueTick,
@@ -37,6 +38,7 @@ export default function PostViewer() {
           cmtTime: Date.now() + 1,
         };
         setAllComments([newComment, ...allComments]);
+        setPostData({ ...postData, comments: postData.comments + 1 });
         setComment("");
       }
     }
@@ -55,14 +57,40 @@ export default function PostViewer() {
       submitComment();
     }
   };
+  const handleReactPost = async () => {
+    if (reactors.includes(user.userId)) {
+      // unlike
+      const response = await postsApi.sendReaction(postId, {
+        type: "react",
+        action: "unlike",
+      });
+      if (response.success) {
+        let newReactors = reactors.filter((el) => el !== user.userId);
+        setReactors(newReactors);
+        setPostData({ ...postData, likes: postData.likes - 1 });
+      }
+    } else {
+      // like
+      const response = await postsApi.sendReaction(postId, {
+        type: "react",
+        action: "like",
+      });
+      if (response.success) {
+        setReactors([user.userId, ...reactors]);
+        setPostData({ ...postData, likes: postData.likes + 1 });
+      }
+    }
+  };
 
   useEffect(() => {
+    // get post data
     const getPostData = async () => {
       const response = await postsApi.getPostData(postId);
-      // console.log(response);
+      console.log(response);
       if (response.success) {
         setPostData(response.postData);
         setAllComments(response.allComments || []);
+        setReactors(response.reactors || []);
       }
     };
     getPostData();
@@ -95,11 +123,11 @@ export default function PostViewer() {
       <div className="post-viewer__post">
         <div className="post-viewer__post--header">
           <div className="pw__h--user">
-            <Link className="pw__h--avatar" to={`/${user.userId}`}>
+            <Link className="pw__h--avatar" to={`/${postData.userId}`}>
               <img src={postData.avatar} alt="nf-avatar" />
             </Link>
             <div className="pw__h--info">
-              <span className="pw__h--info-name">
+              <Link to={`/${postData.userId}`} className="pw__h--info-name">
                 {postData.name}
                 {postData.blueTick ? (
                   <span className="app__blue-tick">
@@ -109,7 +137,7 @@ export default function PostViewer() {
                 ) : (
                   false
                 )}
-              </span>
+              </Link>
               <span className="pw__h--info-time">
                 {convertTime(postData.time)}
               </span>
@@ -147,7 +175,12 @@ export default function PostViewer() {
             <span>{postData.comments}</span> <span>comments</span>
           </div>
           <div className="pw__f--react-btn">
-            <div className="pw__f--react-btn-like">
+            <div
+              className={`pw__f--react-btn-like ${
+                reactors.includes(user.userId) ? "like-active" : ""
+              }`}
+              onClick={() => handleReactPost()}
+            >
               <i className="fas fa-thumbs-up"></i>
             </div>
             <div

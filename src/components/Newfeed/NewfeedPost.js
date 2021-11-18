@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Avatar from "./Avatar";
 // const avatarLink =
@@ -6,36 +6,40 @@ import Avatar from "./Avatar";
 
 // redux store
 import { useSelector, useDispatch } from "react-redux";
-import { reactPost, unReactPost } from "../../store/reducers/userSlice";
-import { setDeletePost } from "../../store/reducers/newfeedSlice";
+import {
+  setDeletePost,
+  reactPost,
+  unReactPost,
+} from "../../store/reducers/newfeedSlice";
+import postsApi from "../../store/api/postsApi";
 
-function NewfeedPost(props) {
-  //use props to render the post
-  const postData = props.postData;
-  // use state
-  const [isReacted, setReact] = useState(false);
+function NewfeedPost({ postData }) {
   //useSelector for user's reaction
   const user = useSelector((state) => state.user);
-  const { postReacted } = user;
   const dispatch = useDispatch();
   // check reactions
-  const reactPostHandle = () => {
-    isReacted
-      ? dispatch(unReactPost(postData.postId))
-      : dispatch(reactPost(postData.postId));
+  const reactPostHandle = async () => {
+    if (postData.likeId) {
+      // unlike post
+      const response = await postsApi.sendReaction(postData.postId, {
+        type: "react",
+        action: "unlike",
+      });
+      if (response.success) {
+        dispatch(unReactPost(postData.postId));
+      }
+    } else {
+      //like post
+      const response = await postsApi.sendReaction(postData.postId, {
+        type: "react",
+        action: "like",
+      });
+      if (response.success) {
+        dispatch(reactPost(postData.postId));
+      }
+    }
   };
-  const commentPostHandle = () => {
-    console.log("COMMENT \n FEATURE UPDATING");
-  };
-  // useEffect to set reaction
-  useEffect(() => {
-    setReact(postReacted.includes(postData.userId));
-  }, [postData.userId, postReacted]);
 
-  // handle post-option
-  const handlePostOption = () => {
-    // alert("POST-OPTION \n FEATURE UPDATING");
-  };
   // convert time
   const convertTime = (_time) => {
     let _timeStr;
@@ -79,7 +83,7 @@ function NewfeedPost(props) {
           </div>
         </div>
         {postData.userId === user.userId && (
-          <div className="nf-post--option" onClick={() => handlePostOption()}>
+          <div className="nf-post--option">
             {/* <i className="fas fa-ellipsis-h"></i> */}
             <i
               type="button"
@@ -153,14 +157,14 @@ function NewfeedPost(props) {
               className="react-item col text-center no-select"
               onClick={() => reactPostHandle()}
             >
-              <span className={isReacted ? "reacted" : ""}>
+              {/* if postData has likeId property, it means reacted */}
+              <span className={postData.likeId ? "reacted" : ""}>
                 Like <i className="far fa-thumbs-up"></i>
               </span>
             </div>
             <Link
               to={`/post/${postData.postId}`}
               className="react-item col text-center no-select"
-              onClick={() => commentPostHandle()}
             >
               <span>
                 Comment <i className="far fa-comment"></i>

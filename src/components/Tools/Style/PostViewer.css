@@ -52,6 +52,10 @@
                 .pw__h--info-name {
                     font-weight: bold;
                     font-size: 16px;
+                    color: #000;
+                }
+                .pw__h--info-name:hover {
+                    text-decoration: none;
                 }
                 .pw__h--info-name .pw__h--info-blue-tick {
                     color: red;
@@ -130,6 +134,10 @@
             }
             .pw__f--react-btn-like:hover, .pw__f--react-btn-cmt:hover{
                 cursor: pointer;
+                color: #fff;
+                background: #3498db75;
+            }
+            .like-active {
                 color: #fff;
                 background: #3498db;
             }
@@ -275,6 +283,10 @@
                 .pw__h--info-name {
                     font-weight: bold;
                     font-size: 16px;
+                    color: #000;
+                }
+                .pw__h--info-name:hover {
+                    text-decoration: none;
                 }
                 .pw__h--info-name .pw__h--info-blue-tick {
                     color: red;
@@ -352,6 +364,10 @@
             }
             .pw__f--react-btn-like:hover, .pw__f--react-btn-cmt:hover{
                 cursor: pointer;
+                color: #fff;
+                background: #3498db75;
+            }
+            .like-active {
                 color: #fff;
                 background: #3498db;
             }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./NewfeedPanel.css";
 // components
 import PostCreater from "./PostCreater";

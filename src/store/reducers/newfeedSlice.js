@@ -16,6 +16,7 @@ export const newfeedSlice = createSlice({
         time: "March 17 2019",
         likes: 78,
         comments: 18,
+        likeId: null,
       },
     ],
     onRefresh: false,
@@ -50,6 +51,23 @@ export const newfeedSlice = createSlice({
     setPage: (state, action) => {
       state.page = action.payload;
     },
+    reactPost: (state, action) => {
+      // react post with postId
+      state.posts.map((post) => {
+        if (post.postId === action.payload) {
+          post.likeId = 1;
+          post.likes += 1;
+        }
+      });
+    },
+    unReactPost: (state, action) => {
+      state.posts.map((post) => {
+        if (post.postId === action.payload) {
+          post.likeId = null;
+          post.likes -= 1;
+        }
+      });
+    },
   },
 });
 
@@ -61,6 +79,8 @@ export const {
   setDeletePost,
   setPage,
   addMorePosts,
+  reactPost,
+  unReactPost,
 } = newfeedSlice.actions;
 
 export default newfeedSlice.reducer;

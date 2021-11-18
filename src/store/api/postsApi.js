@@ -16,6 +16,7 @@ const postsApi = {
     const url = "/posts/delete";
     return axiosClient.post(url, params);
   },
+  // get post data to view
   getPostData: (postId) => {
     const url = `/post/${postId}`;
     return axiosClient.get(url);
@@ -23,6 +24,14 @@ const postsApi = {
   sendComment: (postId, params) => {
     const url = `/post/${postId}/cmt`;
     return axiosClient.post(url, params);
+  },
+  sendReaction: (postId, params) => {
+    const url = `/post/${postId}/react`;
+    return axiosClient.post(url, params);
+    //   {
+    //     "type": "react",
+    //     "action": "like" / unlike
+    //  }
   },
 };
 

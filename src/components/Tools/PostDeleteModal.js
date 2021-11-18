@@ -24,10 +24,6 @@ function PostDeleteModal() {
     } catch (error) {
       alert(error);
     }
-    // setTimeout(() => {
-
-    //   dispatch(deletePost(currentPostDelete));
-    // }, 3000);
   };
   return (
     <div
@@ -35,7 +31,7 @@ function PostDeleteModal() {
       id={`postDeleteModal`}
       tabIndex="-1"
       role="dialog"
-      aria-labelledby="exampleModalCenterTitle"
+      aria-labelledby="deleteModal"
       aria-hidden="true"
     >
       <div
@@ -44,7 +40,7 @@ function PostDeleteModal() {
       >
         <div className="modal-content bg-dark text-light">
           <div className="modal-header">
-            <h5 className="modal-title " id="exampleModalLongTitle">
+            <h5 className="modal-title " id="deleteTitle">
               Delete ?
             </h5>
             <button

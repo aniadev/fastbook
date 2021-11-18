@@ -3,6 +3,7 @@ import authReducer from "./reducers/authSlice";
 import newfeedReducer from "./reducers/newfeedSlice";
 import userReducer from "./reducers/userSlice";
 import onlineUsersReducer from "./reducers/onlineUsersSlice";
+import profileReducer from "./reducers/profileSlice";
 
 export default configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export default configureStore({
     user: userReducer,
     newfeedPost: newfeedReducer,
     onlineUsers: onlineUsersReducer,
+    profile: profileReducer,
   },
 });

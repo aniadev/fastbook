@@ -1,0 +1,285 @@
+.login-page{
+    position: relative;
+    display: flex;
+    height: 560px;
+}
+
+.login-page__brand{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 120px;
+}
+.login-page__brand-name{
+    font-size: 5.8rem;
+    margin-bottom: 32px;
+    color: #1877F2;
+    font-weight: 700;
+}
+.login-page__brand-quote{
+    font-size: 2.9rem;
+    line-height: 3.2rem;
+}
+.login-page__body{    
+    display: flex;
+    flex: 1;
+    margin-left: 60px;
+    justify-content: center;
+    flex-direction: column;
+}
+.login-container{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 400px;
+    height: 350px;
+    background: var(--background-light);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px 2px var(--border-light);
+    padding: 18px;
+}
+.lg-form{
+    font-size: 1.8rem;
+    color: var(--text-color-light);
+}
+.lg-form__username, 
+.lg-form__password{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    margin-bottom: 16px;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    /* background: #000; */
+}
+.lg-form__username-input {
+    height: 100%;
+    width: 100%;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    padding-left: 16px;
+}
+.lg-form__password-input{
+    height: 100%;
+    width: 86%;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    padding-left: 16px;
+}
+.focus {
+    border: 1px solid;
+    border-color: var(--color-primary);
+}
+.lg-form__password-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 14%;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+.lg-form__password-toggle:hover {
+    color: var(--text-color-light-hover);
+}
+.lg-form__login-btn{
+    width: 100%;
+    height: 50px;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    background: var(--color-primary);
+    color: var(--color-white);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+.lg-form__login-btn:hover {
+    background: var(--color-primary-hover);
+    cursor: pointer;
+}
+.lg-form__reset-password{
+    width: 100%;
+    text-align: center;
+    font-size: 1.4rem;
+    height: 36px;
+    border-bottom: 1px solid var(--border-light);
+}
+.lg-form__reset-password-link{
+    text-decoration: none;
+    color: var(--color-primary);
+}
+.lg-form__reset-password-link:hover {
+    text-decoration: underline;
+}
+.register-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 16px;
+}
+.register-btn{
+    height: 50px;
+    width: 180px;
+    border-radius: 6px;
+    outline: none;
+    border: none;
+    background: var(--color-green);
+    color: var(--color-white);
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+.register-btn:hover {    
+    background: var(--color-green-hover);
+    cursor: pointer;
+}
+.login-page__body-create-page{
+    margin-top: 18px;
+    width: 400px;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+/* Register Modal */
+/* ===================================================================== */
+.reg-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    transition: all 0.5s ease;
+}
+.modal__overlay{
+
+}
+.modal__main{
+    display: block;
+    position: relative;
+    width: 433px;
+    /* height: 513px; */
+    background: #fff;
+    margin: auto;
+    z-index: 9;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    box-shadow: 2px 2px 18px 1px var(--border-light);
+}
+.reg-modal__header{
+    border-bottom: 1px solid var(--border-light);
+    padding: 12px;
+}
+.reg-modal__header-title{
+    font-size: 3rem;
+    line-height: 3.2rem;
+    font-weight: 700;
+    color: var(--text-color-light);
+}
+.reg-modal__header-desc{
+    font-size: 1.4rem;
+    line-height: 2rem;
+    font-weight: 400;
+    color: var(--text-color-light);
+    margin-top: 6px;
+}
+.reg-modal__exit-btn {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2rem;
+    font-weight: 300;
+    color: #636A73;
+    cursor: pointer;
+}
+.reg-modal__body{
+    padding: 12px;
+}
+.reg-modal__body input {
+    background: var(--input-background-color);
+    width: 100%;
+    height: 40px;
+    outline: none;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    font-size: 1.4rem;
+    padding-left: 12px;
+}
+.reg-modal__body-input--warning{
+    border-color: red;
+}
+.reg-modal__body-name{
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+.reg-modal__body-input-lastname{
+    flex: 1;
+    margin-right: 5px;
+}
+.reg-modal__body-input-firstname{
+    margin-left: 5px;
+    flex: 1;
+}
+.reg-modal__body-username{
+    margin-top: 12px;
+}
+.reg-modal__body-password{
+    margin-top: 12px;
+}
+.reg-modal__body-birthday{
+    margin-top: 12px;
+}
+.reg-modal__body-birthday-title{
+    font-size: 1.2rem;
+}
+.reg-modal__body-birthday-selector{
+    display: flex;
+    height: 35px;
+    font-size: 1.4rem;
+}
+.reg-modal__body-birthday-day{
+    flex: 1;
+    margin-right: 5px;
+}
+.reg-modal__body-birthday-month{
+    flex: 1;
+    margin: 0 5px;
+}
+.reg-modal__body-birthday-year{
+    flex: 1;
+    margin-left: 5px;
+}
+.reg-modal__body-description{
+    color: var(--text-color-light);
+    margin-top: 12px;
+}
+.reg-modal__body-register-btn{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 36px;
+    width: 162px;
+    margin-top: 12px;
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    background: var(--color-green);
+    color: var(--color-white);
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+.reg-modal__body-register-btn:hover {
+    background: var(--color-green-hover);
+    cursor: pointer;
+}

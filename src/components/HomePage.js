@@ -1,40 +1,41 @@
-import React from "react";
+import React from 'react';
 // Components
-import Navbar from "./Navbar";
-import Sidebar from "./Sidebar";
-import NewfeedPanel from "./Newfeed";
-import Profile from "./Profile";
-import Friends from "./Friends";
-import Messenger from "./Messenger";
-import PostViewer from "./Tools/PostViewer";
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
+import NewfeedPanel from './Newfeed';
+import Profile from './Profile';
+import Friends from './Friends';
+import Messenger from './Messenger';
+import PostViewer from './Tools/PostViewer';
 
-import RegisterPage from "./Auth/RegisterPage";
-import OnlinePanel from "./Popups/OnlinePanel";
-import PendingPage from "./PendingPage";
-import ErrorPage from "./ErrorPage";
+import RegisterPage from './Auth/RegisterPage';
+import LoginPage from './Auth/LoginPage';
+import OnlinePanel from './Popups/OnlinePanel';
+import PendingPage from './PendingPage';
+import ErrorPage from './ErrorPage';
 // redux store
-import { useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 
 function HomePage() {
   const auth = useSelector((state) => state.auth);
 
   return (
     <React.Fragment>
-      <Navbar />
       {(auth.isAuthenticated && !auth.pendingStatus && (
         <>
+          <Navbar />
           <Sidebar />
           <Switch>
-            <Route path="/" exact component={NewfeedPanel} />
-            <Route path="/messenger" component={Messenger} />
-            <Route path="/friends" component={Friends} />
-            <Route path="/post/:postId" component={PostViewer} />
-            <Route path="/post" component={NewfeedPanel} />
-            <Route path="/:id/photos" exact component={Profile} />
-            <Route path="/:id/posts" exact component={Profile} />
-            <Route path="/:id" exact component={Profile} />
-            <Route path="*">
+            <Route path='/' exact component={NewfeedPanel} />
+            <Route path='/messenger' component={Messenger} />
+            <Route path='/friends' component={Friends} />
+            <Route path='/post/:postId' component={PostViewer} />
+            <Route path='/post' component={NewfeedPanel} />
+            <Route path='/:id/photos' exact component={Profile} />
+            <Route path='/:id/posts' exact component={Profile} />
+            <Route path='/:id' exact component={Profile} />
+            <Route path='*'>
               <ErrorPage message={`404 NOT FOUND`} />
             </Route>
           </Switch>
@@ -49,7 +50,7 @@ function HomePage() {
         )) ||
         (auth.errorStatus && <ErrorPage message={auth.errorMessage} />) ||
         (!auth.isAuthenticated && !auth.pendingStatus && !auth.errorStatus && (
-          <RegisterPage />
+          <LoginPage />
         ))}
     </React.Fragment>
   );

@@ -8,7 +8,6 @@ import Friends from './Friends';
 import Messenger from './Messenger';
 import PostViewer from './Tools/PostViewer';
 
-import RegisterPage from './Auth/RegisterPage';
 import LoginPage from './Auth/LoginPage';
 import OnlinePanel from './Popups/OnlinePanel';
 import PendingPage from './PendingPage';
@@ -25,7 +24,7 @@ function HomePage() {
       {(auth.isAuthenticated && !auth.pendingStatus && (
         <>
           <Navbar />
-          <Sidebar />
+          {/* <Sidebar /> */}
           <Switch>
             <Route path='/' exact component={NewfeedPanel} />
             <Route path='/messenger' component={Messenger} />
@@ -39,7 +38,7 @@ function HomePage() {
               <ErrorPage message={`404 NOT FOUND`} />
             </Route>
           </Switch>
-          <OnlinePanel />
+          {/* <OnlinePanel /> */}
         </>
       )) ||
         (!auth.isAuthenticated && auth.pendingStatus && !auth.errorStatus && (

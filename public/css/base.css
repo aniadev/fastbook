@@ -11,8 +11,11 @@
     --text-color-light-hover: #1877F2;
     --background-light: #fff;
     --border-light: #ccc;
-    --background-dark: #333;
-    --text-color-dark: #fff;
+    --border-dark: #363636;
+    --navbar-dark: #242526;
+    --navbar-dark-hover: #3f3f3f;
+    --background-dark: #18191A;
+    --text-color-dark: #ccc;
     --input-background-color: #F5F6F7;
 }
 * {

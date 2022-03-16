@@ -1,25 +1,40 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const profileSlice = createSlice({
-  name: "profile",
+  name: 'profile',
   initialState: {
+    userData: {
+      userId: 0,
+      name: '',
+      username: '',
+      email: '',
+      avatar: '',
+      birthday: null,
+      address: null,
+      coverPhoto: null,
+      blueTick: 0,
+    },
     posts: [
       {
         // default post
         postId: 114,
         userId: 1,
-        content: "Đã cập nhật ảnh đại diện.",
-        image: "https://i.ibb.co/9G5G3Sj/fe73f3bffca4.gif",
+        content: 'Đã cập nhật ảnh đại diện.',
+        image: 'https://i.ibb.co/9G5G3Sj/fe73f3bffca4.gif',
         likes: 6,
         comments: 4,
         likeId: 16,
-        time: "2021-11-17T21:00:30.000Z",
+        time: '2021-11-17T21:00:30.000Z',
       },
     ],
   },
   reducers: {
     setProfilePosts: (state, action) => {
       [...state.posts] = action.payload;
+    },
+    setProfileData: (state, action) => {
+      console.log(action.payload);
+      state.userData = { ...action.payload };
     },
     reactPost: (state, action) => {
       let postId = action.payload;
@@ -41,6 +56,7 @@ export const profileSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setProfilePosts, reactPost, unReactPost } = profileSlice.actions;
+export const { setProfilePosts, setProfileData, reactPost, unReactPost } =
+  profileSlice.actions;
 
 export default profileSlice.reducer;

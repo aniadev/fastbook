@@ -1,17 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Avatar from "./Avatar";
-// const avatarLink =
-//   "https://www.pngarea.com/pngm/468/3428536_default-avatar-png-profile-demo-hd-png-download.png";
-
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Avatar from './Avatar';
 // redux store
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from 'react-redux';
 import {
   setDeletePost,
   reactPost,
   unReactPost,
-} from "../../store/reducers/newfeedSlice";
-import postsApi from "../../store/api/postsApi";
+} from '../../store/reducers/newfeedSlice';
+import postsApi from '../../store/api/postsApi';
 
 function NewfeedPost({ postData }) {
   //useSelector for user's reaction
@@ -22,8 +19,8 @@ function NewfeedPost({ postData }) {
     if (postData.likeId) {
       // unlike post
       const response = await postsApi.sendReaction(postData.postId, {
-        type: "react",
-        action: "unlike",
+        type: 'react',
+        action: 'unlike',
       });
       if (response.success) {
         dispatch(unReactPost(postData.postId));
@@ -31,8 +28,8 @@ function NewfeedPost({ postData }) {
     } else {
       //like post
       const response = await postsApi.sendReaction(postData.postId, {
-        type: "react",
-        action: "like",
+        type: 'react',
+        action: 'like',
       });
       if (response.success) {
         dispatch(reactPost(postData.postId));
@@ -49,129 +46,107 @@ function NewfeedPost({ postData }) {
     let hrs = Math.round(time / 1000 / 3600);
     let days = Math.round(hrs / 24);
     if (days > 3) {
-      return _Time.toLocaleDateString("vi-VN");
+      return _Time.toLocaleDateString('vi-VN');
     }
     days < 2
       ? hrs < 1
         ? mins < 1
-          ? (_timeStr = "vừa xong")
-          : (_timeStr = mins + " phút trước")
-        : (_timeStr = hrs + " giờ trước")
-      : (_timeStr = days + " ngày trước");
+          ? (_timeStr = 'vừa xong')
+          : (_timeStr = mins + ' phút trước')
+        : (_timeStr = hrs + ' giờ trước')
+      : (_timeStr = days + ' ngày trước');
 
     return _timeStr;
   };
   return (
-    <div className="newfeed-post container-fluid">
-      <div className="nf-header">
-        <Link className="no-select" to={`/${postData.userId}`}>
-          <Avatar avatarLink={postData.avatar} width="45" height="45" />
-        </Link>
-        <div className="nf-info">
-          <div className="nf-username">
-            <span className="nf-username__name">{postData.name}</span>
-            {postData.blueTick ? (
-              <span className="app__blue-tick">
-                <i className="fas fa-check-circle"></i>
-              </span>
-            ) : (
-              false
-            )}
+    <div className='nf-post'>
+      <div className='nf-post__header'>
+        <div className='nf-post__header-artist'>
+          <div className='nf-post__header-artist-img'>
+            <img src={postData.avatar} alt='artist' />
           </div>
-          <div className="nf-time">
-            <span>{convertTime(postData.time)}</span>
-          </div>
-        </div>
-        {postData.userId === user.userId && (
-          <div className="nf-post--option">
-            {/* <i className="fas fa-ellipsis-h"></i> */}
-            <i
-              type="button"
-              className="fas fa-ellipsis-h"
-              id="dropdownPostOption"
-              data-toggle="dropdown"
-              aria-expanded="true"
-              data-offset="-150,10"
-            ></i>
-            <div className="dropdown-menu" aria-labelledby="dropdownPostOption">
-              <span className="dropdown-item">Edit</span>
-              <button
-                className="dropdown-item"
-                type="button"
-                data-toggle="modal"
-                data-target={`#postDeleteModal`}
-                onClick={() => dispatch(setDeletePost(postData.postId))}
-              >
-                Delete
-              </button>
+          <div className='nf-post__header-artist-info'>
+            <Link
+              className='nf-post__header-artist-name'
+              to={`/${postData.userId}`}
+            >
+              {postData.name}
+              {postData.blueTick ? (
+                <span className='nf-post__header-artist-bluetick'>
+                  <i className='fas fa-check-circle'></i>
+                </span>
+              ) : (
+                ''
+              )}
+            </Link>
+            <div className='nf-post__header-artist-time'>
+              {convertTime(postData.time)}
             </div>
           </div>
-        )}
-      </div>
-      {/* <hr
-        style={{ borderTop: "1px dotted black", margin: "4px 2px 2px 14px" }}
-      /> */}
-      <div className="nf-body">
-        <div className="nf-content">
-          {/* <span>{postData.content}</span> */}
-          <div
-            dangerouslySetInnerHTML={{
-              __html: `${postData.content.replace(/(?:\r\n|\r|\n)/g, "<br>")}`,
-            }}
-          />
         </div>
-        {postData.image !== "null" &&
-        postData.image !== "" &&
+        <div className='nf-post__header-option'>
+          <i className='fas fa-ellipsis-h'></i>
+          <div className='nf-post__header-option-dropdown'></div>
+        </div>
+      </div>
+      <div className='nf-post__body'>
+        <div
+          className='nf-post__body-status'
+          dangerouslySetInnerHTML={{
+            __html: `${postData.content.replace(/(?:\r\n|\r|\n)/g, '<br>')}`,
+          }}
+        >
+          {/* Post status */}
+        </div>
+        {postData.image !== 'null' &&
+        postData.image !== '' &&
         postData.image !== null ? (
-          <Link className="nf-img" to={`/post/${postData.postId}`}>
-            <img src={postData.image} alt="nfimage" />
+          <Link to={`/post/${postData.postId}`}>
+            <img
+              src={postData.image}
+              alt='post-img'
+              className='nf-post__body-image'
+            />
           </Link>
         ) : (
           false
         )}
       </div>
-      <div className="nf-footer">
-        {postData.likes || postData.comments ? (
-          <div className="react-count">
-            <span>
-              {postData.likes > 0 ? postData.likes : " "}{" "}
-              {postData.likes === 0
-                ? " "
-                : `${postData.likes > 1 ? "likes" : "like"}`}
-            </span>
-            <span> </span>
-            <span>
-              {postData.comments > 0 ? postData.comments : " "}{" "}
-              {postData.comments === 0
-                ? " "
-                : `${postData.comments > 1 ? "comments" : "comment"}`}
-            </span>
+      <div className='nf-post__footer'>
+        <div className='nf-post__footer-react'>
+          <div className='nf-post__footer-like-counter'>
+            <i className='far fa-thumbs-up'></i>
+            <span>{`${postData.likes} lượt thích`}</span>
           </div>
-        ) : (
-          false
-        )}
-        <hr style={{ borderTop: "1px dotted black", margin: "2px" }} />
-        <div className="react container-fluid">
-          <div className="react-row row align-items-center">
-            <div
-              className="react-item col text-center no-select"
-              onClick={() => reactPostHandle()}
-            >
-              {/* if postData has likeId property, it means reacted */}
-              <span className={postData.likeId ? "reacted" : ""}>
-                Like <i className="far fa-thumbs-up"></i>
-              </span>
-            </div>
-            <Link
-              to={`/post/${postData.postId}`}
-              className="react-item col text-center no-select"
-            >
-              <span>
-                Comment <i className="far fa-comment"></i>
-              </span>
-            </Link>
+          <div className='nf-post__footer-cmt-counter'>
+            {postData.comments} bình luận
           </div>
         </div>
+        {/* footer */}
+        <div className='nf-post__footer-option'>
+          {/* if postData has likeId property, it means reacted */}
+          <div
+            className={`nf-post__footer-like ${
+              postData.likeId ? 'nf-post__footer-like--active' : ''
+            }`}
+            onClick={() => reactPostHandle()}
+          >
+            <i className='far fa-thumbs-up'></i>
+            <span>Thích</span>
+          </div>
+          <Link
+            className='nf-post__footer-comment'
+            to={`/post/${postData.postId}`}
+          >
+            <i className='far fa-comment-alt'></i>
+            <span>Bình luận</span>
+          </Link>
+          <div className='nf-post__footer-share'>
+            <i className='fas fa-share'></i>
+            <span>Chia sẻ</span>
+          </div>
+        </div>
+        <div className='nf-post__footer-comments-wrapper'></div>
       </div>
     </div>
   );

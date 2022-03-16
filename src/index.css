@@ -1,37 +1,82 @@
+:root {
+  --color-white: #fff;
+  --color-green: #36A420;
+  --color-green-hover: #339121;
+  --color-white-50: rgba(255, 255, 255, 0.5);
+  --color-white-f8: #F8F8F8;
+  --color-black: #000;
+  --color-primary: #1877F2;
+  --color-primary-hover: #1467d3;
+  --text-color-light: #333;
+  --text-color-light-hover: #1877F2;
+  --background-light: #fff;
+  --border-light: #ccc;
+  --border-dark: #363636;
+  --navbar-dark: #242526;
+  --navbar-dark-hover: #3f3f3f;
+  --background-dark: #18191A;
+  --text-color-dark: #ccc;
+  --input-background-color: #F5F6F7;
+}
+* {
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  line-height: 1.6rem;
+  font-family: 'Roboto', 'sans-serif';
+  box-sizing: border-box;
+}
+
+.grid {
+  width: 1200px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.grid__full-width {
+  width: 100%;
+}
+
+.grid__row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.hidden {
+  visibility: hidden;
+  display: none;
+  opacity: 0;
+}
+.show {
+  display: block;
+  opacity: 1;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+}
+.modal__overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.modal__body {
+  width: 500px;
+  height: 400px;
+  background: #fff;
+  margin: auto;
+  z-index: 9;
+  border-radius: 8px;
+}
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: white;
-  min-width: 320px;
-  background: #343a40;
-  overflow: hidden;
+  background: var(--background-dark);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888; 
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555; 
-}

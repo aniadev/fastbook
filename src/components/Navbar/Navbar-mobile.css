@@ -1,23 +1,26 @@
-/* Big screen ================================================================= */
-@media screen and (min-width: 940px) {
+/* Small screen ===============================================================================*/
+@media screen and (max-width: 940px) {
     .navbar{
         position: fixed;
         display: flex;
-        height: 56px;
+        max-height: 100px;
+        flex-direction: column;
         width: 100%;
-        min-width: 1080px;
         background: var(--navbar-dark);
         justify-items: center;
         align-items: center;
         justify-content: space-between;
         border-bottom: 1px solid var(--border-dark);
-        padding: 0 14px;
+        padding: 0;
         user-select: none;
         z-index: 20;
     }
     .nav__brand{
         position: relative;
-        display: flex;
+        display: none;
+        order:1;
+        width: 100%;
+        justify-content: space-between;
     }
     .nav__brand-logo{
         width: 40px;
@@ -33,7 +36,7 @@
         align-items: center;
         margin-left: 8px;
         height: 40px;
-        width: 204px;
+        max-width: 204px;
         background: #3f3f3f;
         border-radius: 20px;
         color: var(--text-color-dark);
@@ -58,15 +61,18 @@
     .nav__menu{
         display: flex;
         list-style: none;
-        font-size: 2.6rem;
+        font-size: 1.6rem;
         margin: 0;
         padding: 0;
         height: 100%;
+        width: 100%;
         align-items: center;
+        justify-content: space-between;
+        order: 3;
     }
     .nav__menu-item{
         display: flex;
-        width: 111px;
+        flex: 1;
         margin: 0 5px;
         height: 100%;
         color: var(--text-color-dark);
@@ -98,6 +104,8 @@
         display: flex;
         height: 100%;
         align-items: center;
+        justify-content: space-between;
+        order:2;
     }
     .nav__tools a {
         text-decoration: none;
@@ -147,9 +155,9 @@
         justify-content: center;
         align-items: center;
         list-style-type: none;
-        font-size: 1.8rem;
-        width: 40px;
-        height: 40px; 
+        font-size: 1.2rem;
+        width: 25px;
+        height: 25px; 
         background: #3f3f3f;
         border-radius: 50%;
         margin: 0 4px;
@@ -174,13 +182,13 @@
         background: red;
         right: -1px;
         top: -4px;
-        font-size: 1.2rem;
+        font-size: 0.8rem;
         color: var(--color-white);
-        width: 16px;
-        height: 16px;
+        width: 12px;
+        height: 12px;
         border-radius: 50%;
         text-align: center;
-        line-height: 15px;
+        line-height: 12px;
     }
     /* Dropdown messenger/notification========================================================================= */
     .nav__tools-dropdown{
@@ -190,7 +198,7 @@
         top: calc(100% + 6px);
         right: -40px;
         background: var(--navbar-dark);
-        width: 360px;
+        width: 200px;
         max-height: 400px;
         padding: 0 12px 12px 12px;
         border-radius: 8px;
@@ -201,7 +209,7 @@
     }
     /* width */
     .nav__tools-dropdown::-webkit-scrollbar {
-        width: 8px;
+        width: 4px;
     }
     /* Track */
     .nav__tools-dropdown::-webkit-scrollbar-track {
@@ -221,12 +229,12 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-size: 1.6rem;
-        height: 40px;
+        font-size: 1rem;
+        height: 20px;
         margin-top: 8px;
     }
     .nav__tools-dropdown-header span {
-        font-size: 2.4rem;
+        font-size: 1.4rem;
         font-weight: 700;
     }
     .nav__tools-dropdown-header-opt{ 
@@ -236,14 +244,14 @@
         align-items: center;
     }
     .nav__tools-dropdown-header-opt>li {
-        height: 30px;
-        width: 30px;
+        height: 20px;
+        width: 20px;
         text-align: center;
         border-radius: 50%;
         margin: 0 3px;
     }
     .nav__tools-dropdown-header-opt i {
-        line-height: 30px;
+        line-height: 20px;
     }
     .nav__tools-dropdown-header-opt>li:hover {
         background: var(--navbar-dark-hover);
@@ -261,7 +269,7 @@
         padding-left: 10px;
         border-radius: 20px;
         align-items: center;
-        font-size: 1.4rem;
+        font-size: 1rem;
         margin-top: 12px;
     }
     .nav__tools-dropdown-search input[type="text"] {
@@ -293,13 +301,13 @@
         flex-direction: row;
         color: inherit;
         text-decoration: none;
-        min-height: 70px;
+        min-height: 40px;
         align-items: center;
         padding: 5px;
     }
     .nav__tools-dropdown-item-avatar{
-        width: 60px;
-        height: 60px;
+        width: 30px;
+        height: 30px;
     }
     .nav__tools-dropdown-item-avatar img {
         width: 100%;
@@ -310,21 +318,21 @@
         display: flex;
         margin-left: 12px;
         flex-direction: column;
-        width: 260px;
+        width: 100%;
     }
     .nav__tools-dropdown-item-info h4{
         padding: 0;
-        margin: 0 0 8px 0;
-        font-size: 1.2rem;
+        margin: 0 0 4px 0;
+        font-size: 1rem;
     }
     .nav__tools-dropdown-item-info span{
         padding: 0;
         margin: 0;
-        font-size: 1.2rem;
+        font-size: 0.9rem;
     }
 
 
-    /* nav__tools user-option =========================================*/
+    /* nav__tools user-option =================================================================*/
     .nav__tools-user-option{
         display: block;
         /* display: none; */
@@ -332,9 +340,9 @@
         top: calc(100% + 5px);
         right: 10px;
         background: var(--navbar-dark);
-        width: 360px;
+        width: 220px;
         max-height: 400px;
-        padding: 15px;
+        padding: 8px;
         border-radius: 8px;
         box-shadow: 1px 1px 10px 2px var(--border-dark);
         cursor: default;
@@ -342,16 +350,19 @@
     }
     .nav__tools-user-option h4 {
         margin: 0;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
     .nav__tools-user-option span {
-        font-size: 1.3rem;
-        margin-top: 6px;
+        font-size: 0.8rem;
+        margin-top: 4px;
         font-weight: 300;
+    }
+    .nav__tools-user-option i {
+        line-height: 30px;
     }
     .nav__tools-user-option-profile{
         display: flex;
-        height: 76px;
+        height: 42px;
         color: inherit;
         text-decoration: none;
         padding: 8px;
@@ -361,8 +372,8 @@
         background: var(--navbar-dark-hover);
     }
     .nav__tools-option-img{
-        height: 60px;
-        width: 60px;
+        height: 30px;
+        width: 30px;
         border-radius: 50%;
     }
     .nav__tools-user-option-profile-name {
@@ -379,7 +390,7 @@
     }
     .nav__tools-user-option-report{
         display: flex;
-        height: 54px;
+        height: 34px;
         color: inherit;
         text-decoration: none;
         padding: 8px;
@@ -392,8 +403,8 @@
         background: var(--navbar-dark-hover);
     }
     .nav__tools-user-option-report-icon{
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         background: #4e4e4e;
         text-align: center;
         border-radius: 50%;
@@ -401,13 +412,14 @@
     }   
     .nav__tools-user-option-item {
         display: flex;
-        height: 54px;
+        height: 38px;
         color: inherit;
         text-decoration: none;
         padding: 8px;
         align-items: center;
         border-radius: 8px;
     }
+    
     .nav__tools-user-option-item:hover {
         background: var(--navbar-dark-hover);
     }

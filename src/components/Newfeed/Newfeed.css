@@ -1,4 +1,5 @@
-
+/* Big screen ================================================================= */
+@media screen and (min-width: 940px) {
 
 .newfeed {
     position: absolute;
@@ -16,7 +17,7 @@
 .nf-creator {
     display: block;
     max-width: 590px;
-    margin: 12px auto;
+    margin-bottom: 12px;
     background: #242526;
     border-radius: 8px;
     color: var(--text-color-dark);
@@ -241,4 +242,5 @@
     background: #242526;
     border-radius: 8px;
     color: var(--text-color-dark);
+}
 }

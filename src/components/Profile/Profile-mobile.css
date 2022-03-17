@@ -1,17 +1,17 @@
-/* Big screen ================================================================= */
-@media screen and (min-width: 940px) {
+/* Small screen ================================================================= */
+@media screen and (max-width: 940px) {
     .profile{
-        position: relative;
-        padding-top: 56px;
-        width: 100%;
+        position: absolute;
+        width: calc(100% - 8px);
         height: 100%;
+        margin: 90px auto;
     }
     .profile__cover{
         display: block;
         position: absolute;
-        height: 350px;
-        width: 940px;
-        margin: 0;
+        height: 210px;
+        width: 95%;
+        margin: 5px 0;
         z-index: 9;
         left: 50%;
         transform: translateX(-50%);
@@ -21,66 +21,66 @@
         height: 100%;
         width: 100%;
         object-fit: cover;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
+        border-radius: 12px;
     }
     .profile__cover-btn {
         position: absolute;
-        right: 32px;
+        right: 22px;
         bottom: 18px;
-        width: 154px;
-        height: 35px;
         font-size: 1.4rem;
         background: var(--color-white);
         outline: none;
         border: none;
-        border-radius: 6px;
+        border-radius: 50%;
         cursor: pointer;
+        padding: 8px 9px;
+    }
+    .profile__cover-btn span {
+        display: none;
     }
     .profile__header{
         display: block;
         position: relative;
-        height: 100%;
         background: linear-gradient(#A5ABA2,#242526, #242526);
     }
     .profile__header-spacing {
-        height: calc(350px - 30px);
+        height: calc(180px - 60px);
+        position: relative;
     }
     .profile__header-info-wrapper{
         display: flex;
+        flex-direction: column;
         position: relative;
-        max-width: calc(940px - 64px);
-        margin: 0 auto;
-        height: 190px;
         border-bottom: 1px solid var(--border-dark);
+        align-items: center;
     }
     .profile__header-avatar{
         position: relative;
         display: block;
-        height: 170px;
-        width: 170px;
+        height: 140px;
+        width: 140px;
         z-index: 9;
     }
     .profile__header-avatar-img{
         position: relative;
-        height: 170px;
-        width: 170px;
+        height: 100%;
+        width: 100%;
         border-radius: 50%;
         border: 4px solid #242526;
     }
     .profile__header-avatar-btn{
         position: absolute;
         display: block;
-        font-size: 1.8rem;
-        right: 12px;
+        font-size: 1.4rem;
+        right: 0px;
         bottom: 10px;
         color: var(--text-color-dark);
         background: #4E4F50;
-        height: 36px;
-        width: 36px;
+        height: 32px;
+        width: 32px;
         border-radius: 50%;
         text-align: center;
-        line-height: 36px;
+        line-height: 32px;
     }
     .profile__header-avatar-btn:hover {
         background: #717273;
@@ -89,11 +89,12 @@
     .profile__header-info{
         position: relative;
         display: flex;
+        flex-direction: column;
         width: 100%;
         height: 100%;
         justify-content: space-between;
-        align-items: flex-end;
-        padding: 28px 0;
+        align-items: center;
+        padding: 8px 0;
         margin-left: 16px;
     }
     .profile__header-info-general{
@@ -101,17 +102,17 @@
         flex-direction: column;
         height: 100%;
         justify-content: center;
-
+        align-items: center;
     }
     .profile__header-info-name{
         color: var(--color-white);
-        font-size: 2.8rem;
+        font-size: 2.3rem;
         font-weight: 700;
     }
     .profile__header-info-friends{
         color: var(--text-color-dark);
-        font-size: 1.4rem;
-        margin-top: 12px;
+        font-size: 1.2rem;
+        margin-top: 2px;
         text-decoration: none;
     }
     .profile__header-info-friends:hover {
@@ -120,8 +121,8 @@
     .profile__header-info-btn{
         position: relative;
         width: 200px;
-        height: 36px;
-        font-size: 1.4rem;
+        height: 26px;
+        font-size: 1.2rem;
         background: #3a3a3a;
         color: var(--color-white);
         outline: none;
@@ -156,24 +157,25 @@
     .profile__header-tabs-item{
         height: 52px;
         padding: 0 12px;
-        color: var(--text-color-dark);
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         line-height: 52px;
         margin: 4px 0;
         border-radius: 6px;
         transition: all 0.2s ease;
+        text-decoration: none;
+        color: var(--text-color-dark);
     }
-    .profile__header-tabs-item a {
+    .profile__header-tabs-item:hover {
+        text-decoration: none;
+    }
+    .profile__header-tabs-item-link {
         color: inherit;
         text-decoration: none;
     }
-    .profile__header-tabs-item:hover {
-        background:var(--navbar-dark-hover);
-        cursor: pointer;
-    }
     .profile__header-tabs-item--active {
-        position: relative;
+        font-weight: 500;
         color: var(--color-primary);
+        position: relative;
     }
     .profile__header-tabs-item--active:before {
         content: "";
@@ -184,13 +186,6 @@
         background: var(--color-primary);
         right: 0;
         bottom: -4px;
-    }
-    .profile__header-tabs-item--active:hover {
-        background: transparent;
-    }
-    .profile__header-tabs-item-link{
-        color: inherit;
-        text-decoration: none;
     }
     .profile__header-tabs-option{
         position: relative;
@@ -253,7 +248,8 @@
     .profile__body {
         position: relative;
         max-width: calc(940px - 64px);
-        margin: 12px auto;
+        margin: 0 auto;
+        margin: 12px 0;
     }
     .profile__body-left{
         position: relative;
@@ -261,13 +257,14 @@
         width: calc(40% - 6px);
         height: 100%;
         margin-right: 6px;
+        display: none;
     }
     .profile__body-right{
         position: relative;
         float: right;
-        width: calc(60% - 6px);
+        width: calc(100% - 6px);
         height: 100%;
-        margin-left: 6px;
+        margin: 0px 3px;
     }
     /* Profile body left ================================================================= */
     .profile__body-intro{

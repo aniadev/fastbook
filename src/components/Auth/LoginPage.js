@@ -1,46 +1,47 @@
 /* eslint-disable react/jsx-no-target-blank */
-import React, { useState } from 'react';
-import './Login.css';
-import { Link } from 'react-router-dom';
-import authApi from '../../store/api/authApi';
+import React, {useState} from "react";
+import "./Login.css";
+import "./Login-mobile.css";
+import {Link} from "react-router-dom";
+import authApi from "../../store/api/authApi";
 // for login
-import { useDispatch } from 'react-redux';
-import { signin } from '../../store/reducers/authSlice';
-import { setUserData } from '../../store/reducers/userSlice';
+import {useDispatch} from "react-redux";
+import {signin} from "../../store/reducers/authSlice";
+import {setUserData} from "../../store/reducers/userSlice";
 
 function LoginPage() {
   const dispatch = useDispatch();
 
   const initialState = {
-    firstname: '',
-    lastname: '',
-    username: '',
-    email: '',
-    password: '',
+    firstname: "",
+    lastname: "",
+    username: "",
+    email: "",
+    password: "",
   };
   const [regData, setRegData] = useState(initialState);
   const [loginData, setLoginData] = useState({
-    username: '',
-    password: '',
+    username: "",
+    password: "",
   });
-  const [regModalState, setModalState] = useState('hidden');
-  const [passwordType, setPasswordType] = useState('password');
+  const [regModalState, setModalState] = useState("hidden");
+  const [passwordType, setPasswordType] = useState("password");
   const handleChange = (e) => {
-    setRegData({ ...regData, [e.target.name]: e.target.value });
+    setRegData({...regData, [e.target.name]: e.target.value});
   };
   const showRegisterModal = () => {
-    setModalState('show');
+    setModalState("show");
   };
   const hideRegisterModal = () => {
-    setModalState('hidden');
+    setModalState("hidden");
     setRegData(initialState);
   };
 
   const togglePasswordType = () => {
-    if (passwordType === 'password') {
-      setPasswordType('text');
+    if (passwordType === "password") {
+      setPasswordType("text");
     } else {
-      setPasswordType('password');
+      setPasswordType("password");
     }
   };
   const loginHandler = async () => {
@@ -50,10 +51,10 @@ function LoginPage() {
         dispatch(signin(response.accessToken));
         dispatch(setUserData(response.userData));
       } else {
-        alert('Fail: ' + response.message);
+        alert("Fail: " + response.message);
       }
     } catch (error) {
-      console.log('Failed to login: ' + error.message);
+      console.log("Failed to login: " + error.message);
     }
   };
 
@@ -61,14 +62,14 @@ function LoginPage() {
     if (validateRegistration()) {
       try {
         const response = await authApi.register({
-          name: regData.lastname + ' ' + regData.firstname,
+          name: regData.lastname + " " + regData.firstname,
           username: regData.username,
           password: regData.password,
           email: regData.email,
         });
 
         if (response.success) {
-          alert('Register successfull !');
+          alert("Register successfull !");
           setRegData(initialState);
           hideRegisterModal();
           setLoginData({
@@ -79,10 +80,10 @@ function LoginPage() {
           alert(response.message);
         }
       } catch (error) {
-        console.log('Error registering: ' + error);
+        console.log("Error registering: " + error);
       }
     } else {
-      alert('Vui lòng điền đầy đủ thông tin');
+      alert("Vui lòng điền đầy đủ thông tin");
     }
   };
 
@@ -101,96 +102,90 @@ function LoginPage() {
 
   return (
     <React.Fragment>
-      <div className='grid'>
-        <div className='login-page'>
-          <div className='login-page__brand'>
-            <div className='login-page__brand-name'>fakebook</div>
-            <div className='login-page__brand-quote'>
-              Fakebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống
-              của bạn.
-              <br />
-              Fakebook là 1 trang web fake đúng như tên của nó, muốn biết thêm
-              chi tiết về người tạo, liên hệ tại{' '}
-              <a href='https://www.facebook.com/anivia.1999' target='_blank'>
-                đây
-              </a>
+      <div className='login-page'>
+        <div className='login-page__brand'>
+          <div className='login-page__brand-name'>fakebook</div>
+          <div className='login-page__brand-quote'>
+            Fakebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống
+            của bạn.
+            <br />
+            Fakebook là 1 trang web fake đúng như tên của nó, muốn biết thêm chi
+            tiết về người tạo, liên hệ tại{" "}
+            <a href='https://www.facebook.com/anivia.1999' target='_blank'>
+              đây
+            </a>
+          </div>
+        </div>
+        <div className='login-page__body'>
+          <div className='login-container'>
+            <div className='lg-form'>
+              <div className='lg-form__username'>
+                <input
+                  type='text'
+                  className='lg-form__username-input'
+                  placeholder='Email hoặc username'
+                  value={loginData.username}
+                  onChange={(e) => {
+                    setLoginData({...loginData, username: e.target.value});
+                  }}
+                />
+              </div>
+              <div className='lg-form__password'>
+                {/* <!-- <div className="lg-form__password focus"> --> */}
+                <input
+                  type={passwordType}
+                  className='lg-form__password-input'
+                  placeholder='Mật khẩu'
+                  value={loginData.password}
+                  onChange={(e) => {
+                    setLoginData({...loginData, password: e.target.value});
+                  }}
+                />
+                <div
+                  className='lg-form__password-toggle'
+                  onClick={() => {
+                    togglePasswordType();
+                  }}>
+                  <i
+                    className={
+                      "far fa-eye" +
+                      (passwordType === "password" ? "" : "-slash")
+                    }></i>
+                  {/* <!-- <i className="far fa-eye-slash"></i> --> */}
+                </div>
+              </div>
+              <button
+                className='lg-form__login-btn'
+                onClick={() => {
+                  loginHandler();
+                }}>
+                Đăng nhập
+              </button>
+              <div className='lg-form__reset-password'>
+                <Link to='#' className='lg-form__reset-password-link'>
+                  Quên mật khẩu?
+                </Link>
+              </div>
+            </div>
+            <div className='register-container'>
+              <button
+                className='register-btn'
+                onClick={() => {
+                  showRegisterModal();
+                }}>
+                Tạo tài khoản mới
+              </button>
             </div>
           </div>
-          <div className='login-page__body'>
-            <div className='login-container'>
-              <div className='lg-form'>
-                <div className='lg-form__username'>
-                  <input
-                    type='text'
-                    className='lg-form__username-input'
-                    placeholder='Email hoặc username'
-                    value={loginData.username}
-                    onChange={(e) => {
-                      setLoginData({ ...loginData, username: e.target.value });
-                    }}
-                  />
-                </div>
-                <div className='lg-form__password'>
-                  {/* <!-- <div className="lg-form__password focus"> --> */}
-                  <input
-                    type={passwordType}
-                    className='lg-form__password-input'
-                    placeholder='Mật khẩu'
-                    value={loginData.password}
-                    onChange={(e) => {
-                      setLoginData({ ...loginData, password: e.target.value });
-                    }}
-                  />
-                  <div
-                    className='lg-form__password-toggle'
-                    onClick={() => {
-                      togglePasswordType();
-                    }}
-                  >
-                    <i
-                      className={
-                        'far fa-eye' +
-                        (passwordType === 'password' ? '' : '-slash')
-                      }
-                    ></i>
-                    {/* <!-- <i className="far fa-eye-slash"></i> --> */}
-                  </div>
-                </div>
-                <button
-                  className='lg-form__login-btn'
-                  onClick={() => {
-                    loginHandler();
-                  }}
-                >
-                  Đăng nhập
-                </button>
-                <div className='lg-form__reset-password'>
-                  <Link to='#' className='lg-form__reset-password-link'>
-                    Quên mật khẩu?
-                  </Link>
-                </div>
-              </div>
-              <div className='register-container'>
-                <button
-                  className='register-btn'
-                  onClick={() => {
-                    showRegisterModal();
-                  }}
-                >
-                  Tạo tài khoản mới
-                </button>
-              </div>
-            </div>
-            <div className='login-page__body-create-page'>
-              <Link to='#'>Tạo Trang</Link>{' '}
-              <span>
-                dành cho người nổi tiếng, thương hiệu hoặc doanh nghiệp.
-              </span>
-            </div>
+          <div className='login-page__body-create-page'>
+            <Link to='#'>Tạo Trang</Link>{" "}
+            <span>
+              dành cho người nổi tiếng, thương hiệu hoặc doanh nghiệp.
+            </span>
           </div>
         </div>
       </div>
-      <div className={'reg-modal ' + regModalState} id='reg-modal'>
+      <div className={"reg-modal " + regModalState} id='reg-modal'>
         <div className='modal__overlay'></div>
         <div className='modal__main'>
           <div className='reg-modal__header'>
@@ -203,8 +198,7 @@ function LoginPage() {
             className='reg-modal__exit-btn'
             onClick={() => {
               hideRegisterModal();
-            }}
-          >
+            }}>
             <i className='fas fa-times'></i>
           </div>
           <div className='reg-modal__body'>
@@ -256,8 +250,7 @@ function LoginPage() {
                   id='day'
                   title='Ngày'
                   className='reg-modal__body-birthday-day'
-                  aria-label='Ngày'
-                >
+                  aria-label='Ngày'>
                   <option value='1'>1</option>
                   <option value='2'>2</option>
                   <option value='3'>3</option>
@@ -269,8 +262,7 @@ function LoginPage() {
                   id='month'
                   title='Tháng'
                   className='reg-modal__body-birthday-month'
-                  aria-label='Tháng'
-                >
+                  aria-label='Tháng'>
                   <option value='1'>Tháng 1</option>
                   <option value='2'>Tháng 2</option>
                   <option value='3'>Tháng 3</option>
@@ -289,8 +281,7 @@ function LoginPage() {
                   id='year'
                   title='Tháng'
                   className='reg-modal__body-birthday-year'
-                  aria-label='Năm'
-                >
+                  aria-label='Năm'>
                   <option value='2022'>2022</option>
                   <option value='2021'>2021</option>
                   <option value='2020'>2020</option>
@@ -314,8 +305,7 @@ function LoginPage() {
               className='reg-modal__body-register-btn'
               onClick={() => {
                 registerNewAccount();
-              }}
-            >
+              }}>
               Đăng ký
             </button>
           </div>

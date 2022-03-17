@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Route, NavLink, useParams, Link } from 'react-router-dom';
-import './Profile.css';
+import React, {useState, useEffect} from "react";
+import {useSelector, useDispatch} from "react-redux";
+import {Route, NavLink, useParams, Link} from "react-router-dom";
+import "./Profile.css";
+import "./Profile-mobile.css";
 // components
-import NewfeedPost from '../Newfeed/NewfeedPost';
-import NewfeedCreator from '../Newfeed/NewfeedCreator';
+import NewfeedPost from "../Newfeed/NewfeedPost";
+import NewfeedCreator from "../Newfeed/NewfeedCreator";
+import About from "./About";
 //api
-import profileApi from '../../store/api/profileApi';
+import profileApi from "../../store/api/profileApi";
 import {
   setProfilePosts,
   setProfileData,
   reactPost,
   unReactPost,
-} from '../../store/reducers/profileSlice';
+} from "../../store/reducers/profileSlice";
 
 function Profile() {
-  const { id } = useParams();
+  const {id} = useParams();
   const [isSelf, setIsSelf] = useState(false);
   const user = useSelector((state) => state.user);
   const profile = useSelector((state) => state.profile);
@@ -30,7 +32,7 @@ function Profile() {
   useEffect(() => {
     const getProfileData = async () => {
       try {
-        const response = await profileApi.getProfileData({ _id: id });
+        const response = await profileApi.getProfileData({_id: id});
         if (response.success) {
           dispatch(setProfileData(response.userData));
         } else {
@@ -44,13 +46,13 @@ function Profile() {
   }, [id, dispatch]);
 
   const handleChangeCoverPhoto = () => {
-    alert('Change cover photo \n FEATURE UPDATING');
+    alert("Change cover photo \n FEATURE UPDATING");
   };
   // get posts data from API
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const response = await profileApi.getPosts({ _id: id });
+        const response = await profileApi.getPosts({_id: id});
         if (response.success) {
           // console.log(response);
           dispatch(setProfilePosts(response.posts));
@@ -70,16 +72,15 @@ function Profile() {
         <img
           src={
             profile.userData.coverPhoto ||
-            'https://i.ibb.co/YPXkz60/802bbd567310.jpg'
+            "https://i.ibb.co/YPXkz60/802bbd567310.jpg"
           }
           alt='cover'
         />
         {isSelf ? (
           <button
             className='profile__cover-btn'
-            onClick={() => handleChangeCoverPhoto()}
-          >
-            <i className='fas fa-camera'></i> Chỉnh sửa ảnh bìa
+            onClick={() => handleChangeCoverPhoto()}>
+            <i className='fas fa-camera'></i> <span>Chỉnh sửa ảnh bìa</span>
           </button>
         ) : (
           false
@@ -111,7 +112,7 @@ function Profile() {
           <div className='profile__header-info'>
             <div className='profile__header-info-general'>
               <div className='profile__header-info-name'>
-                {profile.userData.name || 'Người dùng fakebook'}
+                {profile.userData.name || "Người dùng fakebook"}
               </div>
               <Link to='#' className='profile__header-info-friends'>
                 570 bạn bè
@@ -124,26 +125,34 @@ function Profile() {
         </div>
         <div className='profile__header-tabs'>
           <ul className='profile__header-tabs-list'>
-            <li className='profile__header-tabs-item profile__header-tabs-item--active'>
-              <Link to='#' className='profile__header-tabs-item-link'>
-                Bài viết
-              </Link>
-            </li>
-            <li className='profile__header-tabs-item'>
-              <Link to='#' className='profile__header-tabs-item-link'>
-                Giới thiệu
-              </Link>
-            </li>
-            <li className='profile__header-tabs-item'>
-              <Link to='#' className='profile__header-tabs-item-link'>
-                Bạn bè
-              </Link>
-            </li>
-            <li className='profile__header-tabs-item'>
-              <Link to='#' className='profile__header-tabs-item-link'>
-                Ảnh
-              </Link>
-            </li>
+            <NavLink
+              exact
+              to={`/${id}`}
+              className='profile__header-tabs-item'
+              activeClassName='profile__header-tabs-item--active'>
+              <span className='profile__header-tabs-item-link'>Bài viết</span>
+            </NavLink>
+            <NavLink
+              exact
+              to={`/${id}/about`}
+              className='profile__header-tabs-item'
+              activeClassName='profile__header-tabs-item--active'>
+              <span className='profile__header-tabs-item-link'>Giới thiệu</span>
+            </NavLink>
+            <NavLink
+              exact
+              to={`/${id}/friends`}
+              className='profile__header-tabs-item'
+              activeClassName='profile__header-tabs-item--active'>
+              <span className='profile__header-tabs-item-link'>Bạn bè</span>
+            </NavLink>
+            <NavLink
+              exact
+              to={`/${id}/photos`}
+              className='profile__header-tabs-item'
+              activeClassName='profile__header-tabs-item--active'>
+              <span className='profile__header-tabs-item-link'>Ảnh</span>
+            </NavLink>
           </ul>
           <span className='profile__header-tabs-option'>
             {/* <span className="profile__header-tabs-option profile__header-tabs-option--active"> */}
@@ -175,59 +184,25 @@ function Profile() {
         </div>
       </div>
       <div className='profile__body'>
-        <div className='profile__body-left'>
-          <div className='profile__body-intro'>
-            <span className='profile__body-intro-header'>Giới thiệu</span>
-            <div className='profile__body-intro-item'>
-              <i className='fas fa-at'></i>
-              <span>Email: {profile.userData.email || 'không có'}</span>
-            </div>
-            <div className='profile__body-intro-item'>
-              <i className='fas fa-signature'></i>
-              <span>Username: {profile.userData.username || 'không có'}</span>
-            </div>
-            <div className='profile__body-intro-item'>
-              <i className='fas fa-id-card'></i>
-              <span>
-                Tuổi:{' '}
-                {profile.userData.birthday
-                  ? new Date(
-                      Date.now() - new Date(profile.userData.birthday)
-                    ).getUTCFullYear() - 1970
-                  : 'không có'}
-              </span>
-            </div>
-            <div className='profile__body-intro-item'>
-              <i className='fas fa-birthday-cake'></i>
-              <span>
-                Sinh nhật:{' '}
-                {profile.userData.birthday
-                  ? `${new Date(profile.userData.birthday).toLocaleDateString(
-                      'vi-VN'
-                    )}`
-                  : 'không có'}
-              </span>
-            </div>
-            <div className='profile__body-intro-item'>
-              <i className='fas fa-map-marker-alt'></i>
-              <span>Đến từ: {profile.userData.address || 'không có'}</span>
-            </div>
-            <button className='profile__body-intro-btn'>
-              Chỉnh sửa chi tiết
-            </button>
+        <Route exact path='/:id'>
+          <div className='profile__body-left'>
+            <About profile={profile} />
           </div>
-        </div>
-        <div className='profile__body-right'>
-          {isSelf ? <NewfeedCreator /> : false}
-          {profile.posts.map((post) => {
-            let postData = {
-              ...post,
-              avatar: profile.userData.avatar,
-              name: profile.userData.name,
-            };
-            return <NewfeedPost key={post.postId} postData={postData} />;
-          })}
-        </div>
+          <div className='profile__body-right'>
+            {isSelf ? <NewfeedCreator /> : false}
+            {profile.posts.map((post) => {
+              let postData = {
+                ...post,
+                avatar: profile.userData.avatar,
+                name: profile.userData.name,
+              };
+              return <NewfeedPost key={post.postId} postData={postData} />;
+            })}
+          </div>
+        </Route>
+        <Route path='/:id/about'>
+          <About profile={profile} />
+        </Route>
       </div>
     </div>
   );

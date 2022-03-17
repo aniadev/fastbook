@@ -33,6 +33,7 @@ function HomePage() {
             <Route path='/post' component={NewfeedPanel} />
             <Route path='/:id/photos' exact component={Profile} />
             <Route path='/:id/posts' exact component={Profile} />
+            <Route path='/:id/about' exact component={Profile} />
             <Route path='/:id' exact component={Profile} />
             <Route path='*'>
               <ErrorPage message={`404 NOT FOUND`} />

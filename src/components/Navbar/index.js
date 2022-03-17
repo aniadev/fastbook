@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Navbar.css';
+import './Navbar-mobile.css';
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { signout } from '../../store/reducers/authSlice';

@@ -1,42 +1,46 @@
-import React from "react";
+import React from 'react';
 // import { useParams } from "react-router-dom";
 
-function About({ info }) {
-  // let { id } = useParams();
+function About({ profile }) {
   return (
-    <React.Fragment>
-      <br />
-      <h4>Information</h4>
-      <ul>
-        <li>
-          <span>email: {info.email || "không có"}</span>
-        </li>
-        <li>
-          <span>username: {info.username || "không có"}</span>
-        </li>
-        <li>
-          <span>
-            Age:{" "}
-            {info.birthday
-              ? new Date(
-                  Date.now() - new Date(info.birthday)
-                ).getUTCFullYear() - 1970
-              : "không có"}
-          </span>
-        </li>
-        <li>
-          <span>
-            Date of birth:{" "}
-            {info.birthday
-              ? `${new Date(info.birthday).toLocaleDateString("vi-VN")}`
-              : "không có"}
-          </span>
-        </li>
-        <li>
-          <span>Address: {info.address || "không có"}</span>
-        </li>
-      </ul>
-    </React.Fragment>
+    <div className='profile__body-intro'>
+      <span className='profile__body-intro-header'>Giới thiệu</span>
+      <div className='profile__body-intro-item'>
+        <i className='fas fa-at'></i>
+        <span>Email: {profile.userData.email || 'không có'}</span>
+      </div>
+      <div className='profile__body-intro-item'>
+        <i className='fas fa-signature'></i>
+        <span>Username: {profile.userData.username || 'không có'}</span>
+      </div>
+      <div className='profile__body-intro-item'>
+        <i className='fas fa-id-card'></i>
+        <span>
+          Tuổi:{' '}
+          {profile.userData.birthday
+            ? new Date(
+                Date.now() - new Date(profile.userData.birthday)
+              ).getUTCFullYear() - 1970
+            : 'không có'}
+        </span>
+      </div>
+      <div className='profile__body-intro-item'>
+        <i className='fas fa-birthday-cake'></i>
+        <span>
+          Sinh nhật:{' '}
+          {profile.userData.birthday
+            ? `${new Date(profile.userData.birthday).toLocaleDateString(
+                'vi-VN'
+              )}`
+            : 'không có'}
+        </span>
+      </div>
+      <div className='profile__body-intro-item'>
+        <i className='fas fa-map-marker-alt'></i>
+        <span>Đến từ: {profile.userData.address || 'không có'}</span>
+      </div>
+      <button className='profile__body-intro-btn'>Chỉnh sửa chi tiết</button>
+    </div>
   );
 }
 

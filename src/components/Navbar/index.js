@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import './Navbar.css';
-import './Navbar-mobile.css';
-import { Link, NavLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { signout } from '../../store/reducers/authSlice';
+import React, {useState} from "react";
+import "./Navbar.css";
+import "./Navbar-mobile.css";
+import {Link, NavLink} from "react-router-dom";
+import {useSelector, useDispatch} from "react-redux";
+import {signout} from "../../store/reducers/authSlice";
 // redux store
 
 function Navbar() {
@@ -11,26 +11,26 @@ function Navbar() {
   const dispatch = useDispatch();
   // const [messageDropdown, setMessageDropdown] = useState('hidden');
   // const [notiDropdown, setNotiDropdown] = useState('hidden');
-  const [optionDropdown, setOptionDropdown] = useState('hidden');
+  const [optionDropdown, setOptionDropdown] = useState("hidden");
   //
-  const [itemDropdown, setItemDropdown] = useState(''); // message/noti/option
+  const [itemDropdown, setItemDropdown] = useState(""); // message/noti/option
   const getItemDropdown = function (item) {
     if (item === itemDropdown) {
-      return '';
+      return "";
     } else {
-      return 'hidden';
+      return "hidden";
     }
   };
   const toggleDropdown = function (item) {
     if (itemDropdown !== item) {
       setItemDropdown(item);
     } else {
-      setItemDropdown('');
+      setItemDropdown("");
     }
   };
   const logout = () => {
     dispatch(signout());
-    console.log('signed out');
+    console.log("signed out");
   };
   return (
     <div className='navbar'>
@@ -57,8 +57,7 @@ function Navbar() {
           exact
           to='/'
           className='nav__menu-item'
-          activeClassName='nav__menu-item--active'
-        >
+          activeClassName='nav__menu-item--active'>
           <span>
             <i className='fas fa-home'></i>
           </span>
@@ -66,8 +65,7 @@ function Navbar() {
         <NavLink
           to='/photos'
           className='nav__menu-item'
-          activeClassName='nav__menu-item--active'
-        >
+          activeClassName='nav__menu-item--active'>
           <span>
             <i className='fas fa-photo-video'></i>
           </span>
@@ -75,8 +73,7 @@ function Navbar() {
         <NavLink
           to='/friends'
           className='nav__menu-item'
-          activeClassName='nav__menu-item--active'
-        >
+          activeClassName='nav__menu-item--active'>
           <span>
             <i className='fas fa-users'></i>
           </span>
@@ -84,8 +81,7 @@ function Navbar() {
         <NavLink
           to='/games'
           className='nav__menu-item'
-          activeClassName='nav__menu-item--active'
-        >
+          activeClassName='nav__menu-item--active'>
           <span>
             <i className='fas fa-gamepad'></i>
           </span>
@@ -95,8 +91,7 @@ function Navbar() {
         <NavLink
           className='nav__tools-user'
           to={`/${user.userId}`}
-          activeClassName='nav__tools-user--active'
-        >
+          activeClassName='nav__tools-user--active'>
           <div className='nav__tools-user-avatar'>
             <img src={user.avatar} alt='avatar' />
           </div>
@@ -105,20 +100,18 @@ function Navbar() {
         <ul className='nav__tools-list'>
           <li
             className={
-              'nav__tools-item ' +
-              (getItemDropdown('message') === ''
-                ? 'nav__tools-item--active'
-                : '')
+              "nav__tools-item " +
+              (getItemDropdown("message") === ""
+                ? "nav__tools-item--active"
+                : "")
             }
             onClick={() => {
-              toggleDropdown('message');
-            }}
-          >
+              toggleDropdown("message");
+            }}>
             <i className='fab fa-facebook-messenger'></i>
             <div className='nav__tools-item-counter'>2</div>
             <div
-              className={`nav__tools-dropdown ${getItemDropdown('message')}`}
-            >
+              className={`nav__tools-dropdown ${getItemDropdown("message")}`}>
               <div className='nav__tools-dropdown-header'>
                 <span>Messenger</span>
                 <ul className='nav__tools-dropdown-header-opt'>
@@ -178,16 +171,15 @@ function Navbar() {
           </li>
           <li
             className={
-              'nav__tools-item ' +
-              (getItemDropdown('noti') === '' ? 'nav__tools-item--active' : '')
+              "nav__tools-item " +
+              (getItemDropdown("noti") === "" ? "nav__tools-item--active" : "")
             }
             onClick={() => {
-              toggleDropdown('noti');
-            }}
-          >
+              toggleDropdown("noti");
+            }}>
             <i className='fas fa-bell'></i>
-            <div className='nav__tools-item-counter hidden'>2</div>
-            <div className={`nav__tools-dropdown ${getItemDropdown('noti')}`}>
+            <div className='nav__tools-item-counter'>2</div>
+            <div className={`nav__tools-dropdown ${getItemDropdown("noti")}`}>
               <div className='nav__tools-dropdown-header'>
                 <span>Thông báo</span>
                 <ul className='nav__tools-dropdown-header-opt'>
@@ -201,13 +193,10 @@ function Navbar() {
                   <li className='nav__tools-dropdown-item'>
                     <Link className='nav__tools-dropdown-item-link' to='#'>
                       <div className='nav__tools-dropdown-item-avatar'>
-                        <img
-                          src='https://scontent.fhan3-2.fna.fbcdn.net/v/t1.6435-1/95767309_1220244695034008_3848676484063428608_n.jpg?stp=dst-jpg_p100x100&_nc_cat=107&ccb=1-5&_nc_sid=7206a8&_nc_ohc=wSqB_6u1-0IAX9O16Tt&_nc_ht=scontent.fhan3-2.fna&oh=00_AT-7MXLs02cyx1eNsPyF7nOCQAaVsFgKQzHOQrPOIxeLkQ&oe=62534556'
-                          alt='msg-avatar'
-                        />
+                        <img src='/img/logo.png' alt='noti-img' />
                       </div>
                       <div className='nav__tools-dropdown-item-info'>
-                        <h4>Hôm nay bạn có thể ôn lại 1 kỉ niệm</h4>
+                        <h4>Thông báo cập nhật hệ thống</h4>
                         <span>8 giờ trước</span>
                       </div>
                     </Link>
@@ -215,17 +204,15 @@ function Navbar() {
                   <li className='nav__tools-dropdown-item'>
                     <Link className='nav__tools-dropdown-item-link' to='#'>
                       <div className='nav__tools-dropdown-item-avatar'>
-                        <img
-                          src='https://scontent.fhan3-2.fna.fbcdn.net/v/t1.6435-1/95767309_1220244695034008_3848676484063428608_n.jpg?stp=dst-jpg_p100x100&_nc_cat=107&ccb=1-5&_nc_sid=7206a8&_nc_ohc=wSqB_6u1-0IAX9O16Tt&_nc_ht=scontent.fhan3-2.fna&oh=00_AT-7MXLs02cyx1eNsPyF7nOCQAaVsFgKQzHOQrPOIxeLkQ&oe=62534556'
-                          alt='msg-avatar'
-                        />
+                        <img src='/img/logo.png' alt='noti-img' />
                       </div>
                       <div className='nav__tools-dropdown-item-info'>
                         <h4>
-                          <strong>Kem Mit</strong> đã đăng trong{' '}
-                          <strong>Arduino Việt Nam</strong> vào Chủ Nhật: Mọi
-                          người cho hỏi sao b=dfg. Lorem ipsum dolor, sit amet
-                          consectetur adipisicing elit.
+                          <strong>Cập nhật:</strong> thay đổi giao diện
+                          <strong>Fakebook</strong> : một số tính năng bị hạn
+                          chế: <strong>Đăng bài</strong>,
+                          <strong>Đăng ảnh</strong>,{" "}
+                          <strong>Thay avatar</strong>
                         </h4>
                         <span>9 giờ trước</span>
                       </div>
@@ -237,19 +224,17 @@ function Navbar() {
           </li>
           <li
             className={
-              'nav__tools-item ' +
-              (getItemDropdown('option') === ''
-                ? 'nav__tools-item--active'
-                : '')
+              "nav__tools-item " +
+              (getItemDropdown("option") === ""
+                ? "nav__tools-item--active"
+                : "")
             }
             onClick={() => {
-              toggleDropdown('option');
-            }}
-          >
+              toggleDropdown("option");
+            }}>
             <i className='fas fa-caret-down'></i>
             <div
-              className={'nav__tools-user-option ' + getItemDropdown('option')}
-            >
+              className={"nav__tools-user-option " + getItemDropdown("option")}>
               <Link to='#' className='nav__tools-user-option-profile'>
                 <img
                   src={user.avatar}
@@ -291,8 +276,7 @@ function Navbar() {
               <Link
                 className='nav__tools-user-option-item'
                 to='#'
-                onClick={() => logout()}
-              >
+                onClick={() => logout()}>
                 <div className='nav__tools-user-option-report-icon'>
                   <i className='fas fa-sign-out-alt'></i>
                 </div>

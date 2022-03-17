@@ -141,7 +141,7 @@
         .pw__f--comments {
             position: relative;
             width: 100%;
-            height: 100px;
+            height: 100%;
         }
             .pw__f--comment-input {
                 display: flex;

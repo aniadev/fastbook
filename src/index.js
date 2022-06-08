@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 // Redux
 import store from "./store/store";
-import { Provider } from "react-redux";
+import {Provider} from "react-redux";
 
 function emitMessage(chanel) {
   setInterval(() => {
@@ -25,7 +25,7 @@ function emitMessage(chanel) {
   }, 10000);
 }
 
-emitMessage(1);
+// emitMessage(1);
 // emitMessage(3);
 ReactDOM.render(
   <React.StrictMode>

@@ -9,6 +9,7 @@
     margin: 60px auto;
     width: 40%;
     min-width: 490px;
+    max-width: 590px;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -28,7 +29,6 @@
     height: 54px;
     border-bottom: 1px solid var(--border-dark);
 }
-
 .nf-creator__header-avatar{
     width: 40px;
     height: 40px;
@@ -46,6 +46,9 @@
     font-size: 1.6rem;
     color: var(--text-color-dark);
     cursor: pointer;
+}
+.nf-creator__header-input:hover {
+    background: var(--background-dark-hover);
 }
 .nf-creator__footer{
     margin: 0;
@@ -66,7 +69,7 @@
     transition: all 0.2 ease;
 }
 .nf-creator__footer-item:hover {
-    background: #555555;
+    background: var(--background-dark-hover);
 }
 .nf-creator__footer-item i {
     font-size: 2rem;

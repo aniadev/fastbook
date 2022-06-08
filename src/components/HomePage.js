@@ -1,20 +1,20 @@
-import React from 'react';
+import React from "react";
 // Components
-import Navbar from './Navbar';
-import Sidebar from './Sidebar';
-import NewfeedPanel from './Newfeed';
-import Profile from './Profile';
-import Friends from './Friends';
-import Messenger from './Messenger';
-import PostViewer from './Tools/PostViewer';
+import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
+import NewfeedPanel from "./Newfeed";
+import Profile from "./Profile";
+import Friends from "./Friends";
+import Messenger from "./Messenger";
+import PostViewer from "./Tools/PostViewer";
 
-import LoginPage from './Auth/LoginPage';
-import OnlinePanel from './Popups/OnlinePanel';
-import PendingPage from './PendingPage';
-import ErrorPage from './ErrorPage';
+import LoginPage from "./Auth/LoginPage";
+import OnlinePanel from "./Popups/OnlinePanel";
+import PendingPage from "./PendingPage";
+import ErrorPage from "./ErrorPage";
 // redux store
-import { useSelector } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import {useSelector} from "react-redux";
+import {Route, Switch} from "react-router-dom";
 
 function HomePage() {
   const auth = useSelector((state) => state.auth);

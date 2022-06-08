@@ -32,6 +32,9 @@ function Navbar() {
     dispatch(signout());
     console.log("signed out");
   };
+  const scrollToTop = function () {
+    document.body.scrollIntoView({behavior: "smooth"});
+  };
   return (
     <div className='navbar'>
       <div className='nav__brand'>
@@ -57,7 +60,10 @@ function Navbar() {
           exact
           to='/'
           className='nav__menu-item'
-          activeClassName='nav__menu-item--active'>
+          activeClassName='nav__menu-item--active'
+          onClick={() => {
+            scrollToTop();
+          }}>
           <span>
             <i className='fas fa-home'></i>
           </span>
@@ -91,7 +97,8 @@ function Navbar() {
         <NavLink
           className='nav__tools-user'
           to={`/${user.userId}`}
-          activeClassName='nav__tools-user--active'>
+          activeClassName='nav__tools-user--active'
+          onClick={() => document.body.scrollIntoView({behavior: "smooth"})}>
           <div className='nav__tools-user-avatar'>
             <img src={user.avatar} alt='avatar' />
           </div>

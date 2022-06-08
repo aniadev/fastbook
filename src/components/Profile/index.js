@@ -26,6 +26,7 @@ function Profile() {
     // console.log(id == user.userId);
     // eslint-disable-next-line eqeqeq
     setIsSelf(id == user.userId);
+    document.body.scrollIntoView({behavior: "smooth"});
   }, [id, user]);
 
   // get profile from API

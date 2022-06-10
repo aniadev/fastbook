@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {Route, NavLink, useParams, Link} from "react-router-dom";
+// use custom hooks
+import useModal from "../CustomHooks/useModal";
+import ModalAvatarUploader from "../Tools/ModalAvatarUploader";
 import "./Profile.css";
 import "./Profile-mobile.css";
 // components
@@ -19,6 +22,7 @@ import {
 function Profile() {
   const {id} = useParams();
   const [isSelf, setIsSelf] = useState(false);
+  const {isShowing, toggle} = useModal();
   const user = useSelector((state) => state.user);
   const profile = useSelector((state) => state.profile);
   const dispatch = useDispatch();
@@ -103,13 +107,14 @@ function Profile() {
             </Link>
 
             {isSelf ? (
-              <div className='profile__header-avatar-btn'>
+              <div className='profile__header-avatar-btn' onClick={toggle}>
                 <i className='fas fa-camera'></i>
               </div>
             ) : (
               false
             )}
           </div>
+          <ModalAvatarUploader isShowing={isShowing} hide={toggle} />
           <div className='profile__header-info'>
             <div className='profile__header-info-general'>
               <div className='profile__header-info-name'>

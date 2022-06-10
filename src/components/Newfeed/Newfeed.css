@@ -107,6 +107,7 @@
     width: 40px;
     height: 40px;
 }
+
 .nf-post__header-artist-img img {
     width: 100%;
     height: 100%;
@@ -127,6 +128,7 @@
     position: relative;
     font-size: 1.2rem;
     color: var(--color-primary);
+    margin-left: 4px;
 }
 .nf-post__header-artist-bluetick i {
 
@@ -135,6 +137,7 @@
     font-size: 1rem;
 }
 .nf-post__header-option{
+    position: relative;
     height: 30px;
     width: 30px;
     line-height: 30px;
@@ -143,12 +146,43 @@
     cursor: pointer;
     transition: all 0.2s ease;
 }
+.nf-post__header-option::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -10px;
+    width: 60px;
+    height: 22px;
+}
 .nf-post__header-option:hover {
     background: var(--navbar-dark-hover);
 }
-
+.nf-post__header-option:hover .nf-post__header-option-dropdown {
+    display: flex;
+}
 .nf-post__header-option-dropdown{
-
+    position: absolute;
+    display: none;
+    right: 0;
+    top: 34px;
+    min-width: 90px;
+    z-index: 1;
+    background: var(--background-dark);
+    flex-direction: column;
+    border-radius: 6px;
+    border: 1px solid var(--border-dark);
+    align-items: center;
+    transition: all 0.2s ease;
+}
+.nf-post__header-option-dropdown-item {
+    font-size: 1.3rem;
+    width: calc(100% - 4px);
+    padding: 0 6px;
+    border-radius: 4px;
+    margin: 2px 2px;
+}
+.nf-post__header-option-dropdown-item:hover {
+    background: var(--navbar-dark-hover);
 }
 .nf-post__body{
     margin-top: 8px;

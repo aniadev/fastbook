@@ -1,28 +1,28 @@
-import React, { useEffect } from 'react';
-import './Newfeed.css';
-import './Newfeed-mobile.css';
+import React, {useEffect} from "react";
+import "./Newfeed.css";
+import "./Newfeed-mobile.css";
 // components
-import NewfeedCreator from './NewfeedCreator';
-import NewfeedPost from './NewfeedPost';
+import NewfeedCreator from "./NewfeedCreator";
+import NewfeedPost from "./NewfeedPost";
 // redux store
-import { useSelector, useDispatch } from 'react-redux';
+import {useSelector, useDispatch} from "react-redux";
 import {
   initPosts,
   setPage,
   addMorePosts,
-} from '../../store/reducers/newfeedSlice';
+} from "../../store/reducers/newfeedSlice";
 // api axiosClient
-import postsApi from '../../store/api/postsApi';
+import postsApi from "../../store/api/postsApi";
 
 function NewfeedPanel() {
   const newfeedPost = useSelector((state) => state.newfeedPost);
-  const user = useSelector((state) => state.user);
+  // const user = useSelector((state) => state.user);
   const allPostData = [...newfeedPost.posts];
   const dispatch = useDispatch();
   useEffect(() => {
     const getApi = async () => {
       try {
-        const response = await postsApi.getPosts({ _page: 1 });
+        const response = await postsApi.getPosts({_page: 1});
         if (response.success) {
           // console.log(response.posts);
           dispatch(initPosts(response.posts));
@@ -30,7 +30,7 @@ function NewfeedPanel() {
           console.log(response.message);
         }
       } catch (error) {
-        console.log('Fail to call: ' + error);
+        console.log("Fail to call: " + error);
       }
     };
     dispatch(setPage(1));
@@ -40,7 +40,7 @@ function NewfeedPanel() {
   const handleGetMorePost = async () => {
     dispatch(setPage(newfeedPost.page + 1));
     try {
-      const response = await postsApi.getPosts({ _page: newfeedPost.page + 1 });
+      const response = await postsApi.getPosts({_page: newfeedPost.page + 1});
       if (response.success) {
         console.log(response.posts);
         dispatch(addMorePosts(response.posts));
@@ -48,7 +48,7 @@ function NewfeedPanel() {
         console.log(response.message);
       }
     } catch (error) {
-      console.log('Fail to call: ' + error);
+      console.log("Fail to call: " + error);
     }
   };
 

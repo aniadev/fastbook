@@ -119,6 +119,7 @@
         position: relative;
         font-size: 1.2rem;
         color: var(--color-primary);
+        margin-left: 4px;
     }
     .nf-post__header-artist-bluetick i {
     

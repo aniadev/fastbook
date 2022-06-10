@@ -7,23 +7,23 @@ import reportWebVitals from "./reportWebVitals";
 import store from "./store/store";
 import {Provider} from "react-redux";
 
-function emitMessage(chanel) {
-  setInterval(() => {
-    var d = new Date();
-    window.dispatchEvent(
-      new CustomEvent(`chanel-${chanel}`, {
-        detail: {
-          msg: `Message from chanel ${chanel} at ${
-            d.getHours() < 10 ? `0${d.getHours()}` : d.getHours()
-          }:${d.getMinutes() < 10 ? `0${d.getMinutes()}` : d.getMinutes()}:${
-            d.getSeconds() < 10 ? `0${d.getSeconds()}` : d.getSeconds()
-          }`,
-          origin: Math.round(Math.random()) === 1,
-        },
-      })
-    );
-  }, 10000);
-}
+// function emitMessage(chanel) {
+//   setInterval(() => {
+//     var d = new Date();
+//     window.dispatchEvent(
+//       new CustomEvent(`chanel-${chanel}`, {
+//         detail: {
+//           msg: `Message from chanel ${chanel} at ${
+//             d.getHours() < 10 ? `0${d.getHours()}` : d.getHours()
+//           }:${d.getMinutes() < 10 ? `0${d.getMinutes()}` : d.getMinutes()}:${
+//             d.getSeconds() < 10 ? `0${d.getSeconds()}` : d.getSeconds()
+//           }`,
+//           origin: Math.round(Math.random()) === 1,
+//         },
+//       })
+//     );
+//   }, 10000);
+// }
 
 // emitMessage(1);
 // emitMessage(3);

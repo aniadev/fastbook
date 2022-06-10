@@ -6,7 +6,7 @@ import postsApi from "../../store/api/postsApi";
 
 import "./Style/ModalAvatarUploader.css";
 
-function ModalPostDelete({isShowing, hide}) {
+function ModalPostDelete({isShowing, hideModal}) {
   const currentPostDelete = useSelector(
     (state) => state.newfeedPost.currentPostDelete
   );
@@ -17,7 +17,7 @@ function ModalPostDelete({isShowing, hide}) {
     try {
       const response = await postsApi.deletePost({postId: currentPostDelete});
       if (response.success) {
-        hide();
+        hideModal();
         dispatch(deletePost(currentPostDelete));
         e.target.disabled = false;
       } else {
@@ -38,7 +38,7 @@ function ModalPostDelete({isShowing, hide}) {
                 </p>
                 <span
                   className='modal-avatar-uploader__header-btn_close'
-                  onClick={() => hide()}>
+                  onClick={() => hideModal()}>
                   <span aria-hidden='true'>&times;</span>
                 </span>
               </div>
@@ -51,7 +51,7 @@ function ModalPostDelete({isShowing, hide}) {
                 <button
                   type='button'
                   className='btn btn-link'
-                  onClick={() => hide()}>
+                  onClick={() => hideModal()}>
                   Hủy
                 </button>
                 <button

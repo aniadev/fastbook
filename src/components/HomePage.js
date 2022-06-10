@@ -1,15 +1,15 @@
 import React from "react";
 // Components
 import Navbar from "./Navbar";
-import Sidebar from "./Sidebar";
+// import Sidebar from "./Sidebar";
 import NewfeedPanel from "./Newfeed";
 import Profile from "./Profile";
 import Friends from "./Friends";
 import Messenger from "./Messenger";
 import PostViewer from "./Tools/PostViewer";
-
+import ModalPostViewer from "./Tools/ModalPostViewer";
 import LoginPage from "./Auth/LoginPage";
-import OnlinePanel from "./Popups/OnlinePanel";
+// import OnlinePanel from "./Popups/OnlinePanel";
 import PendingPage from "./PendingPage";
 import ErrorPage from "./ErrorPage";
 // redux store
@@ -29,7 +29,7 @@ function HomePage() {
             <Route path='/' exact component={NewfeedPanel} />
             <Route path='/messenger' component={Messenger} />
             <Route path='/friends' component={Friends} />
-            <Route path='/post/:postId' component={PostViewer} />
+            <Route path='/post/:postId' component={ModalPostViewer} />
             <Route path='/post' component={NewfeedPanel} />
             <Route path='/:id/photos' exact component={Profile} />
             <Route path='/:id/posts' exact component={Profile} />

@@ -58,6 +58,7 @@ function NewfeedPanel() {
       {allPostData.map((post) => {
         return <NewfeedPost key={post.postId} postData={post} />;
       })}
+
       <div className='nf-post-add' onClick={() => handleGetMorePost()}>
         <span>Get more . . .</span>
       </div>

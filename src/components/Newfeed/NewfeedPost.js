@@ -14,7 +14,7 @@ import postsApi from "../../store/api/postsApi";
 
 function NewfeedPost({postData}) {
   //useSelector for user's reaction
-  const {isShowing, toggle} = useModal();
+  const {isShowing, hideModal, toggleModal} = useModal();
   const ownId = useSelector((state) => state.user.userId);
   const dispatch = useDispatch();
   // check reactions
@@ -41,7 +41,7 @@ function NewfeedPost({postData}) {
   };
   const deletePostHandler = (postId) => {
     dispatch(setDeletePost(postId));
-    toggle();
+    toggleModal();
   };
 
   // convert time
@@ -104,7 +104,7 @@ function NewfeedPost({postData}) {
                 Xóa
               </span>
             </div>
-            <ModalPostDelete isShowing={isShowing} hide={toggle} />
+            <ModalPostDelete isShowing={isShowing} hideModal={hideModal} />
           </div>
         ) : (
           false

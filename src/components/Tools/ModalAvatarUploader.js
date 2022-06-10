@@ -8,7 +8,7 @@ import "./Style/ModalAvatarUploader.css";
 import imageUploadApi from "../../store/api/imageUploadApi";
 import profileApi from "../../store/api/profileApi";
 
-function ModalAvatarUploader({isShowing, hide}) {
+function ModalAvatarUploader({isShowing, hideModal}) {
   const [rawAvatar, setRawAvatar] = useState(null);
   const [progressValue, setProgressValue] = useState(0);
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ function ModalAvatarUploader({isShowing, hide}) {
   };
   const clearAvatar = () => {
     setRawAvatar(null);
-    hide();
+    hideModal();
   };
   const closeAvatarModal = useRef(null);
   const UploadAvatar = async (e) => {

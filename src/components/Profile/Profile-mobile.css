@@ -120,21 +120,38 @@
     }
     .profile__header-info-btn{
         position: relative;
-        width: 200px;
-        height: 26px;
-        font-size: 1.2rem;
+        /* width: 200px; */
+        padding: 0 12px;
+        margin-left: 12px;
+        margin-top: 5px;
+        height: 36px;
+        width: 36px;
+        font-size: 1.4rem;
         background: #3a3a3a;
         color: var(--color-white);
         outline: none;
         border: none;
-        border-radius: 6px;
+        border-radius: 50%;
         cursor: pointer;
+    }
+    .profile__header-info-btn:first-child {
+        margin-left: 0;
+    }
+    /* hide text */
+    .profile__header-info-btn span {
+        display: none;
     }
     .profile__header-info-btn:hover {
         background: var(--navbar-dark-hover);
     }
     .profile__header-info-btn i {
-        margin-right: 6px;
+        margin-right: 0;
+    }
+    .profile__header-info-btn--messenger {
+        background: var(--color-primary);
+    }
+    .profile__header-info-btn--messenger:hover {
+        background: var(--color-primary-hover);
     }
     .profile__header-tabs{
         display: flex;
@@ -199,31 +216,40 @@
         text-align: center;
         line-height: 36px;
     }
+    /* bridge for dropdown */
+    .profile__header-tabs-option::before {
+        content: "";
+        height: 16px;
+        width: 48px;
+        position: absolute;
+        display: block;
+        top: 100%;
+    }
+    
     .profile__header-tabs-option:hover {
         background: var(--navbar-dark-hover);
     }
-    .profile__header-tabs-option--active:hover {
-        background: #3a3a3a;
-    }
-    .profile__header-tabs-option--active .profile__header-tabs-option-dropdown {
+    .profile__header-tabs-option:hover .profile__header-tabs-option-dropdown {
         display: block;
     }
     .profile__header-tabs-option-dropdown{
-        position: absolute;
         display: none;
+        position: absolute;
         margin: 0;
         padding: 8px;
         border-radius: 8px;
         border: 1px solid var(--border-dark);
-        width: 344px;
+        width: 250px;
         top: 46px;
-        left: 50%;
+        left: -77px;
         transform: translateX(-50%);
         background: #242526;
         font-size: 1.4rem;
         font-weight: 500;
         z-index: 10;
     }
+    
+    
     .profile__header-tabs-option-dropdown-item{
         color: var(--text-color-dark);
         list-style: none;

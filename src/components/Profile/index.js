@@ -22,7 +22,7 @@ import {
 function Profile() {
   const {id} = useParams();
   const [isSelf, setIsSelf] = useState(false);
-  const {isShowing, toggle} = useModal();
+  const {isShowing, toggleModal, hideModal} = useModal();
   const user = useSelector((state) => state.user);
   const profile = useSelector((state) => state.profile);
   const dispatch = useDispatch();
@@ -107,14 +107,14 @@ function Profile() {
             </Link>
 
             {isSelf ? (
-              <div className='profile__header-avatar-btn' onClick={toggle}>
+              <div className='profile__header-avatar-btn' onClick={toggleModal}>
                 <i className='fas fa-camera'></i>
               </div>
             ) : (
               false
             )}
           </div>
-          <ModalAvatarUploader isShowing={isShowing} hide={toggle} />
+          <ModalAvatarUploader isShowing={isShowing} hideModal={hideModal} />
           <div className='profile__header-info'>
             <div className='profile__header-info-general'>
               <div className='profile__header-info-name'>
@@ -124,9 +124,25 @@ function Profile() {
                 570 bạn bè
               </Link>
             </div>
-            <button className='profile__header-info-btn'>
-              <i className='fas fa-pen'></i>Chỉnh sửa trang cá nhân
-            </button>
+            <div className='profile__header-info-wrapper-btn'>
+              {!isSelf ? (
+                <>
+                  <button className='profile__header-info-btn profile__header-info-btn--plus'>
+                    <i className='fas fa-user-check'></i>
+                    <span>Bạn bè</span>
+                  </button>
+                  <button className='profile__header-info-btn profile__header-info-btn--messenger'>
+                    <i className='fab fa-facebook-messenger'></i>
+                    <span>Nhắn tin</span>
+                  </button>
+                </>
+              ) : (
+                <button className='profile__header-info-btn'>
+                  <i className='fas fa-pen'></i>
+                  <span>Chỉnh sửa trang cá nhân</span>
+                </button>
+              )}
+            </div>
           </div>
         </div>
         <div className='profile__header-tabs'>

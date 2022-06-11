@@ -6,7 +6,6 @@ import NewfeedPanel from "./Newfeed";
 import Profile from "./Profile";
 import Friends from "./Friends";
 import Messenger from "./Messenger";
-import PostViewer from "./Tools/PostViewer";
 import ModalPostViewer from "./Tools/ModalPostViewer";
 import LoginPage from "./Auth/LoginPage";
 // import OnlinePanel from "./Popups/OnlinePanel";

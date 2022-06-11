@@ -148,7 +148,7 @@ function Navbar() {
                     <Link className='nav__tools-dropdown-item-link' to='#'>
                       <div className='nav__tools-dropdown-item-avatar'>
                         <img
-                          src='https://scontent.fhan3-2.fna.fbcdn.net/v/t1.6435-1/95767309_1220244695034008_3848676484063428608_n.jpg?stp=dst-jpg_p100x100&_nc_cat=107&ccb=1-5&_nc_sid=7206a8&_nc_ohc=wSqB_6u1-0IAX9O16Tt&_nc_ht=scontent.fhan3-2.fna&oh=00_AT-7MXLs02cyx1eNsPyF7nOCQAaVsFgKQzHOQrPOIxeLkQ&oe=62534556'
+                          src='https://i.ibb.co/PN4trdt/3240aadd89e3.jpg'
                           alt='msg-avatar'
                         />
                       </div>
@@ -162,7 +162,7 @@ function Navbar() {
                     <Link className='nav__tools-dropdown-item-link' to='#'>
                       <div className='nav__tools-dropdown-item-avatar'>
                         <img
-                          src='https://scontent.fhan3-2.fna.fbcdn.net/v/t1.6435-1/95767309_1220244695034008_3848676484063428608_n.jpg?stp=dst-jpg_p100x100&_nc_cat=107&ccb=1-5&_nc_sid=7206a8&_nc_ohc=wSqB_6u1-0IAX9O16Tt&_nc_ht=scontent.fhan3-2.fna&oh=00_AT-7MXLs02cyx1eNsPyF7nOCQAaVsFgKQzHOQrPOIxeLkQ&oe=62534556'
+                          src='https://i.ibb.co/PN4trdt/3240aadd89e3.jpg'
                           alt='msg-avatar'
                         />
                       </div>
@@ -203,8 +203,24 @@ function Navbar() {
                         <img src='/img/logo.png' alt='noti-img' />
                       </div>
                       <div className='nav__tools-dropdown-item-info'>
+                        <h4>
+                          <strong>Cập nhật:</strong> chỉnh sửa giao diện, một số
+                          tính năng đã được mở lại:
+                          <strong> Thay avatar</strong>,
+                          <strong> Bình luận</strong>,<strong> Xem ảnh</strong>,
+                        </h4>
+                        <span>03:06 12/06/2022</span>
+                      </div>
+                    </Link>
+                  </li>
+                  <li className='nav__tools-dropdown-item'>
+                    <Link className='nav__tools-dropdown-item-link' to='#'>
+                      <div className='nav__tools-dropdown-item-avatar'>
+                        <img src='/img/logo.png' alt='noti-img' />
+                      </div>
+                      <div className='nav__tools-dropdown-item-info'>
                         <h4>Thông báo cập nhật hệ thống</h4>
-                        <span>8 giờ trước</span>
+                        <span>4 tháng trước</span>
                       </div>
                     </Link>
                   </li>
@@ -221,7 +237,7 @@ function Navbar() {
                           <strong>Đăng ảnh</strong>,{" "}
                           <strong>Thay avatar</strong>
                         </h4>
-                        <span>9 giờ trước</span>
+                        <span>4 tháng trước</span>
                       </div>
                     </Link>
                   </li>
@@ -242,7 +258,9 @@ function Navbar() {
             <i className='fas fa-caret-down'></i>
             <div
               className={"nav__tools-user-option " + getItemDropdown("option")}>
-              <Link to='#' className='nav__tools-user-option-profile'>
+              <Link
+                to={`/${user.userId}`}
+                className='nav__tools-user-option-profile'>
                 <img
                   src={user.avatar}
                   alt='avatar'

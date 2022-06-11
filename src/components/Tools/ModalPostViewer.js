@@ -1,10 +1,14 @@
 import React, {useState, useEffect, useRef} from "react";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import {useHistory, useParams, Link} from "react-router-dom";
-import TextareaAutosize from "react-textarea-autosize";
 import postsApi from "../../store/api/postsApi";
-import "./Style/PostViewer.css";
-import "./Style/ModalAvatarUploader.css";
+import "./Style/ModalPostViewer.css";
+import "./Style/ModalPostViewer-mobile.css";
+import {
+  // setDeletePost,
+  reactPost,
+  unReactPost,
+} from "../../store/reducers/newfeedSlice";
 
 function ModalPostViewer() {
   let history = useHistory();
@@ -18,6 +22,8 @@ function ModalPostViewer() {
   const [allComments, setAllComments] = useState([]);
   const [comment, setComment] = useState("");
   const [reactors, setReactors] = useState([]);
+  const dispatch = useDispatch();
+
   const submitComment = async () => {
     if (comment) {
       let commentFormat = comment.replace(/\n\s*\n/g, "\n");
@@ -57,10 +63,10 @@ function ModalPostViewer() {
       submitComment();
     }
   };
-  const handleReactPost = async () => {
+  const reactPostHandle = async () => {
     if (reactors.includes(user.userId)) {
-      // unlike
-      const response = await postsApi.sendReaction(postId, {
+      // unlike post
+      const response = await postsApi.sendReaction(postData.postId, {
         type: "react",
         action: "unlike",
       });
@@ -68,19 +74,26 @@ function ModalPostViewer() {
         let newReactors = reactors.filter((el) => el !== user.userId);
         setReactors(newReactors);
         setPostData({...postData, likes: postData.likes - 1});
+        dispatch(unReactPost(postData.postId));
       }
     } else {
-      // like
-      const response = await postsApi.sendReaction(postId, {
+      //like post
+      const response = await postsApi.sendReaction(postData.postId, {
         type: "react",
         action: "like",
       });
       if (response.success) {
+        dispatch(reactPost(postData.postId));
         setReactors([user.userId, ...reactors]);
         setPostData({...postData, likes: postData.likes + 1});
       }
     }
   };
+
+  // const deletePostHandler = (postId) => {
+  //   dispatch(setDeletePost(postId));
+  //   back();
+  // };
 
   useEffect(() => {
     // get post data
@@ -124,34 +137,162 @@ function ModalPostViewer() {
   };
 
   return (
-    <React.Fragment>
-      <div>
-        <div
-          className='modal'
-          style={{
-            position: "absolute",
-            background: "#fff",
-            top: 25,
-            left: "10%",
-            right: "10%",
-            padding: 15,
-            border: "2px solid #444",
-          }}>
-          <h1>{"image"}</h1>
-          <button>Test</button>
-          <div
-            style={{
-              width: "100%",
-              height: 400,
-              background: "red",
-            }}
-          />
-          <button type='button' onClick={back}>
-            Close
-          </button>
+    <div className='modal-post-viewer'>
+      <div className='post-viewer-main'>
+        <div className='modal-post-viewer-close' onClick={back}>
+          <i className='fas fa-times'></i>
+        </div>
+        <div className='pvm__image'>
+          <img className='pvm__image-img' src={postData.image} alt='anh post' />
+        </div>
+        <div className='pvm__body'>
+          <div className='pvm__body__header'>
+            <div className='pvm__body__header-artist'>
+              <div className='pvm__body__header-artist-img'>
+                <img src={postData.avatar} alt='artist' />
+              </div>
+              <div className='pvm__body__header-artist-info'>
+                <Link
+                  className='pvm__body__header-artist-name'
+                  to={`/${postData.userId}`}>
+                  {postData.name}
+                  {postData.blueTick ? (
+                    <span className='pvm__body__header-artist-bluetick'>
+                      <i className='fas fa-check-circle'></i>
+                    </span>
+                  ) : (
+                    false
+                  )}
+                </Link>
+                <div className='pvm__body__header-artist-time'>
+                  {convertTime(postData.time)}
+                </div>
+              </div>
+            </div>
+            <div className='pvm__body__header-option'>
+              <i className='fas fa-ellipsis-h'></i>
+              <div className='pvm__body__header-option-dropdown'>
+                <span className='pvm__body__header-option-dropdown-item'>
+                  Chỉnh sửa
+                </span>
+                <span
+                  className='pvm__body__header-option-dropdown-item warning'
+                  type='button'
+                  // onClick={() => deletePostHandler(postData.postId)}
+                >
+                  Xóa
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className='pvm__body__content'>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: `${postData.content.replace(
+                  /(?:\r\n|\r|\n)/g,
+                  "<br>"
+                )}`,
+              }}
+            />
+          </div>
+          <div className='pvm__body__footer'>
+            <div className='pvm__body__footer-react'>
+              {postData.likes > 0 ? (
+                <div className='pvm__body__footer-like-counter'>
+                  <i className='far fa-thumbs-up'></i>
+                  <span>{`${postData.likes} lượt thích`}</span>
+                </div>
+              ) : (
+                false
+              )}
+              {postData.comments > 0 ? (
+                <div className='pvm__body__footer-cmt-counter'>
+                  {postData.comments} bình luận
+                </div>
+              ) : (
+                false
+              )}
+            </div>
+            <div className='pvm__body__footer-option'>
+              <div
+                className={`pvm__body__footer-like ${
+                  reactors.includes(user.userId)
+                    ? "pvm__body__footer-like--active"
+                    : ""
+                }`}
+                onClick={() => reactPostHandle()}>
+                <i className='far fa-thumbs-up'></i>
+                <span>Thích</span>
+              </div>
+              <div
+                className='pvm__body__footer-comment'
+                onClick={() => commentInput.current.focus()}>
+                <i className='far fa-comment-alt'></i>
+                <span>Bình luận</span>
+              </div>
+              <div className='pvm__body__footer-share'>
+                <i className='fas fa-share'></i>
+                <span>Chia sẻ</span>
+              </div>
+            </div>
+            <div className='pvm__body__footer-comments-wrapper'>
+              {allComments.map((comment) => (
+                <li key={comment.cmtId} className='post-comment'>
+                  <Link
+                    className='post-comment__avatar'
+                    to={`/${comment.userCmtId}`}>
+                    <img src={comment.avatar} alt='cmt_avt' />
+                  </Link>
+                  <div className='post-comment__main'>
+                    <Link
+                      className='post-comment__main__name'
+                      to={`/${comment.userCmtId}`}>
+                      <span>{comment.name}</span>
+                    </Link>
+                    <div className='post-comment__main__content'>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: `${comment.cmtContent.replace(
+                            /(?:\r\n|\r|\n)/g,
+                            "<br>"
+                          )}`,
+                        }}
+                      />
+                    </div>
+                    <div className='post-comment__main__time'>
+                      <span>{convertTime(comment.cmtTime)}</span>
+                    </div>
+                    <div className='post-comment__main__footer'></div>
+                  </div>
+                </li>
+              ))}
+            </div>
+            <div className='pvm__body__comment-editer'>
+              <a className='post-comment-editer__avatar' href='/31'>
+                <img src={user.avatar} alt='cmt_avt' />
+              </a>
+              <div className='post-comment-editer__input-group'>
+                <input
+                  type='text'
+                  className='post-comment-editer__input'
+                  placeholder='Viết bình luận...'
+                  onChange={(e) => handleWriteComment(e)}
+                  onKeyPress={(e) => handleKeyPress(e)}
+                  value={comment}
+                  ref={commentInput}
+                />
+                <div
+                  className='post-comment-editer__btn'
+                  onClick={() => submitComment()}>
+                  <i className='far fa-paper-plane'></i>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </React.Fragment>
+      <div className='modal-post-viewer-overlay' onClick={back}></div>
+    </div>
   );
 }
 

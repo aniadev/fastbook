@@ -18,6 +18,7 @@
   --background-dark-hover: #555555;
   --text-color-dark: #ccc;
   --input-background-color: #F5F6F7;
+  --input-background-dark: #3a3b3c;
 }
 * {
   box-sizing: inherit;

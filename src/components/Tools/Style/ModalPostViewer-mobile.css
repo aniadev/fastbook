@@ -1,9 +1,8 @@
 :root {
-    --rightbar-container: 360px;
+    --post-viewer-mobile-width: 320px;
 }
-
-/* Big screen ================================================================= */
-@media screen and (min-width: 940px) {
+/* Small screen ================================================================= */
+@media screen and (max-width: 939px) {
     .modal-post-viewer{
         position: fixed;
         top: 0;
@@ -14,8 +13,10 @@
     }
     .post-viewer-main{
         position: absolute;
-        height: 90%;
-        width: 80%;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
@@ -48,8 +49,9 @@
         position: relative;
         display: block;
         float: left;
-        height: 100%;
-        width: calc(100% - var(--rightbar-container));
+        max-height: var(--post-viewer-mobile-width);
+        min-width: var(--post-viewer-mobile-width);
+        width: 100%;
         background: #000;
     }
     .pvm__image-img{
@@ -67,7 +69,7 @@
         overflow: auto;
         right: 0;
         top: 0;
-        width: var(--rightbar-container);
+        min-width: var(--post-viewer-mobile-width);
         height: 100%;
         float: right;
     }
@@ -267,7 +269,7 @@
 
     .pvm__body__footer-comments-wrapper{
         position: relative;
-        padding: 12px;
+        padding: 12px 12px 60px 12px;
     }
     .post-comment{
         position: relative;
@@ -321,7 +323,8 @@
         display: flex;
         bottom: -1px;
         height: 48px;
-        width: calc(var(--rightbar-container) + 1px );
+        width: 100%;
+        min-width: calc(var(--post-viewer-mobile-width) + 1px );
         padding: 4px 0px 4px 12px;
         background: var(--background-dark);
     }

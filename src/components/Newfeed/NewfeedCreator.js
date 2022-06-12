@@ -1,9 +1,19 @@
-import React from 'react';
-import './Newfeed.css';
-import { useSelector, useDispatch } from 'react-redux';
+import React from "react";
+import "./Newfeed.css";
+import {useSelector} from "react-redux";
+// use custom hooks
+import useModal from "../CustomHooks/useModal";
+import ModalPostCreater from "../Tools/ModalPostCreater";
 
 function NewfeedCreator() {
   const user = useSelector((state) => state.user);
+  const {isShowing, toggleModal, hideModal} = useModal();
+  // const dispatch = useDispatch();
+
+  const showModalPostCreater = function (e) {
+    toggleModal();
+  };
+
   return (
     <div className='nf-creator'>
       <div className='nf-creator__header'>
@@ -16,6 +26,7 @@ function NewfeedCreator() {
           type='text'
           className='nf-creator__header-input'
           placeholder={`${user.name} ơi, bạn đang nghĩ gì thế?`}
+          onClick={(e) => showModalPostCreater(e)}
         />
       </div>
       <ul className='nf-creator__footer'>
@@ -25,7 +36,7 @@ function NewfeedCreator() {
           </span>
           Phát trực tiếp
         </li>
-        <li className='nf-creator__footer-item'>
+        <li className='nf-creator__footer-item' onClick={toggleModal}>
           <span className='nf-creator__footer-item-photo-icon'>
             <i className='fas fa-photo-video'></i>
           </span>
@@ -38,6 +49,8 @@ function NewfeedCreator() {
           Cảm xúc/hoạt động
         </li>
       </ul>
+
+      <ModalPostCreater isShowing={isShowing} hideModal={hideModal} />
     </div>
   );
 }

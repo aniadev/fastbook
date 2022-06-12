@@ -118,6 +118,7 @@
     }
     .pvm__body__header-artist-bluetick{
         position: relative;
+        margin-left: 4px;
         font-size: 1.2rem;
         color: var(--color-primary);
     }
@@ -313,6 +314,57 @@
     }
     .post-comment__main__footer{
     
+    }
+       
+    .post-comment__main__option{
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+        text-align: center;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .post-comment__main__option::before {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: -10px;
+        width: 60px;
+        height: 22px;
+    }
+    .post-comment__main__option:hover {
+        background: var(--navbar-dark-hover);
+    }
+    .post-comment__main__option:hover .post-comment__main__option-dropdown {
+        display: flex;
+    }
+    .post-comment__main__option-dropdown{
+        position: absolute;
+        display: none;
+        right: 0;
+        top: 34px;
+        min-width: 90px;
+        z-index: 1;
+        background: var(--background-dark);
+        flex-direction: column;
+        border-radius: 6px;
+        border: 1px solid var(--border-dark);
+        align-items: center;
+        transition: all 0.2s ease;
+    }
+    .post-comment__main__option-dropdown-item {
+        font-size: 1.3rem;
+        width: calc(100% - 4px);
+        padding: 0 6px;
+        border-radius: 4px;
+        margin: 2px 2px;
+    }
+    .post-comment__main__option-dropdown-item:hover {
+        background: var(--navbar-dark-hover);
     }
 
     /* editor comment */

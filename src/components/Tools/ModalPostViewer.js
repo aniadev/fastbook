@@ -14,6 +14,7 @@ function ModalPostViewer() {
   let history = useHistory();
   let {postId} = useParams();
   const user = useSelector((state) => state.user);
+  const ownId = useSelector((state) => state.user.userId);
   const commentInput = useRef(null);
   const [postData, setPostData] = useState({
     content: "",
@@ -62,6 +63,12 @@ function ModalPostViewer() {
     } else if (e.key === "Enter") {
       submitComment();
     }
+  };
+  const handleDeleteCmt = () => {
+    alert("Tính năng đang cập nhật");
+  };
+  const handleEditCmt = () => {
+    alert("Tính năng đang cập nhật");
   };
   const reactPostHandle = async () => {
     if (reactors.includes(user.userId)) {
@@ -177,9 +184,7 @@ function ModalPostViewer() {
                 </span>
                 <span
                   className='pvm__body__header-option-dropdown-item warning'
-                  type='button'
-                  // onClick={() => deletePostHandler(postData.postId)}
-                >
+                  type='button'>
                   Xóa
                 </span>
               </div>
@@ -236,6 +241,7 @@ function ModalPostViewer() {
               </div>
             </div>
             <div className='pvm__body__footer-comments-wrapper'>
+              {/* Render all comments */}
               {allComments.map((comment) => (
                 <li key={comment.cmtId} className='post-comment'>
                   <Link
@@ -263,6 +269,27 @@ function ModalPostViewer() {
                       <span>{convertTime(comment.cmtTime)}</span>
                     </div>
                     <div className='post-comment__main__footer'></div>
+
+                    {ownId === comment.userCmtId ? (
+                      <div className='post-comment__main__option'>
+                        <i className='fas fa-ellipsis-h'></i>
+                        <div className='post-comment__main__option-dropdown'>
+                          <span
+                            className='post-comment__main__option-dropdown-item'
+                            onClick={() => handleEditCmt()}>
+                            Chỉnh sửa
+                          </span>
+                          <span
+                            className='post-comment__main__option-dropdown-item warning'
+                            type='button'
+                            onClick={() => handleDeleteCmt()}>
+                            Xóa
+                          </span>
+                        </div>
+                      </div>
+                    ) : (
+                      false
+                    )}
                   </div>
                 </li>
               ))}

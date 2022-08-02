@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 // Components
 import Navbar from "./Navbar";
 // import Sidebar from "./Sidebar";
@@ -8,19 +8,36 @@ import Friends from "./Friends";
 import Messenger from "./Messenger";
 import ModalPostViewer from "./Tools/ModalPostViewer";
 import LoginPage from "./Auth/LoginPage";
-// import OnlinePanel from "./Popups/OnlinePanel";
+import OnlinePanel from "./Popups/OnlinePanel";
 import PendingPage from "./PendingPage";
 import ErrorPage from "./ErrorPage";
 // redux store
 import {useSelector} from "react-redux";
 import {Route, Switch} from "react-router-dom";
+import io from "socket.io-client";
+import Cookies from "js-cookie";
 
 function HomePage() {
   const auth = useSelector((state) => state.auth);
 
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    let newSocket = new io();
+    if (auth.isAuthenticated) {
+      newSocket = io(`${window.location.hostname}:8598`, {
+        auth: {
+          accessToken: Cookies.get("accessToken"),
+        },
+      });
+      setSocket(newSocket);
+    }
+
+    return () => newSocket.close();
+  }, [setSocket, auth]);
   return (
     <React.Fragment>
-      {(auth.isAuthenticated && !auth.pendingStatus && (
+      {(auth.isAuthenticated && !auth.pendingStatus && socket && (
         <>
           <Navbar />
           {/* <Sidebar /> */}
@@ -38,7 +55,7 @@ function HomePage() {
               <ErrorPage message={`404 NOT FOUND`} />
             </Route>
           </Switch>
-          {/* <OnlinePanel /> */}
+          <OnlinePanel socket={socket} />
         </>
       )) ||
         (!auth.isAuthenticated && auth.pendingStatus && !auth.errorStatus && (

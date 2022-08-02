@@ -1,8 +1,7 @@
-import { configureStore } from "@reduxjs/toolkit";
+import {configureStore} from "@reduxjs/toolkit";
 import authReducer from "./reducers/authSlice";
 import newfeedReducer from "./reducers/newfeedSlice";
 import userReducer from "./reducers/userSlice";
-import onlineUsersReducer from "./reducers/onlineUsersSlice";
 import profileReducer from "./reducers/profileSlice";
 
 export default configureStore({
@@ -10,7 +9,6 @@ export default configureStore({
     auth: authReducer,
     user: userReducer,
     newfeedPost: newfeedReducer,
-    onlineUsers: onlineUsersReducer,
     profile: profileReducer,
   },
 });

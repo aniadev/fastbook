@@ -305,6 +305,7 @@ function ModalPostViewer() {
                   placeholder='Viết bình luận...'
                   onChange={(e) => handleWriteComment(e)}
                   onKeyPress={(e) => handleKeyPress(e)}
+                  autoFocus
                   value={comment}
                   ref={commentInput}
                 />

@@ -18,6 +18,7 @@ import Cookies from "js-cookie";
 
 function App() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     Cookies.get("accessToken") !== "none" && dispatch(setPendingStatus());
     const checkAuth = async () => {
